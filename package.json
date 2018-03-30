@@ -1,6 +1,6 @@
 {
   "name": "jsdom-canvas-2",
-  "version": "11.6.2",
+  "version": "11.6.3-alpha.0",
   "description": "A JavaScript implementation of many web standards with canvas-2 support",
   "keywords": [
     "dom",
