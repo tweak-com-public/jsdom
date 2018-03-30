@@ -7,9 +7,20 @@ const { JSDOM } = require("../..");
 const { version: packageVersion } = require("../../package.json");
 
 describe("API: constructor options", () => {
+  describe("(general tests)", () => {
+    it("should not mutate the passed-in options object", () => {
+      const options = {};
+
+      // eslint-disable-next-line no-new
+      new JSDOM(``, options);
+
+      assert.strictEqual(Object.getOwnPropertyNames(options).length, 0);
+    });
+  });
+
   describe("referrer", () => {
     it("should allow customizing document.referrer via the referrer option", () => {
-      const document = (new JSDOM(``, { referrer: "http://example.com/" })).window.document;
+      const { document } = (new JSDOM(``, { referrer: "http://example.com/" })).window;
 
       assert.strictEqual(document.referrer, "http://example.com/");
     });
@@ -19,13 +30,13 @@ describe("API: constructor options", () => {
     });
 
     it("should canonicalize referrer URLs", () => {
-      const document = (new JSDOM(``, { referrer: "http:example.com" })).window.document;
+      const { document } = (new JSDOM(``, { referrer: "http:example.com" })).window;
 
       assert.strictEqual(document.referrer, "http://example.com/");
     });
 
     it("should have a default referrer URL of the empty string", () => {
-      const document = new JSDOM().window.document;
+      const { document } = (new JSDOM()).window;
 
       assert.strictEqual(document.referrer, "");
     });
@@ -33,7 +44,7 @@ describe("API: constructor options", () => {
 
   describe("url", () => {
     it("should allow customizing document URL via the url option", () => {
-      const window = (new JSDOM(``, { url: "http://example.com/" })).window;
+      const { window } = new JSDOM(``, { url: "http://example.com/" });
 
       assert.strictEqual(window.location.href, "http://example.com/");
       assert.strictEqual(window.document.URL, "http://example.com/");
@@ -46,7 +57,7 @@ describe("API: constructor options", () => {
     });
 
     it("should canonicalize document URLs", () => {
-      const window = (new JSDOM(``, { url: "http:example.com" })).window;
+      const { window } = new JSDOM(``, { url: "http:example.com" });
 
       assert.strictEqual(window.location.href, "http://example.com/");
       assert.strictEqual(window.document.URL, "http://example.com/");
@@ -54,7 +65,7 @@ describe("API: constructor options", () => {
     });
 
     it("should have a default document URL of about:blank", () => {
-      const window = (new JSDOM()).window;
+      const { window } = new JSDOM();
 
       assert.strictEqual(window.location.href, "about:blank");
       assert.strictEqual(window.document.URL, "about:blank");
@@ -64,35 +75,33 @@ describe("API: constructor options", () => {
 
   describe("contentType", () => {
     it("should have a default content type of text/html", () => {
-      const dom = new JSDOM();
-      const document = dom.window.document;
+      const { document } = (new JSDOM()).window;
 
       assert.strictEqual(document.contentType, "text/html");
     });
 
     it("should allow customizing document content type via the contentType option", () => {
-      const document = (new JSDOM(``, { contentType: "application/funstuff+xml" })).window.document;
+      const { document } = (new JSDOM(``, { contentType: "application/funstuff+xml" })).window;
 
       assert.strictEqual(document.contentType, "application/funstuff+xml");
     });
 
     it("should not show content type parameters in document.contentType (HTML)", () => {
-      const document = (new JSDOM(``, { contentType: "text/html; charset=utf8" })).window.document;
+      const { document } = (new JSDOM(``, { contentType: "text/html; charset=utf8" })).window;
 
       assert.strictEqual(document.contentType, "text/html");
     });
 
     it("should not show content type parameters in document.contentType (XML)", () => {
-      const document = (new JSDOM(``, { contentType: "application/xhtml+xml; charset=utf8" }))
-                       .window.document;
+      const { document } = (new JSDOM(``, { contentType: "application/xhtml+xml; charset=utf8" })).window;
 
       assert.strictEqual(document.contentType, "application/xhtml+xml");
     });
 
     it("should disallow content types that are unparseable", () => {
-      assert.throws(() => new JSDOM(``, { contentType: "" }), TypeError);
-      assert.throws(() => new JSDOM(``, { contentType: "html" }), TypeError);
-      assert.throws(() => new JSDOM(``, { contentType: "text/html/xml" }), TypeError);
+      assert.throws(() => new JSDOM(``, { contentType: "" }), Error);
+      assert.throws(() => new JSDOM(``, { contentType: "html" }), Error);
+      assert.throws(() => new JSDOM(``, { contentType: "text/html/xml" }), Error);
     });
 
     it("should disallow content types that are not XML or HTML", () => {
@@ -138,7 +147,7 @@ describe("API: constructor options", () => {
 
     it("should reflect changes to the cookie jar in document.cookie", () => {
       const cookieJar = new jsdom.CookieJar();
-      const document = (new JSDOM(``, { cookieJar })).window.document;
+      const { document } = (new JSDOM(``, { cookieJar })).window;
 
       cookieJar.setCookieSync("foo=bar", document.URL);
 
@@ -147,7 +156,7 @@ describe("API: constructor options", () => {
 
     it("should have loose behavior by default when using the CookieJar constructor", () => {
       const cookieJar = new jsdom.CookieJar();
-      const document = (new JSDOM(``, { cookieJar })).window.document;
+      const { document } = (new JSDOM(``, { cookieJar })).window;
 
       cookieJar.setCookieSync("foo", document.URL);
 
@@ -156,7 +165,7 @@ describe("API: constructor options", () => {
 
     it("should have a loose-by-default cookie jar even if none is passed", () => {
       const dom = new JSDOM();
-      const document = dom.window.document;
+      const { document } = dom.window;
 
       dom.cookieJar.setCookieSync("foo", document.URL);
 
@@ -241,6 +250,43 @@ describe("API: constructor options", () => {
       });
 
       assert.strictEqual(windowPassed, dom.window);
+    });
+  });
+
+  describe("pretendToBeVisual", () => {
+    describe("not set", () => {
+      it("document should be hidden and in prerender", () => {
+        const { document } = (new JSDOM(``)).window;
+
+        assert.strictEqual(document.hidden, true);
+        assert.strictEqual(document.visibilityState, "prerender");
+      });
+
+      it("document should not have rAF", () => {
+        const { window } = new JSDOM(``);
+
+        assert.isUndefined(window.requestAnimationFrame);
+        assert.isUndefined(window.cancelAnimationFrame);
+      });
+    });
+
+    describe("set to true", () => {
+      it("document should be not be hidden and be visible", () => {
+        const { document } = (new JSDOM(``, { pretendToBeVisual: true })).window;
+
+        assert.strictEqual(document.hidden, false);
+        assert.strictEqual(document.visibilityState, "visible");
+      });
+
+      it("document should call rAF", { async: true }, context => {
+        const { window } = new JSDOM(``, { pretendToBeVisual: true });
+
+        window.requestAnimationFrame(() => {
+          context.done();
+        });
+
+        // Further functionality tests are in web platform tests
+      });
     });
   });
 });

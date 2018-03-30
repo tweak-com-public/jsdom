@@ -1,5 +1,9 @@
 const fs = require("fs");
 const path = require("path");
+
+const { assert } = require("chai");
+const { describe, specify } = require("mocha-sugar-free");
+
 const jsdom = require("../../../lib/old-api.js");
 const toPathname = require("../../util.js").toPathname(__dirname);
 const toFileUrl = require("../../util.js").toFileUrl(__dirname);
@@ -9,7 +13,7 @@ function getImplementation() {
   return jsdom.jsdom().implementation;
 }
 
-exports.tests = {
+describe("level2/html", { skipIfBrowser: true }, () => {
   /**
    *
    The accessKey attribute is a single character access key to give
@@ -19,7 +23,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-89647724
    */
-  HTMLAnchorElement01: function(test) {
+  specify("HTMLAnchorElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -31,12 +35,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vaccesskey = testNode.accessKey;
-    test.equal(vaccesskey, "g", "accessKeyLink");
-    test.done();
-  },
+    assert.equal(vaccesskey, "g", "accessKeyLink");
+  });
 
   /**
    *
@@ -47,7 +50,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-67619266
    */
-  HTMLAnchorElement02: function(test) {
+  specify("HTMLAnchorElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -59,12 +62,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcharset = testNode.charset;
-    test.equal(vcharset, "US-ASCII", "charsetLink");
-    test.done();
-  },
+    assert.equal(vcharset, "US-ASCII", "charsetLink");
+  });
 
   /**
    *
@@ -75,7 +77,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-92079539
    */
-  HTMLAnchorElement03: function(test) {
+  specify("HTMLAnchorElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -87,12 +89,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcoords = testNode.coords;
-    test.equal(vcoords, "0,0,100,100", "coordsLink");
-    test.done();
-  },
+    assert.equal(vcoords, "0,0,100,100", "coordsLink");
+  });
 
   /**
    *
@@ -102,13 +103,12 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-88517319
    */
-  HTMLAnchorElement04: function(test) {
+  specify("HTMLAnchorElement04", () => {
     var doc = load("anchor");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).href, toFileUrl('html/files/pix/submit.gif'), 'hrefLink');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).href, toFileUrl('html/files/pix/submit.gif'), 'hrefLink');
+  });
 
   /**
    *
@@ -118,7 +118,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-87358513
    */
-  HTMLAnchorElement05: function(test) {
+  specify("HTMLAnchorElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -130,12 +130,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vhreflink = testNode.hreflang;
-    test.equal(vhreflink, "en", "hreflangLink");
-    test.done();
-  },
+    assert.equal(vhreflink, "en", "hreflangLink");
+  });
 
   /**
    *
@@ -145,7 +144,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-32783304
    */
-  HTMLAnchorElement06: function(test) {
+  specify("HTMLAnchorElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -157,12 +156,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "Anchor", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "Anchor", "nameLink");
+  });
 
   /**
    *
@@ -172,7 +170,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-3815891
    */
-  HTMLAnchorElement07: function(test) {
+  specify("HTMLAnchorElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -184,12 +182,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vrel = testNode.rel;
-    test.equal(vrel, "GLOSSARY", "relLink");
-    test.done();
-  },
+    assert.equal(vrel, "GLOSSARY", "relLink");
+  });
 
   /**
    *
@@ -199,7 +196,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-58259771
    */
-  HTMLAnchorElement08: function(test) {
+  specify("HTMLAnchorElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -211,12 +208,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vrev = testNode.rev;
-    test.equal(vrev, "STYLESHEET", "revLink");
-    test.done();
-  },
+    assert.equal(vrev, "STYLESHEET", "revLink");
+  });
 
   /**
    *
@@ -226,7 +222,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-49899808
    */
-  HTMLAnchorElement09: function(test) {
+  specify("HTMLAnchorElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -238,12 +234,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vshape = testNode.shape;
-    test.equal(vshape, "rect", "shapeLink");
-    test.done();
-  },
+    assert.equal(vshape, "rect", "shapeLink");
+  });
 
   /**
    *
@@ -254,7 +249,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-41586466
    */
-  HTMLAnchorElement10: function(test) {
+  specify("HTMLAnchorElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -266,12 +261,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtabindex = testNode.tabIndex;
-    test.equal(vtabindex, 22, "tabIndexLink");
-    test.done();
-  },
+    assert.equal(vtabindex, 22, "tabIndexLink");
+  });
 
   /**
    *
@@ -281,7 +275,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6414197
    */
-  HTMLAnchorElement11: function(test) {
+  specify("HTMLAnchorElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -293,12 +287,11 @@ exports.tests = {
     }
     doc = load("anchor2");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtarget = testNode.target;
-    test.equal(vtarget, "dynamic", "targetLink");
-    test.done();
-  },
+    assert.equal(vtarget, "dynamic", "targetLink");
+  });
 
   /**
    *
@@ -308,7 +301,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63938221
    */
-  HTMLAnchorElement12: function(test) {
+  specify("HTMLAnchorElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -320,12 +313,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "image/gif", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "image/gif", "typeLink");
+  });
 
   /**
    *
@@ -333,7 +325,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-65068939
    */
-  HTMLAnchorElement13: function(test) {
+  specify("HTMLAnchorElement13", () => {
     var success;
     var nodeList;
     var testNode;
@@ -344,11 +336,10 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     testNode.blur();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -356,7 +347,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-47150313
    */
-  HTMLAnchorElement14: function(test) {
+  specify("HTMLAnchorElement14", () => {
     var success;
     var nodeList;
     var testNode;
@@ -367,11 +358,10 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     testNode.focus();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -379,13 +369,12 @@ exports.tests = {
    * @author Avi Deitcher
    * @see https://developer.mozilla.org/en/DOM/HTMLAnchorElement
    */
-  HTMLAnchorElement15: function(test) {
+  specify("HTMLAnchorElement15", () => {
     var doc = load("anchor2");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).hostname, '', 'a.hostname relative');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).hostname, '', 'a.hostname relative');
+  });
 
   /**
    *
@@ -393,13 +382,12 @@ exports.tests = {
    * @author Avi Deitcher
    * @see https://developer.mozilla.org/en/DOM/HTMLAnchorElement
    */
-  HTMLAnchorElement16: function(test) {
+  specify("HTMLAnchorElement16", () => {
     var doc = load("anchor3");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).hostname, 'www.github.com', 'a.hostname absolute');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).hostname, 'www.github.com', 'a.hostname absolute');
+  });
 
   /**
    *
@@ -407,13 +395,12 @@ exports.tests = {
    * @author Avi Deitcher
    * @see https://developer.mozilla.org/en/DOM/HTMLAnchorElement
    */
-  HTMLAnchorElement17: function(test) {
+  specify("HTMLAnchorElement17", () => {
     var doc = load("anchor2");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).pathname, toPathname('html/files/pix/submit.gif'), 'a.pathname relative with ./');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).pathname, toPathname('html/files/pix/submit.gif'), 'a.pathname relative with ./');
+  });
 
   /**
    *
@@ -421,13 +408,12 @@ exports.tests = {
    * @author Avi Deitcher
    * @see https://developer.mozilla.org/en/DOM/HTMLAnchorElement
    */
-  HTMLAnchorElement18: function(test) {
+  specify("HTMLAnchorElement18", () => {
     var doc = load("anchor3");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).pathname, '/tmpvar/jsdom', 'a.pathname absolute');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).pathname, '/tmpvar/jsdom', 'a.pathname absolute');
+  });
 
   /**
    *
@@ -435,31 +421,29 @@ exports.tests = {
    * @author Salvatore Porchia
    * @see https://developer.mozilla.org/en/DOM/HTMLAnchorElement
    */
-  HTMLAnchorElement19: function(test) {
+  specify("HTMLAnchorElement19", () => {
     var doc = load("anchor3");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).host, 'www.github.com', 'a.host');
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).host, 'www.github.com', 'a.host');
     var doc = load("anchor4");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).host, 'www.github.com:3020', 'a.host');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).host, 'www.github.com:3020', 'a.host');
+  });
 
   /**
    * HTMLAnchorElement.hash should show part of url after hash
    * @author Peter Culak
    * @see https://developer.mozilla.org/en/DOM/HTMLAnchorElement
    */
-   HTMLAnchorElement20: function(test) {
+  specify("HTMLAnchorElement20", () => {
      var doc = load("anchor5");
      var nodeList = doc.getElementsByTagName("a");
-     test.equal(nodeList.length, 1, 'Asize');
-     test.equal(nodeList.item(0).host, 'www.github.com:3020', 'a.host');
-     test.equal(nodeList.item(0).hash, '#fragment-identifier', 'a.hash');
-     test.done();
-  },
+     assert.equal(nodeList.length, 1, 'Asize');
+     assert.equal(nodeList.item(0).host, 'www.github.com:3020', 'a.host');
+     assert.equal(nodeList.item(0).hash, '#fragment-identifier', 'a.hash');
+  });
 
   /**
    *
@@ -467,17 +451,16 @@ exports.tests = {
    * @author Salvatore Porchia
    * @see https://developer.mozilla.org/en/DOM/HTMLAnchorElement
    */
-  HTMLAnchorElement21: function(test) {
+  specify("HTMLAnchorElement21", () => {
     var doc = load("anchor3");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).port, '', 'a.port');
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).port, '', 'a.port');
     var doc = load("anchor4");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).port, '3020', 'a.port');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).port, '3020', 'a.port');
+  });
 
   /**
    *
@@ -485,43 +468,41 @@ exports.tests = {
    * @author Salvatore Porchia
    * @see https://developer.mozilla.org/en/DOM/HTMLAnchorElement
    */
-  HTMLAnchorElement22: function(test) {
+  specify("HTMLAnchorElement22", () => {
     var doc = load("anchorEmpty");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     // Firefox shows 'http:' Chrome/Safari show ':' on empty href.
-    test.equal(nodeList.item(0).protocol, ':', 'a.protocol');
+    assert.equal(nodeList.item(0).protocol, ':', 'a.protocol');
     var doc = load("anchor2");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).protocol, 'file:', 'a.protocol');
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).protocol, 'file:', 'a.protocol');
     var doc = load("anchor3");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).protocol, 'https:', 'a.protocol');
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).protocol, 'https:', 'a.protocol');
     var doc = load("anchor4");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).protocol, 'http:', 'a.protocol');
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).protocol, 'http:', 'a.protocol');
     var doc = load("anchor6");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).protocol, 'special:', 'a.protocol');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).protocol, 'special:', 'a.protocol');
+  });
 
   /**
    *
    HTMLAnchorElement.href should show the pathname of the href
    * @author eleith
    */
-  HTMLAnchorElement23: function(test) {
+  specify("HTMLAnchorElement23", () => {
     var doc = load("anchorEmpty");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).href, '', 'A.href is empty');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).href, '', 'A.href is empty');
+  });
 
   /**
    *
@@ -529,13 +510,12 @@ exports.tests = {
    * @author Adam Faulkner
    * @see http://url.spec.whatwg.org/#dom-url-pathname
    */
-  HTMLAnchorElement24: function(test) {
+  specify("HTMLAnchorElement24", () => {
     var doc = load("anchorEmpty");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).pathname, '', 'A.pathname is empty');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).pathname, '', 'A.pathname is empty');
+  });
 
   /**
    *
@@ -543,13 +523,12 @@ exports.tests = {
    * @author Salvatore Porchia
    * @see http://url.spec.whatwg.org/#dom-url-username
    */
-  HTMLAnchorElement25: function(test) {
+  specify("HTMLAnchorElement25", () => {
     var doc = load("anchor7");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).username, 'user', 'A.username');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).username, 'user', 'A.username');
+  });
 
   /**
    *
@@ -557,13 +536,12 @@ exports.tests = {
    * @author Salvatore Porchia
    * @see http://url.spec.whatwg.org/#dom-url-password
    */
-  HTMLAnchorElement26: function(test) {
+  specify("HTMLAnchorElement26", () => {
     var doc = load("anchor7");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).password, 'pa%3Ass', 'A.password');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).password, 'pa%3Ass', 'A.password');
+  });
 
   /**
    *
@@ -571,29 +549,28 @@ exports.tests = {
    * @author Salvatore Porchia
    * @see http://url.spec.whatwg.org/#dom-url-origin
    */
-  HTMLAnchorElement27: function(test) {
+  specify("HTMLAnchorElement27", () => {
     var doc = load("anchorEmpty");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).origin, '', 'a.origin');
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).origin, '', 'a.origin');
     var doc = load("anchor2");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).origin, 'file://', 'a.origin');
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).origin, 'file://', 'a.origin');
     var doc = load("anchor3");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).origin, 'https://www.github.com', 'a.origin');
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).origin, 'https://www.github.com', 'a.origin');
     var doc = load("anchor4");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).origin, 'http://www.github.com:3020', 'a.origin');
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).origin, 'http://www.github.com:3020', 'a.origin');
     var doc = load("anchor7");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).origin, 'http://www.github.com:500', 'a.origin');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).origin, 'http://www.github.com:500', 'a.origin');
+  });
 
   /**
    *
@@ -601,319 +578,16 @@ exports.tests = {
    * @author Salvatore Porchia
    * @see http://url.spec.whatwg.org/#dom-url-search
    */
-  HTMLAnchorElement28: function(test) {
+  specify("HTMLAnchorElement28", () => {
     var doc = load("anchor6");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).search, '', 'a.search');
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).search, '', 'a.search');
     var doc = load("anchor7");
     var nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'A size');
-    test.equal(nodeList.item(0).search, '?testing=tested', 'A.search');
-    test.done();
-  },
-
-  /**
-   *
-   The align attribute specifies the alignment of the object(Vertically
-   or Horizontally) with respect to its surrounding text.
-   Retrieve the align attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-8049912
-   */
-  HTMLAppletElement01: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var valign;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    valign = testNode.align;
-    test.equal(valign.toLowerCase(), "bottom".toLowerCase(), "alignLink");
-    test.done();
-  },
-
-  /**
-   *
-   The alt attribute specifies the alternate text for user agents not
-   rendering the normal context of this element.
-   Retrieve the alt attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-58610064
-   */
-  HTMLAppletElement02: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var valt;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    valt = testNode.alt;
-    test.equal(valt, "Applet Number 1", "altLink");
-    test.done();
-  },
-
-  /**
-   *
-   The archive attribute specifies a comma-seperated archive list.
-   Retrieve the archive attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-14476360
-   */
-  HTMLAppletElement03: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var varchive;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    varchive = testNode.archive;
-    test.equal(varchive, "", "archiveLink");
-    test.done();
-  },
-
-  /**
-   *
-   The code attribute specifies the applet class file.
-   Retrieve the code attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-61509645
-   */
-  HTMLAppletElement04: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vcode;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    vcode = testNode.code;
-    test.equal(vcode, "org/w3c/domts/DOMTSApplet.class", "codeLink");
-    test.done();
-  },
-
-  /**
-   *
-   The codeBase attribute specifies an optional base URI for the applet.
-   Retrieve the codeBase attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6581160
-   */
-  HTMLAppletElement05: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vcodebase;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    vcodebase = testNode.codeBase;
-    test.equal(vcodebase, toFileUrl("html/files/applets"), "codebase");
-    test.done();
-  },
-
-  /**
-   *
-   The height attribute overrides the height.
-   Retrieve the height attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-90184867
-   */
-  HTMLAppletElement06: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vheight;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    vheight = testNode.height;
-    test.equal(vheight, "306", "heightLink");
-    test.done();
-  },
-
-  /**
-   *
-   The hspace attribute specifies the horizontal space to the left
-   and right of this image, applet, or object.
-   Retrieve the hspace attribute and examine it's value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-1567197
-   */
-  HTMLAppletElement07: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vhspace;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    vhspace = testNode.hspace;
-    test.equal(vhspace, 0, "hspaceLink");
-    test.done();
-  },
-
-  /**
-   *
-   The name attribute specifies the name of the applet.
-   Retrieve the name attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-39843695
-   */
-  HTMLAppletElement08: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vname;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    vname = testNode.name;
-    test.equal(vname, "applet1", "nameLink");
-    test.done();
-  },
-
-  /**
-   *
-   The vspace attribute specifies the vertical space above and below
-   this image, applet or object.
-   Retrieve the vspace attribute and examine it's value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-22637173
-   */
-  HTMLAppletElement09: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vvspace;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    vvspace = testNode.vspace;
-    test.equal(vvspace, 0, "vspaceLink");
-    test.done();
-  },
-
-  /**
-   *
-   The width attribute overrides the regular width.
-   Retrieve the width attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-16526327
-   */
-  HTMLAppletElement10: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vwidth;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    vwidth = testNode.width;
-    test.equal(vwidth, "301", "widthLink");
-    test.done();
-  },
-
-  /**
-   *
-   The object attribute specifies the serialized applet file.
-   Retrieve the object attribute and examine its value.
-   * @author NIST
-   * @author Rick Rivello
-   * @author Curt Arnold
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-93681523
-   */
-  HTMLAppletElement11: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vobject;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("applet2");
-    nodeList = doc.getElementsByTagName("applet");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    vobject = testNode.object;
-    test.equal(vobject, toFileUrl("html/files/DOMTSApplet.dat"), "object");
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'A size');
+    assert.equal(nodeList.item(0).search, '?testing=tested', 'A.search');
+  });
 
   /**
    *
@@ -924,7 +598,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-57944457
    */
-  HTMLAreaElement01: function(test) {
+  specify("HTMLAreaElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -936,12 +610,11 @@ exports.tests = {
     }
     doc = load("area");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vaccesskey = testNode.accessKey;
-    test.equal(vaccesskey, "a", "alignLink");
-    test.done();
-  },
+    assert.equal(vaccesskey, "a", "alignLink");
+  });
 
   /**
    *
@@ -952,7 +625,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-39775416
    */
-  HTMLAreaElement02: function(test) {
+  specify("HTMLAreaElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -964,12 +637,11 @@ exports.tests = {
     }
     doc = load("area");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valt = testNode.alt;
-    test.equal(valt, "Domain", "altLink");
-    test.done();
-  },
+    assert.equal(valt, "Domain", "altLink");
+  });
 
   /**
    *
@@ -980,7 +652,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-66021476
    */
-  HTMLAreaElement03: function(test) {
+  specify("HTMLAreaElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -992,12 +664,11 @@ exports.tests = {
     }
     doc = load("area");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcoords = testNode.coords;
-    test.equal(vcoords, "0,2,45,45", "coordsLink");
-    test.done();
-  },
+    assert.equal(vcoords, "0,2,45,45", "coordsLink");
+  });
 
   /**
    *
@@ -1007,13 +678,12 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-34672936
    */
-  HTMLAreaElement04: function(test) {
+  specify("HTMLAreaElement04", () => {
     var doc = load("area");
     var nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.equal(nodeList.item(0).href, toFileUrl('html/files/files/dletter.html'), 'hrefLink');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.item(0).href, toFileUrl('html/files/files/dletter.html'), 'hrefLink');
+  });
 
   /**
    *
@@ -1023,7 +693,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-61826871
    */
-  HTMLAreaElement05: function(test) {
+  specify("HTMLAreaElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1035,12 +705,11 @@ exports.tests = {
     }
     doc = load("area");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vnohref = testNode.noHref;
-    test.equal(vnohref, false, 'vnohref should be *false*');
-    test.done();
-  },
+    assert.equal(vnohref, false, 'vnohref should be *false*');
+  });
 
   /**
    *
@@ -1050,7 +719,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-85683271
    */
-  HTMLAreaElement06: function(test) {
+  specify("HTMLAreaElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1062,12 +731,11 @@ exports.tests = {
     }
     doc = load("area");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vshape = testNode.shape;
-    test.equal(vshape.toLowerCase(), "rect".toLowerCase(), "shapeLink");
-    test.done();
-  },
+    assert.equal(vshape.toLowerCase(), "rect".toLowerCase(), "shapeLink");
+  });
 
   /**
    *
@@ -1078,7 +746,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-8722121
    */
-  HTMLAreaElement07: function(test) {
+  specify("HTMLAreaElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1090,12 +758,11 @@ exports.tests = {
     }
     doc = load("area");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtabindex = testNode.tabIndex;
-    test.equal(vtabindex, 10, "tabIndexLink");
-    test.done();
-  },
+    assert.equal(vtabindex, 10, "tabIndexLink");
+  });
 
   /**
    *
@@ -1105,7 +772,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-46054682
    */
-  HTMLAreaElement08: function(test) {
+  specify("HTMLAreaElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1117,12 +784,11 @@ exports.tests = {
     }
     doc = load("area2");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtarget = testNode.target;
-    test.equal(vtarget, "dynamic", "targetLink");
-    test.done();
-  },
+    assert.equal(vtarget, "dynamic", "targetLink");
+  });
 
   /**
    *
@@ -1132,7 +798,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-82703081
    */
-  HTMLBRElement01: function(test) {
+  specify("HTMLBRElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1144,12 +810,11 @@ exports.tests = {
     }
     doc = load("br");
     nodeList = doc.getElementsByTagName("br");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclear = testNode.clear;
-    test.equal(vclear, "none", "clearLink");
-    test.done();
-  },
+    assert.equal(vclear, "none", "clearLink");
+  });
 
   /**
    *
@@ -1159,7 +824,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-65382887
    */
-  HTMLBaseElement01: function(test) {
+  specify("HTMLBaseElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1171,12 +836,11 @@ exports.tests = {
     }
     doc = load("base");
     nodeList = doc.getElementsByTagName("base");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vhref = testNode.href;
-    test.equal(vhref, "about:blank", "hrefLink");
-    test.done();
-  },
+    assert.equal(vhref, "about:blank", "hrefLink");
+  });
 
   /**
    *
@@ -1186,7 +850,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-73844298
    */
-  HTMLBaseElement02: function(test) {
+  specify("HTMLBaseElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1198,12 +862,11 @@ exports.tests = {
     }
     doc = load("base2");
     nodeList = doc.getElementsByTagName("base");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtarget = testNode.target;
-    test.equal(vtarget, "Frame1", "targetLink");
-    test.done();
-  },
+    assert.equal(vtarget, "Frame1", "targetLink");
+  });
 
   /**
    *
@@ -1213,7 +876,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59424581
    */
-  HTMLBodyElement01: function(test) {
+  specify("HTMLBodyElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1225,12 +888,11 @@ exports.tests = {
     }
     doc = load("body");
     nodeList = doc.getElementsByTagName("body");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valink = testNode.aLink;
-    test.equal(valink, "#0000ff", "aLinkLink");
-    test.done();
-  },
+    assert.equal(valink, "#0000ff", "aLinkLink");
+  });
 
   /**
    *
@@ -1241,7 +903,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-37574810
    */
-  HTMLBodyElement02: function(test) {
+  specify("HTMLBodyElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1253,12 +915,11 @@ exports.tests = {
     }
     doc = load("body");
     nodeList = doc.getElementsByTagName("body");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vbackground = testNode.background;
-    test.equal(vbackground, "./pix/back1.gif", "backgroundLink");
-    test.done();
-  },
+    assert.equal(vbackground, "./pix/back1.gif", "backgroundLink");
+  });
 
   /**
    *
@@ -1268,7 +929,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-24940084
    */
-  HTMLBodyElement03: function(test) {
+  specify("HTMLBodyElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1280,12 +941,11 @@ exports.tests = {
     }
     doc = load("body");
     nodeList = doc.getElementsByTagName("body");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vbgcolor = testNode.bgColor;
-    test.equal(vbgcolor, "#ffff00", "bgColorLink");
-    test.done();
-  },
+    assert.equal(vbgcolor, "#ffff00", "bgColorLink");
+  });
 
   /**
    *
@@ -1296,7 +956,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-7662206
    */
-  HTMLBodyElement04: function(test) {
+  specify("HTMLBodyElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1308,12 +968,11 @@ exports.tests = {
     }
     doc = load("body");
     nodeList = doc.getElementsByTagName("body");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlink = testNode.link;
-    test.equal(vlink, "#ff0000", "linkLink");
-    test.done();
-  },
+    assert.equal(vlink, "#ff0000", "linkLink");
+  });
 
   /**
    *
@@ -1323,7 +982,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-73714763
    */
-  HTMLBodyElement05: function(test) {
+  specify("HTMLBodyElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1335,12 +994,11 @@ exports.tests = {
     }
     doc = load("body");
     nodeList = doc.getElementsByTagName("body");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtext = testNode.text;
-    test.equal(vtext, "#000000", "textLink");
-    test.done();
-  },
+    assert.equal(vtext, "#000000", "textLink");
+  });
 
   /**
    *
@@ -1351,7 +1009,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83224305
    */
-  HTMLBodyElement06: function(test) {
+  specify("HTMLBodyElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1363,12 +1021,11 @@ exports.tests = {
     }
     doc = load("body");
     nodeList = doc.getElementsByTagName("body");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vvlink = testNode.vLink;
-    test.equal(vvlink, "#00ffff", "vLinkLink");
-    test.done();
-  },
+    assert.equal(vvlink, "#00ffff", "vLinkLink");
+  });
 
   /**
    *
@@ -1378,7 +1035,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-71254493
    */
-  HTMLButtonElement01: function(test) {
+  specify("HTMLButtonElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1391,13 +1048,12 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     fNode = testNode.form;
     vform = fNode.id;
-    test.equal(vform, "form2", "formLink");
-    test.done();
-  },
+    assert.equal(vform, "form2", "formLink");
+  });
 
   /**
    *
@@ -1408,7 +1064,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-71254493
    */
-  HTMLButtonElement02: function(test) {
+  specify("HTMLButtonElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1420,12 +1076,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.done();
-  },
+    assert.equal(vform, null, 'vform should be null');
+  });
 
   /**
    *
@@ -1436,7 +1091,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-73169431
    */
-  HTMLButtonElement03: function(test) {
+  specify("HTMLButtonElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1448,12 +1103,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vaccesskey = testNode.accessKey;
-    test.equal(vaccesskey, "f", "accessKeyLink");
-    test.done();
-  },
+    assert.equal(vaccesskey, "f", "accessKeyLink");
+  });
 
   /**
    *
@@ -1464,7 +1118,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-92757155
    */
-  HTMLButtonElement04: function(test) {
+  specify("HTMLButtonElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1476,12 +1130,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vdisabled = testNode.disabled;
-    test.ok(vdisabled, 'disabledLink');
-    test.done();
-  },
+    assert.ok(vdisabled, 'disabledLink');
+  });
 
   /**
    *
@@ -1492,7 +1145,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-11029910
    */
-  HTMLButtonElement05: function(test) {
+  specify("HTMLButtonElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1504,12 +1157,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "disabledButton", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "disabledButton", "nameLink");
+  });
 
   /**
    *
@@ -1520,7 +1172,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-39190908
    */
-  HTMLButtonElement06: function(test) {
+  specify("HTMLButtonElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1532,12 +1184,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtabindex = testNode.tabIndex;
-    test.equal(vtabindex, 20, "tabIndexLink");
-    test.done();
-  },
+    assert.equal(vtabindex, 20, "tabIndexLink");
+  });
 
   /**
    *
@@ -1547,7 +1198,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-27430092
    */
-  HTMLButtonElement07: function(test) {
+  specify("HTMLButtonElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1559,12 +1210,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "reset", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "reset", "typeLink");
+  });
 
   /**
    *
@@ -1574,7 +1224,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-72856782
    */
-  HTMLButtonElement08: function(test) {
+  specify("HTMLButtonElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1586,12 +1236,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vvalue = testNode.value;
-    test.equal(vvalue, "Reset Disabled Button", "valueLink");
-    test.done();
-  },
+    assert.equal(vvalue, "Reset Disabled Button", "valueLink");
+  });
 
   /**
    *
@@ -1604,7 +1253,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-33262535
    */
-  HTMLCollection01: function(test) {
+  specify("HTMLCollection01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1618,14 +1267,13 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     rowNode = rowsnodeList.item(0);
     vrowindex = rowNode.rowIndex;
-    test.equal(vrowindex, 0, "rowIndexLink");
-    test.done();
-  },
+    assert.equal(vrowindex, 0, "rowIndexLink");
+  });
 
   /**
    *
@@ -1638,7 +1286,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-76728479
    */
-  HTMLCollection02: function(test) {
+  specify("HTMLCollection02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1652,14 +1300,13 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     formsnodeList = testNode.elements;
     formNode = formsnodeList.namedItem("select1");
     vname = formNode.nodeName;
-    test.equal(vname, 'SELECT', 'nameIndexLink');
-    test.done();
-  },
+    assert.equal(vname, 'SELECT', 'nameIndexLink');
+  });
 
   /**
    *
@@ -1672,7 +1319,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-21069976
    */
-  HTMLCollection03: function(test) {
+  specify("HTMLCollection03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1686,14 +1333,13 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     formsnodeList = testNode.elements;
     formNode = formsnodeList.namedItem("selectId");
     vname = formNode.nodeName;
-    test.equal(vname, 'SELECT', 'nameIndexLink');
-    test.done();
-  },
+    assert.equal(vname, 'SELECT', 'nameIndexLink');
+  });
 
   /**
    *
@@ -1706,7 +1352,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-40057551
    */
-  HTMLCollection04: function(test) {
+  specify("HTMLCollection04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1726,7 +1372,7 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     rowLength1 = rowsnodeList.length;
@@ -1734,9 +1380,8 @@ exports.tests = {
     newRow = testNode.insertRow(4);
     rowLength2 = rowsnodeList.length;
     result[result.length] = rowLength2;
-    test.deepEqual(result, expectedResult, 'rowIndexLink');
-    test.done();
-  },
+    assert.deepEqual(result, expectedResult, 'rowIndexLink');
+  });
 
   /**
    *
@@ -1748,7 +1393,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-40057551
    */
-  HTMLCollection05: function(test) {
+  specify("HTMLCollection05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1761,13 +1406,12 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     rowLength = rowsnodeList.length;
-    test.equal(rowLength, 4, "rowIndexLink");
-    test.done();
-  },
+    assert.equal(rowLength, 4, "rowIndexLink");
+  });
 
   /**
    *
@@ -1781,7 +1425,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6156016
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-33262535
    */
-  HTMLCollection06: function(test) {
+  specify("HTMLCollection06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1795,14 +1439,13 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     rowNode = rowsnodeList.item(0);
     vrowindex = rowNode.rowIndex;
-    test.equal(vrowindex, 0, "rowIndexLink");
-    test.done();
-  },
+    assert.equal(vrowindex, 0, "rowIndexLink");
+  });
 
   /**
    *
@@ -1815,7 +1458,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-33262535
    */
-  HTMLCollection07: function(test) {
+  specify("HTMLCollection07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1829,14 +1472,13 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     rowNode = rowsnodeList.item(3);
     vrowindex = rowNode.rowIndex;
-    test.equal(vrowindex, 3, "rowIndexLink");
-    test.done();
-  },
+    assert.equal(vrowindex, 3, "rowIndexLink");
+  });
 
   /**
    *
@@ -1849,7 +1491,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-33262535
    */
-  HTMLCollection08: function(test) {
+  specify("HTMLCollection08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1863,14 +1505,13 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     rowNode = rowsnodeList.item(2);
     vrowindex = rowNode.rowIndex;
-    test.equal(vrowindex, 2, "rowIndexLink");
-    test.done();
-  },
+    assert.equal(vrowindex, 2, "rowIndexLink");
+  });
 
   /**
    *
@@ -1882,7 +1523,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-33262535
    */
-  HTMLCollection09: function(test) {
+  specify("HTMLCollection09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1896,13 +1537,12 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     rowNode = rowsnodeList.item(5);
-    test.equal(rowNode, null, 'rowNode should be null');
-    test.done();
-  },
+    assert.equal(rowNode, null, 'rowNode should be null');
+  });
 
   /**
    *
@@ -1917,7 +1557,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-21069976
    */
-  HTMLCollection10: function(test) {
+  specify("HTMLCollection10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1931,14 +1571,13 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     formsnodeList = testNode.elements;
     formNode = formsnodeList.namedItem("select1");
     vname = formNode.nodeName;
-    test.equal(vname, 'SELECT', 'nameIndexLink');
-    test.done();
-  },
+    assert.equal(vname, 'SELECT', 'nameIndexLink');
+  });
 
   /**
    *
@@ -1953,7 +1592,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-76728479
    */
-  HTMLCollection11: function(test) {
+  specify("HTMLCollection11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -1967,14 +1606,13 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     formsnodeList = testNode.elements;
     formNode = formsnodeList.namedItem("selectId");
     vname = formNode.nodeName;
-    test.equal(vname, 'SELECT', 'nameIndexLink');
-    test.done();
-  },
+    assert.equal(vname, 'SELECT', 'nameIndexLink');
+  });
 
   /**
    *
@@ -1990,7 +1628,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-21069976
    */
-  HTMLCollection12: function(test) {
+  specify("HTMLCollection12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2003,13 +1641,12 @@ exports.tests = {
     }
     doc = load("collection");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     formsnodeList = testNode.elements;
     formNode = formsnodeList.namedItem("select9");
-    test.equal(formNode, null, 'formNode should be null');
-    test.done();
-  },
+    assert.equal(formNode, null, 'formNode should be null');
+  });
 
   /**
    *
@@ -2020,7 +1657,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-75317739
    */
-  HTMLDirectoryElement01: function(test) {
+  specify("HTMLDirectoryElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2032,12 +1669,11 @@ exports.tests = {
     }
     doc = load("directory");
     nodeList = doc.getElementsByTagName("dir");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcompact = testNode.compact;
-    test.ok(vcompact, 'compactLink');
-    test.done();
-  },
+    assert.ok(vcompact, 'compactLink');
+  });
 
   /**
    *
@@ -2047,7 +1683,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-70908791
    */
-  HTMLDivElement01: function(test) {
+  specify("HTMLDivElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2059,12 +1695,11 @@ exports.tests = {
     }
     doc = load("div");
     nodeList = doc.getElementsByTagName("div");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -2075,7 +1710,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-21738539
    */
-  HTMLDlistElement01: function(test) {
+  specify("HTMLDlistElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2087,12 +1722,11 @@ exports.tests = {
     }
     doc = load("dl");
     nodeList = doc.getElementsByTagName("dl");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcompact = testNode.compact;
-    test.ok(vcompact, 'compactLink');
-    test.done();
-  },
+    assert.ok(vcompact, 'compactLink');
+  });
 
   /**
    *
@@ -2102,7 +1736,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-18446827
    */
-  HTMLDocument01: function(test) {
+  specify("HTMLDocument01", () => {
     var success;
     var nodeList;
     var vtitle;
@@ -2113,9 +1747,8 @@ exports.tests = {
     }
     doc = load("document");
     vtitle = doc.title;
-    test.equal(vtitle, "NIST DOM HTML Test - DOCUMENT", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "NIST DOM HTML Test - DOCUMENT", "titleLink");
+  });
 
   /**
    *
@@ -2126,7 +1759,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95229140
    */
-  HTMLDocument02: function(test) {
+  specify("HTMLDocument02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2138,15 +1771,14 @@ exports.tests = {
     }
     doc = load("document");
     vreferrer = doc.referrer;
-    test.equal(vreferrer, "", "referrerLink");
+    assert.equal(vreferrer, "", "referrerLink");
 
     // Test configuration of referrer value.
     doc = load("document", { referrer:'http://www.example.com' });
     vreferrer = doc.referrer;
-    test.equal(vreferrer, "http://www.example.com", "referrerLink");
+    assert.equal(vreferrer, "http://www.example.com", "referrerLink");
 
-    test.done();
-  },
+  });
 
   /**
    *
@@ -2156,7 +1788,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-46183437
    */
-  HTMLDocument04: function(test) {
+  specify("HTMLDocument04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2168,9 +1800,8 @@ exports.tests = {
     }
     doc = load("document");
     vurl = doc.URL;
-    test.equal(vurl, toFileUrl('html/files/document.html'), 'URLLink');
-    test.done();
-  },
+    assert.equal(vurl, toFileUrl('html/files/document.html'), 'URLLink');
+  });
 
   /**
    *
@@ -2181,7 +1812,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-56360201
    */
-  HTMLDocument05: function(test) {
+  specify("HTMLDocument05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2195,9 +1826,8 @@ exports.tests = {
     doc = load("document");
     vbody = doc.body;
     vid = vbody.id;
-    test.equal(vid, "TEST-BODY", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "TEST-BODY", "idLink");
+  });
 
   /**
    *
@@ -2207,7 +1837,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-90379117
    */
-  HTMLDocument07: function(test) {
+  specify("HTMLDocument07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2221,9 +1851,8 @@ exports.tests = {
     doc = load("document");
     vimages = doc.images;
     vlength = vimages.length;
-    test.equal(vlength, 1, "lengthLink");
-    test.done();
-  },
+    assert.equal(vlength, 1, "lengthLink");
+  });
 
   /**
    *
@@ -2234,7 +1863,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-7068919
    */
-  HTMLDocument09: function(test) {
+  specify("HTMLDocument09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2248,9 +1877,8 @@ exports.tests = {
     doc = load("document");
     vlinks = doc.links;
     vlength = vlinks.length;
-    test.equal(vlength, 3, "lengthLink");
-    test.done();
-  },
+    assert.equal(vlength, 3, "lengthLink");
+  });
 
   /**
    *
@@ -2260,7 +1888,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-1689064
    */
-  HTMLDocument10: function(test) {
+  specify("HTMLDocument10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2274,9 +1902,8 @@ exports.tests = {
     doc = load("document");
     vforms = doc.forms;
     vlength = vforms.length;
-    test.equal(vlength, 1, "lengthLink");
-    test.done();
-  },
+    assert.equal(vlength, 1, "lengthLink");
+  });
 
   /**
    *
@@ -2287,7 +1914,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-7577272
    */
-  HTMLDocument11: function(test) {
+  specify("HTMLDocument11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2301,9 +1928,8 @@ exports.tests = {
     doc = load("document");
     vanchors = doc.anchors;
     vlength = vanchors.length;
-    test.equal(vlength, 1, "lengthLink");
-    test.done();
-  },
+    assert.equal(vlength, 1, "lengthLink");
+  });
 
   /**
    *
@@ -2314,7 +1940,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-8747038
    * Updated with multiple-cookie test by dai-shi in GH-738.
    */
-  HTMLDocument12: function(test) {
+  specify("HTMLDocument12", () => {
     var success;
     var nodeList;
     var vcookie;
@@ -2325,11 +1951,11 @@ exports.tests = {
     }
     doc = load("document");
     vcookie = doc.cookie;
-    test.equal(vcookie, "", "cookieLink");
+    assert.equal(vcookie, "", "cookieLink");
 
     doc = load("document", { cookie:false } );
     vcookie = doc.cookie;
-    test.equal(vcookie, "", "cookieLink");
+    assert.equal(vcookie, "", "cookieLink");
 
     future = new Date();
     future.setTime( future.getTime() + (24 * 60 * 60 * 1000) );
@@ -2339,27 +1965,26 @@ exports.tests = {
       cookie: cookie
     });
     vcookie = doc.cookie;
-    test.equal(vcookie, "key=value", "cookieLink");
+    assert.equal(vcookie, "key=value", "cookieLink");
 
     doc = load("document", { url: 'http://example.com' });
     doc.cookie = "key1=value1";
     doc.cookie = "key2=value2";
     vcookie = doc.cookie;
-    test.equal(vcookie, "key1=value1; key2=value2", "cookieLink");
+    assert.equal(vcookie, "key1=value1; key2=value2", "cookieLink");
 
     doc = load("document", { url: 'http://example.com' });
     doc.cookie = "key3=value3; max-age=300";
     doc.cookie = "key4=value4; path=/";
     vcookie = doc.cookie;
-    test.equal(vcookie, "key3=value3; key4=value4", "cookieLink");
+    assert.equal(vcookie, "key3=value3; key4=value4", "cookieLink");
 
     var ret = doc.cookie = null;
-    test.equal(ret, null, "cookieLink");
-    test.equal(doc.cookie, vcookie + "; null", "cookieLink"); // yes, this is actually how this should behave
+    assert.equal(ret, null, "cookieLink");
+    assert.equal(doc.cookie, vcookie + "; null", "cookieLink"); // yes, this is actually how this should behave
 
 
-    test.done();
-  },
+  });
 
   /**
    *
@@ -2371,7 +1996,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-71555259
    */
-  HTMLDocument13: function(test) {
+  specify("HTMLDocument13", () => {
     var success;
     var nodeList;
     var doc;
@@ -2381,9 +2006,8 @@ exports.tests = {
     }
     doc = load("document");
     nodeList = doc.getElementsByName("mapid");
-    test.equal(nodeList.length, 1, 'Asize');
-    test.done();
-  },
+    assert.equal(nodeList.length, 1, 'Asize');
+  });
 
   /**
    *
@@ -2396,7 +2020,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-71555259
    */
-  HTMLDocument14: function(test) {
+  specify("HTMLDocument14", () => {
     var success;
     var nodeList;
     var doc;
@@ -2406,9 +2030,8 @@ exports.tests = {
     }
     doc = load("document");
     nodeList = doc.getElementsByName("noid");
-    test.equal(nodeList.length, 0, 'Asize');
-    test.done();
-  },
+    assert.equal(nodeList.length, 0, 'Asize');
+  });
 
   /**
    *
@@ -2422,7 +2045,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-26809268
    * @see http://www.w3.org/TR/DOM-Level-2-Core/core#ID-getElBId
    */
-  HTMLDocument15: function(test) {
+  specify("HTMLDocument15", () => {
     var success;
     var elementNode;
     var elementValue;
@@ -2434,9 +2057,8 @@ exports.tests = {
     doc = load("document");
     elementNode = doc.getElementById("mapid");
     elementValue = elementNode.nodeName;
-    test.equal(elementValue, 'MAP', 'elementId');
-    test.done();
-  },
+    assert.equal(elementValue, 'MAP', 'elementId');
+  });
 
   /**
    *
@@ -2451,7 +2073,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-26809268
    * @see http://www.w3.org/TR/DOM-Level-2-Core/core#ID-getElBId
    */
-  HTMLDocument16: function(test) {
+  specify("HTMLDocument16", () => {
     var success;
     var elementNode;
     var elementValue;
@@ -2462,9 +2084,8 @@ exports.tests = {
     }
     doc = load("document");
     elementNode = doc.getElementById("noid");
-    test.equal(elementNode, null, 'elementNode should be null');
-    test.done();
-  },
+    assert.equal(elementNode, null, 'elementNode should be null');
+  });
 
   /**
    *
@@ -2473,7 +2094,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-72161170
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-98948567
    */
-  HTMLDocument17: function(test) {
+  specify("HTMLDocument17", () => {
     var success;
     var doc;
     var bodyElem;
@@ -2490,10 +2111,9 @@ exports.tests = {
       (bodyElem != null)
     ) {
       bodyChild = bodyElem.firstChild;
-      test.equal(bodyChild, null, 'bodyChild should be null');
+      assert.equal(bodyChild, null, 'bodyChild should be null');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -2501,7 +2121,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-98948567
    */
-  HTMLDocument18: function(test) {
+  specify("HTMLDocument18", () => {
     var success;
     var doc;
     var docRef = null;
@@ -2510,8 +2130,7 @@ exports.tests = {
     }
     doc = load("document");
     doc.close();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -2521,7 +2140,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-98948567
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-75233634
    */
-  HTMLDocument19: function(test) {
+  specify("HTMLDocument19", () => {
     var success;
     var doc;
     var docElem;
@@ -2538,8 +2157,7 @@ exports.tests = {
     doc.write("&lt;/body>");
     doc.write("&lt;/html>");
     doc.close();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -2549,7 +2167,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-98948567
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-35318390
    */
-  HTMLDocument20: function(test) {
+  specify("HTMLDocument20", () => {
     var success;
     var doc;
     var docElem;
@@ -2566,8 +2184,7 @@ exports.tests = {
     doc.writeln("&lt;/body>");
     doc.writeln("&lt;/html>");
     doc.close();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -2578,7 +2195,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-75233634
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-35318390
    */
-  HTMLDocument21: function(test) {
+  specify("HTMLDocument21", () => {
     var doc = load("document");
     doc.open();
     doc.writeln("&lt;html>");
@@ -2596,8 +2213,7 @@ exports.tests = {
     doc.writeln("&lt;/body>");
     doc.writeln("&lt;/html>");
     doc.close();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -2607,7 +2223,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement01: function(test) {
+  specify("HTMLElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2619,12 +2235,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("head");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-HEAD", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-HEAD", "idLink");
+  });
 
   /**
    *
@@ -2634,7 +2249,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement02: function(test) {
+  specify("HTMLElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2646,12 +2261,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("sub");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-SUB", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-SUB", "idLink");
+  });
 
   /**
    *
@@ -2661,7 +2275,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement03: function(test) {
+  specify("HTMLElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2673,12 +2287,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("sup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-SUP", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-SUP", "idLink");
+  });
 
   /**
    *
@@ -2688,7 +2301,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement04: function(test) {
+  specify("HTMLElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2700,12 +2313,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("span");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-SPAN", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-SPAN", "idLink");
+  });
 
   /**
    *
@@ -2715,7 +2327,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement05: function(test) {
+  specify("HTMLElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2727,12 +2339,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("bdo");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-BDO", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-BDO", "idLink");
+  });
 
   /**
    *
@@ -2742,7 +2353,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement06: function(test) {
+  specify("HTMLElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2754,12 +2365,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("tt");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-TT", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-TT", "idLink");
+  });
 
   /**
    *
@@ -2769,7 +2379,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement07: function(test) {
+  specify("HTMLElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2781,12 +2391,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("i");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-I", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-I", "idLink");
+  });
 
   /**
    *
@@ -2796,7 +2405,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement08: function(test) {
+  specify("HTMLElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2808,12 +2417,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("b");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-B", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-B", "idLink");
+  });
 
   /**
    *
@@ -2823,7 +2431,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement09: function(test) {
+  specify("HTMLElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2835,12 +2443,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("u");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-U", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-U", "idLink");
+  });
 
   /**
    *
@@ -2850,7 +2457,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement10: function(test) {
+  specify("HTMLElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2862,12 +2469,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("s");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-S", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-S", "idLink");
+  });
 
   /**
    *
@@ -2877,7 +2483,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement100: function(test) {
+  specify("HTMLElement100", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2889,12 +2495,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("small");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -2904,7 +2509,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement101: function(test) {
+  specify("HTMLElement101", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2916,12 +2521,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("em");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -2931,7 +2535,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement102: function(test) {
+  specify("HTMLElement102", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2943,12 +2547,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("strong");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -2958,7 +2561,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement103: function(test) {
+  specify("HTMLElement103", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2970,12 +2573,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dfn");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -2985,7 +2587,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement104: function(test) {
+  specify("HTMLElement104", () => {
     var success;
     var nodeList;
     var testNode;
@@ -2997,12 +2599,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("code");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3012,7 +2613,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement105: function(test) {
+  specify("HTMLElement105", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3024,12 +2625,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("samp");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3039,7 +2639,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement106: function(test) {
+  specify("HTMLElement106", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3051,12 +2651,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("kbd");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3066,7 +2665,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement107: function(test) {
+  specify("HTMLElement107", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3078,12 +2677,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("var");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3093,7 +2691,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement108: function(test) {
+  specify("HTMLElement108", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3105,12 +2703,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("cite");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3120,7 +2717,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement109: function(test) {
+  specify("HTMLElement109", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3132,12 +2729,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("acronym");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3147,7 +2743,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement11: function(test) {
+  specify("HTMLElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3159,12 +2755,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("strike");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-STRIKE", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-STRIKE", "idLink");
+  });
 
   /**
    *
@@ -3174,7 +2769,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement110: function(test) {
+  specify("HTMLElement110", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3186,12 +2781,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("abbr");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3201,7 +2795,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement111: function(test) {
+  specify("HTMLElement111", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3213,12 +2807,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dd");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3228,7 +2821,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement112: function(test) {
+  specify("HTMLElement112", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3240,12 +2833,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dt");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3255,7 +2847,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement113: function(test) {
+  specify("HTMLElement113", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3267,12 +2859,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("noframes");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3282,7 +2873,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement114: function(test) {
+  specify("HTMLElement114", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3294,12 +2885,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("noscript");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3309,7 +2899,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement115: function(test) {
+  specify("HTMLElement115", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3321,12 +2911,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("address");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3336,7 +2925,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement116: function(test) {
+  specify("HTMLElement116", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3348,12 +2937,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("center");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -3363,7 +2951,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement117: function(test) {
+  specify("HTMLElement117", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3375,12 +2963,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("head");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "HEAD-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "HEAD-class", "classNameLink");
+  });
 
   /**
    *
@@ -3390,7 +2977,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement118: function(test) {
+  specify("HTMLElement118", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3402,12 +2989,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("sub");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "SUB-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "SUB-class", "classNameLink");
+  });
 
   /**
    *
@@ -3417,7 +3003,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement119: function(test) {
+  specify("HTMLElement119", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3429,12 +3015,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("sup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "SUP-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "SUP-class", "classNameLink");
+  });
 
   /**
    *
@@ -3444,7 +3029,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement12: function(test) {
+  specify("HTMLElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3456,12 +3041,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("big");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-BIG", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-BIG", "idLink");
+  });
 
   /**
    *
@@ -3471,7 +3055,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement120: function(test) {
+  specify("HTMLElement120", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3483,12 +3067,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("span");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "SPAN-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "SPAN-class", "classNameLink");
+  });
 
   /**
    *
@@ -3498,7 +3081,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement121: function(test) {
+  specify("HTMLElement121", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3510,12 +3093,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("bdo");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "BDO-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "BDO-class", "classNameLink");
+  });
 
   /**
    *
@@ -3525,7 +3107,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement122: function(test) {
+  specify("HTMLElement122", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3537,12 +3119,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("tt");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "TT-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "TT-class", "classNameLink");
+  });
 
   /**
    *
@@ -3552,7 +3133,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement123: function(test) {
+  specify("HTMLElement123", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3564,12 +3145,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("i");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "I-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "I-class", "classNameLink");
+  });
 
   /**
    *
@@ -3579,7 +3159,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement124: function(test) {
+  specify("HTMLElement124", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3591,12 +3171,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("b");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "B-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "B-class", "classNameLink");
+  });
 
   /**
    *
@@ -3606,7 +3185,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement125: function(test) {
+  specify("HTMLElement125", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3618,12 +3197,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("u");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "U-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "U-class", "classNameLink");
+  });
 
   /**
    *
@@ -3633,7 +3211,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement126: function(test) {
+  specify("HTMLElement126", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3645,12 +3223,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("s");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "S-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "S-class", "classNameLink");
+  });
 
   /**
    *
@@ -3660,7 +3237,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement127: function(test) {
+  specify("HTMLElement127", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3672,12 +3249,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("strike");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "STRIKE-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "STRIKE-class", "classNameLink");
+  });
 
   /**
    *
@@ -3687,7 +3263,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement128: function(test) {
+  specify("HTMLElement128", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3699,12 +3275,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("big");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "BIG-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "BIG-class", "classNameLink");
+  });
 
   /**
    *
@@ -3714,7 +3289,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement129: function(test) {
+  specify("HTMLElement129", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3726,12 +3301,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("small");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "SMALL-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "SMALL-class", "classNameLink");
+  });
 
   /**
    *
@@ -3741,7 +3315,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement13: function(test) {
+  specify("HTMLElement13", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3753,12 +3327,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("small");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-SMALL", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-SMALL", "idLink");
+  });
 
   /**
    *
@@ -3768,7 +3341,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement130: function(test) {
+  specify("HTMLElement130", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3780,12 +3353,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("em");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "EM-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "EM-class", "classNameLink");
+  });
 
   /**
    *
@@ -3795,7 +3367,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement131: function(test) {
+  specify("HTMLElement131", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3807,12 +3379,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("strong");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "STRONG-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "STRONG-class", "classNameLink");
+  });
 
   /**
    *
@@ -3822,7 +3393,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement132: function(test) {
+  specify("HTMLElement132", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3834,12 +3405,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dfn");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "DFN-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "DFN-class", "classNameLink");
+  });
 
   /**
    *
@@ -3849,7 +3419,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement133: function(test) {
+  specify("HTMLElement133", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3861,12 +3431,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("code");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "CODE-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "CODE-class", "classNameLink");
+  });
 
   /**
    *
@@ -3876,7 +3445,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement134: function(test) {
+  specify("HTMLElement134", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3888,12 +3457,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("samp");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "SAMP-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "SAMP-class", "classNameLink");
+  });
 
   /**
    *
@@ -3903,7 +3471,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement135: function(test) {
+  specify("HTMLElement135", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3915,12 +3483,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("kbd");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "KBD-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "KBD-class", "classNameLink");
+  });
 
   /**
    *
@@ -3930,7 +3497,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement136: function(test) {
+  specify("HTMLElement136", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3942,12 +3509,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("var");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "VAR-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "VAR-class", "classNameLink");
+  });
 
   /**
    *
@@ -3957,7 +3523,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement137: function(test) {
+  specify("HTMLElement137", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3969,12 +3535,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("cite");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "CITE-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "CITE-class", "classNameLink");
+  });
 
   /**
    *
@@ -3984,7 +3549,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement138: function(test) {
+  specify("HTMLElement138", () => {
     var success;
     var nodeList;
     var testNode;
@@ -3996,12 +3561,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("acronym");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "ACRONYM-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "ACRONYM-class", "classNameLink");
+  });
 
   /**
    *
@@ -4011,7 +3575,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement139: function(test) {
+  specify("HTMLElement139", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4023,12 +3587,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("abbr");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "ABBR-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "ABBR-class", "classNameLink");
+  });
 
   /**
    *
@@ -4038,7 +3601,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement14: function(test) {
+  specify("HTMLElement14", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4050,12 +3613,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("em");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-EM", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-EM", "idLink");
+  });
 
   /**
    *
@@ -4065,7 +3627,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement140: function(test) {
+  specify("HTMLElement140", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4077,12 +3639,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dd");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "DD-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "DD-class", "classNameLink");
+  });
 
   /**
    *
@@ -4092,7 +3653,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement141: function(test) {
+  specify("HTMLElement141", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4104,12 +3665,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dt");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "DT-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "DT-class", "classNameLink");
+  });
 
   /**
    *
@@ -4119,7 +3679,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement142: function(test) {
+  specify("HTMLElement142", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4131,12 +3691,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("noframes");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "NOFRAMES-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "NOFRAMES-class", "classNameLink");
+  });
 
   /**
    *
@@ -4146,7 +3705,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement143: function(test) {
+  specify("HTMLElement143", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4158,12 +3717,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("noscript");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "NOSCRIPT-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "NOSCRIPT-class", "classNameLink");
+  });
 
   /**
    *
@@ -4173,7 +3731,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement144: function(test) {
+  specify("HTMLElement144", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4185,12 +3743,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("address");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "ADDRESS-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "ADDRESS-class", "classNameLink");
+  });
 
   /**
    *
@@ -4200,7 +3757,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95362176
    */
-  HTMLElement145: function(test) {
+  specify("HTMLElement145", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4212,12 +3769,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("center");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vclassname = testNode.className;
-    test.equal(vclassname, "CENTER-class", "classNameLink");
-    test.done();
-  },
+    assert.equal(vclassname, "CENTER-class", "classNameLink");
+  });
 
   /**
    *
@@ -4227,7 +3783,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement15: function(test) {
+  specify("HTMLElement15", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4239,12 +3795,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("strong");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-STRONG", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-STRONG", "idLink");
+  });
 
   /**
    *
@@ -4254,7 +3809,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement16: function(test) {
+  specify("HTMLElement16", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4266,12 +3821,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dfn");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-DFN", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-DFN", "idLink");
+  });
 
   /**
    *
@@ -4281,7 +3835,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement17: function(test) {
+  specify("HTMLElement17", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4293,12 +3847,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("code");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-CODE", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-CODE", "idLink");
+  });
 
   /**
    *
@@ -4308,7 +3861,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement18: function(test) {
+  specify("HTMLElement18", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4320,12 +3873,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("samp");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-SAMP", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-SAMP", "idLink");
+  });
 
   /**
    *
@@ -4335,7 +3887,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement19: function(test) {
+  specify("HTMLElement19", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4347,12 +3899,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("kbd");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-KBD", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-KBD", "idLink");
+  });
 
   /**
    *
@@ -4362,7 +3913,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement20: function(test) {
+  specify("HTMLElement20", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4374,12 +3925,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("var");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-VAR", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-VAR", "idLink");
+  });
 
   /**
    *
@@ -4389,7 +3939,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement21: function(test) {
+  specify("HTMLElement21", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4401,12 +3951,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("cite");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-CITE", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-CITE", "idLink");
+  });
 
   /**
    *
@@ -4416,7 +3965,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement22: function(test) {
+  specify("HTMLElement22", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4428,12 +3977,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("acronym");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-ACRONYM", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-ACRONYM", "idLink");
+  });
 
   /**
    *
@@ -4443,7 +3991,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement23: function(test) {
+  specify("HTMLElement23", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4455,12 +4003,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("abbr");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-ABBR", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-ABBR", "idLink");
+  });
 
   /**
    *
@@ -4470,7 +4017,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement24: function(test) {
+  specify("HTMLElement24", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4482,12 +4029,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dd");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-DD", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-DD", "idLink");
+  });
 
   /**
    *
@@ -4497,7 +4043,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement25: function(test) {
+  specify("HTMLElement25", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4509,12 +4055,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dt");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-DT", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-DT", "idLink");
+  });
 
   /**
    *
@@ -4524,7 +4069,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement26: function(test) {
+  specify("HTMLElement26", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4536,12 +4081,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("noframes");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-NOFRAMES", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-NOFRAMES", "idLink");
+  });
 
   /**
    *
@@ -4551,7 +4095,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement27: function(test) {
+  specify("HTMLElement27", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4563,12 +4107,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("noscript");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-NOSCRIPT", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-NOSCRIPT", "idLink");
+  });
 
   /**
    *
@@ -4578,7 +4121,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement28: function(test) {
+  specify("HTMLElement28", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4590,12 +4133,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("address");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-ADDRESS", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-ADDRESS", "idLink");
+  });
 
   /**
    *
@@ -4605,7 +4147,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  HTMLElement29: function(test) {
+  specify("HTMLElement29", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4617,12 +4159,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("center");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vid = testNode.id;
-    test.equal(vid, "Test-CENTER", "idLink");
-    test.done();
-  },
+    assert.equal(vid, "Test-CENTER", "idLink");
+  });
 
   /**
    *
@@ -4632,7 +4173,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement30: function(test) {
+  specify("HTMLElement30", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4644,12 +4185,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("head");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "HEAD Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "HEAD Element", "titleLink");
+  });
 
   /**
    *
@@ -4659,7 +4199,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement31: function(test) {
+  specify("HTMLElement31", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4671,12 +4211,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("sub");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "SUB Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "SUB Element", "titleLink");
+  });
 
   /**
    *
@@ -4686,7 +4225,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement32: function(test) {
+  specify("HTMLElement32", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4698,12 +4237,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("sup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "SUP Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "SUP Element", "titleLink");
+  });
 
   /**
    *
@@ -4713,7 +4251,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement33: function(test) {
+  specify("HTMLElement33", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4725,12 +4263,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("span");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "SPAN Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "SPAN Element", "titleLink");
+  });
 
   /**
    *
@@ -4740,7 +4277,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement34: function(test) {
+  specify("HTMLElement34", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4752,12 +4289,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("bdo");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "BDO Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "BDO Element", "titleLink");
+  });
 
   /**
    *
@@ -4767,7 +4303,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement35: function(test) {
+  specify("HTMLElement35", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4779,12 +4315,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("tt");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "TT Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "TT Element", "titleLink");
+  });
 
   /**
    *
@@ -4794,7 +4329,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement36: function(test) {
+  specify("HTMLElement36", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4806,12 +4341,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("i");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "I Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "I Element", "titleLink");
+  });
 
   /**
    *
@@ -4821,7 +4355,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement37: function(test) {
+  specify("HTMLElement37", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4833,12 +4367,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("b");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "B Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "B Element", "titleLink");
+  });
 
   /**
    *
@@ -4848,7 +4381,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement38: function(test) {
+  specify("HTMLElement38", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4860,12 +4393,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("u");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "U Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "U Element", "titleLink");
+  });
 
   /**
    *
@@ -4875,7 +4407,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement39: function(test) {
+  specify("HTMLElement39", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4887,12 +4419,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("s");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "S Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "S Element", "titleLink");
+  });
 
   /**
    *
@@ -4902,7 +4433,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement40: function(test) {
+  specify("HTMLElement40", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4914,12 +4445,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("strike");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "STRIKE Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "STRIKE Element", "titleLink");
+  });
 
   /**
    *
@@ -4929,7 +4459,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement41: function(test) {
+  specify("HTMLElement41", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4941,12 +4471,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("big");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "BIG Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "BIG Element", "titleLink");
+  });
 
   /**
    *
@@ -4956,7 +4485,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement42: function(test) {
+  specify("HTMLElement42", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4968,12 +4497,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("small");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "SMALL Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "SMALL Element", "titleLink");
+  });
 
   /**
    *
@@ -4983,7 +4511,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement43: function(test) {
+  specify("HTMLElement43", () => {
     var success;
     var nodeList;
     var testNode;
@@ -4995,12 +4523,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("em");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "EM Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "EM Element", "titleLink");
+  });
 
   /**
    *
@@ -5010,7 +4537,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement44: function(test) {
+  specify("HTMLElement44", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5022,12 +4549,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("strong");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "STRONG Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "STRONG Element", "titleLink");
+  });
 
   /**
    *
@@ -5037,7 +4563,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement45: function(test) {
+  specify("HTMLElement45", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5049,12 +4575,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dfn");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "DFN Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "DFN Element", "titleLink");
+  });
 
   /**
    *
@@ -5064,7 +4589,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement46: function(test) {
+  specify("HTMLElement46", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5076,12 +4601,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("code");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "CODE Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "CODE Element", "titleLink");
+  });
 
   /**
    *
@@ -5091,7 +4615,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement47: function(test) {
+  specify("HTMLElement47", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5103,12 +4627,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("samp");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "SAMP Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "SAMP Element", "titleLink");
+  });
 
   /**
    *
@@ -5118,7 +4641,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement48: function(test) {
+  specify("HTMLElement48", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5130,12 +4653,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("kbd");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "KBD Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "KBD Element", "titleLink");
+  });
 
   /**
    *
@@ -5145,7 +4667,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement49: function(test) {
+  specify("HTMLElement49", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5157,12 +4679,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("var");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "VAR Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "VAR Element", "titleLink");
+  });
 
   /**
    *
@@ -5172,7 +4693,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement50: function(test) {
+  specify("HTMLElement50", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5184,12 +4705,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("cite");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "CITE Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "CITE Element", "titleLink");
+  });
 
   /**
    *
@@ -5199,7 +4719,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement51: function(test) {
+  specify("HTMLElement51", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5211,12 +4731,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("acronym");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "ACRONYM Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "ACRONYM Element", "titleLink");
+  });
 
   /**
    *
@@ -5226,7 +4745,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement52: function(test) {
+  specify("HTMLElement52", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5238,12 +4757,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("abbr");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "ABBR Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "ABBR Element", "titleLink");
+  });
 
   /**
    *
@@ -5253,7 +4771,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement53: function(test) {
+  specify("HTMLElement53", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5265,12 +4783,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dd");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "DD Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "DD Element", "titleLink");
+  });
 
   /**
    *
@@ -5280,7 +4797,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement54: function(test) {
+  specify("HTMLElement54", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5292,12 +4809,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dt");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "DT Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "DT Element", "titleLink");
+  });
 
   /**
    *
@@ -5307,7 +4823,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement55: function(test) {
+  specify("HTMLElement55", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5319,12 +4835,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("noframes");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "NOFRAMES Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "NOFRAMES Element", "titleLink");
+  });
 
   /**
    *
@@ -5334,7 +4849,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement56: function(test) {
+  specify("HTMLElement56", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5346,12 +4861,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("noscript");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "NOSCRIPT Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "NOSCRIPT Element", "titleLink");
+  });
 
   /**
    *
@@ -5361,7 +4875,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement57: function(test) {
+  specify("HTMLElement57", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5373,12 +4887,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("address");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "ADDRESS Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "ADDRESS Element", "titleLink");
+  });
 
   /**
    *
@@ -5388,7 +4901,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78276800
    */
-  HTMLElement58: function(test) {
+  specify("HTMLElement58", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5400,12 +4913,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("center");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtitle = testNode.title;
-    test.equal(vtitle, "CENTER Element", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "CENTER Element", "titleLink");
+  });
 
   /**
    *
@@ -5415,7 +4927,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement59: function(test) {
+  specify("HTMLElement59", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5427,12 +4939,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("head");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5442,7 +4953,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement60: function(test) {
+  specify("HTMLElement60", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5454,12 +4965,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("sub");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5469,7 +4979,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement61: function(test) {
+  specify("HTMLElement61", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5481,12 +4991,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("sup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5496,7 +5005,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement62: function(test) {
+  specify("HTMLElement62", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5508,12 +5017,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("span");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5523,7 +5031,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement63: function(test) {
+  specify("HTMLElement63", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5535,12 +5043,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("bdo");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5550,7 +5057,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement64: function(test) {
+  specify("HTMLElement64", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5562,12 +5069,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("tt");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5577,7 +5083,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement65: function(test) {
+  specify("HTMLElement65", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5589,12 +5095,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("i");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5604,7 +5109,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement66: function(test) {
+  specify("HTMLElement66", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5616,12 +5121,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("b");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5631,7 +5135,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement67: function(test) {
+  specify("HTMLElement67", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5643,12 +5147,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("u");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5658,7 +5161,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement68: function(test) {
+  specify("HTMLElement68", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5670,12 +5173,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("s");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5685,7 +5187,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement69: function(test) {
+  specify("HTMLElement69", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5697,12 +5199,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("strike");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5712,7 +5213,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement70: function(test) {
+  specify("HTMLElement70", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5724,12 +5225,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("big");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5739,7 +5239,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement71: function(test) {
+  specify("HTMLElement71", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5751,12 +5251,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("small");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5766,7 +5265,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement72: function(test) {
+  specify("HTMLElement72", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5778,12 +5277,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("em");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5793,7 +5291,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement73: function(test) {
+  specify("HTMLElement73", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5805,12 +5303,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("strong");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5820,7 +5317,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement74: function(test) {
+  specify("HTMLElement74", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5832,12 +5329,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dfn");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5847,7 +5343,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement75: function(test) {
+  specify("HTMLElement75", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5859,12 +5355,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("code");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5874,7 +5369,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement76: function(test) {
+  specify("HTMLElement76", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5886,12 +5381,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("samp");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5901,7 +5395,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement77: function(test) {
+  specify("HTMLElement77", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5913,12 +5407,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("kbd");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5928,7 +5421,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement78: function(test) {
+  specify("HTMLElement78", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5940,12 +5433,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("var");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5955,7 +5447,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement79: function(test) {
+  specify("HTMLElement79", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5967,12 +5459,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("cite");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -5982,7 +5473,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement80: function(test) {
+  specify("HTMLElement80", () => {
     var success;
     var nodeList;
     var testNode;
@@ -5994,12 +5485,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("acronym");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -6009,7 +5499,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement81: function(test) {
+  specify("HTMLElement81", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6021,12 +5511,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("abbr");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -6036,7 +5525,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement82: function(test) {
+  specify("HTMLElement82", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6048,12 +5537,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dd");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -6063,7 +5551,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement83: function(test) {
+  specify("HTMLElement83", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6075,12 +5563,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("dt");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -6090,7 +5577,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement84: function(test) {
+  specify("HTMLElement84", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6102,12 +5589,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("noframes");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -6117,7 +5603,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement85: function(test) {
+  specify("HTMLElement85", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6129,12 +5615,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("noscript");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -6144,7 +5629,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement86: function(test) {
+  specify("HTMLElement86", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6156,12 +5641,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("address");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -6171,7 +5655,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59132807
    */
-  HTMLElement87: function(test) {
+  specify("HTMLElement87", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6183,12 +5667,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("center");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vlang = testNode.lang;
-    test.equal(vlang, "en", "langLink");
-    test.done();
-  },
+    assert.equal(vlang, "en", "langLink");
+  });
 
   /**
    *
@@ -6198,7 +5681,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement88: function(test) {
+  specify("HTMLElement88", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6210,12 +5693,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("head");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6225,7 +5707,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement89: function(test) {
+  specify("HTMLElement89", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6237,12 +5719,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("sub");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6252,7 +5733,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement90: function(test) {
+  specify("HTMLElement90", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6264,12 +5745,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("sup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6279,7 +5759,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement91: function(test) {
+  specify("HTMLElement91", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6291,12 +5771,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("span");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6306,7 +5785,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement92: function(test) {
+  specify("HTMLElement92", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6318,12 +5797,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("bdo");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6333,7 +5811,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement93: function(test) {
+  specify("HTMLElement93", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6345,12 +5823,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("tt");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6360,7 +5837,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement94: function(test) {
+  specify("HTMLElement94", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6372,12 +5849,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("i");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6387,7 +5863,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement95: function(test) {
+  specify("HTMLElement95", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6399,12 +5875,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("b");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6414,7 +5889,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement96: function(test) {
+  specify("HTMLElement96", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6426,12 +5901,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("u");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6441,7 +5915,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement97: function(test) {
+  specify("HTMLElement97", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6453,12 +5927,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("s");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6468,7 +5941,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement98: function(test) {
+  specify("HTMLElement98", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6480,12 +5953,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("strike");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6495,7 +5967,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52460740
    */
-  HTMLElement99: function(test) {
+  specify("HTMLElement99", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6507,12 +5979,11 @@ exports.tests = {
     }
     doc = load("element");
     nodeList = doc.getElementsByTagName("big");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdir = testNode.dir;
-    test.equal(vdir, "ltr", "dirLink");
-    test.done();
-  },
+    assert.equal(vdir, "ltr", "dirLink");
+  });
 
   /**
    *
@@ -6522,7 +5993,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-75392630
    */
-  HTMLFieldSetElement01: function(test) {
+  specify("HTMLFieldSetElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6535,13 +6006,12 @@ exports.tests = {
     }
     doc = load("fieldset");
     nodeList = doc.getElementsByTagName("fieldset");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     fNode = testNode.form;
     vform = fNode.id;
-    test.equal(vform, "form2", "formLink");
-    test.done();
-  },
+    assert.equal(vform, "form2", "formLink");
+  });
 
   /**
    *
@@ -6552,7 +6022,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-75392630
    */
-  HTMLFieldSetElement02: function(test) {
+  specify("HTMLFieldSetElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6564,12 +6034,11 @@ exports.tests = {
     }
     doc = load("fieldset");
     nodeList = doc.getElementsByTagName("fieldset");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.done();
-  },
+    assert.equal(vform, null, 'vform should be null');
+  });
 
   /**
    *
@@ -6579,7 +6048,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-53532975
    */
-  HTMLFontElement01: function(test) {
+  specify("HTMLFontElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6591,12 +6060,11 @@ exports.tests = {
     }
     doc = load("font");
     nodeList = doc.getElementsByTagName("font");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcolor = testNode.color;
-    test.equal(vcolor, "#000000", "colorLink");
-    test.done();
-  },
+    assert.equal(vcolor, "#000000", "colorLink");
+  });
 
   /**
    *
@@ -6607,7 +6075,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-55715655
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#HTML-HTMLFormElement-length
    */
-  HTMLFontElement02: function(test) {
+  specify("HTMLFontElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6619,12 +6087,11 @@ exports.tests = {
     }
     doc = load("font");
     nodeList = doc.getElementsByTagName("font");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vface = testNode.face;
-    test.equal(vface, "arial,helvetica", "faceLink");
-    test.done();
-  },
+    assert.equal(vface, "arial,helvetica", "faceLink");
+  });
 
   /**
    *
@@ -6634,7 +6101,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-90127284
    */
-  HTMLFontElement03: function(test) {
+  specify("HTMLFontElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6646,12 +6113,11 @@ exports.tests = {
     }
     doc = load("font");
     nodeList = doc.getElementsByTagName("font");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vsize = testNode.size;
-    test.equal(vsize, "4", "sizeLink");
-    test.done();
-  },
+    assert.equal(vsize, "4", "sizeLink");
+  });
 
   /**
    *
@@ -6662,7 +6128,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-76728479
    */
-  HTMLFormElement01: function(test) {
+  specify("HTMLFormElement01", () => {
     var success;
     var nodeList;
     var elementnodeList;
@@ -6675,13 +6141,12 @@ exports.tests = {
     }
     doc = load("form");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     elementnodeList = testNode.elements;
     velements = elementnodeList.length;
-    test.equal(velements, 3, "elementsLink");
-    test.done();
-  },
+    assert.equal(velements, 3, "elementsLink");
+  });
 
   /**
    *
@@ -6693,7 +6158,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-40002357
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#HTML-HTMLFormElement-length
    */
-  HTMLFormElement02: function(test) {
+  specify("HTMLFormElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6705,12 +6170,11 @@ exports.tests = {
     }
     doc = load("form");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlength = testNode.length;
-    test.equal(vlength, 3, "lengthLink");
-    test.done();
-  },
+    assert.equal(vlength, 3, "lengthLink");
+  });
 
   /**
    *
@@ -6720,7 +6184,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-22051454
    */
-  HTMLFormElement03: function(test) {
+  specify("HTMLFormElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6732,12 +6196,11 @@ exports.tests = {
     }
     doc = load("form");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.id;
-    test.equal(vname, "form1", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "form1", "nameLink");
+  });
 
   /**
    *
@@ -6748,7 +6211,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-19661795
    */
-  HTMLFormElement04: function(test) {
+  specify("HTMLFormElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6760,12 +6223,11 @@ exports.tests = {
     }
     doc = load("form");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vacceptcharset = testNode.acceptCharset;
-    test.equal(vacceptcharset, "US-ASCII", "acceptCharsetLink");
-    test.done();
-  },
+    assert.equal(vacceptcharset, "US-ASCII", "acceptCharsetLink");
+  });
 
   /**
    *
@@ -6775,7 +6237,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-84227810
    */
-  HTMLFormElement06: function(test) {
+  specify("HTMLFormElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6787,12 +6249,11 @@ exports.tests = {
     }
     doc = load("form");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     venctype = testNode.enctype;
-    test.equal(venctype, "application/x-www-form-urlencoded", "enctypeLink");
-    test.done();
-  },
+    assert.equal(venctype, "application/x-www-form-urlencoded", "enctypeLink");
+  });
 
   /**
    *
@@ -6802,7 +6263,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-82545539
    */
-  HTMLFormElement07: function(test) {
+  specify("HTMLFormElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6814,12 +6275,11 @@ exports.tests = {
     }
     doc = load("form");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vmethod = testNode.method;
-    test.equal(vmethod, "post", "methodLink");
-    test.done();
-  },
+    assert.equal(vmethod, "post", "methodLink");
+  });
 
   /**
    *
@@ -6829,7 +6289,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6512890
    */
-  HTMLFormElement08: function(test) {
+  specify("HTMLFormElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6841,12 +6301,11 @@ exports.tests = {
     }
     doc = load("form2");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtarget = testNode.target;
-    test.equal(vtarget, "dynamic", "targetLink");
-    test.done();
-  },
+    assert.equal(vtarget, "dynamic", "targetLink");
+  });
 
   /**
    *
@@ -6854,7 +6313,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-76767677
    */
-  HTMLFormElement09: function(test) {
+  specify("HTMLFormElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6865,11 +6324,10 @@ exports.tests = {
     }
     doc = load("form2");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     testNode.reset();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -6877,7 +6335,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-76767676
    */
-  HTMLFormElement10: function(test) {
+  specify("HTMLFormElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6888,11 +6346,10 @@ exports.tests = {
     }
     doc = load("form3");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     testNode.submit();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -6905,7 +6362,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-11858633
    */
-  HTMLFrameElement01: function(test) {
+  specify("HTMLFrameElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6917,12 +6374,11 @@ exports.tests = {
     }
     doc = load("frame");
     nodeList = doc.getElementsByTagName("frame");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vframeborder = testNode.frameBorder;
-    test.equal(vframeborder, "1", "frameborderLink");
-    test.done();
-  },
+    assert.equal(vframeborder, "1", "frameborderLink");
+  });
 
   /**
    *
@@ -6934,7 +6390,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-7836998
    */
-  HTMLFrameElement02: function(test) {
+  specify("HTMLFrameElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6946,12 +6402,11 @@ exports.tests = {
     }
     doc = load("frame");
     nodeList = doc.getElementsByTagName("frame");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vlongdesc = testNode.longDesc;
-    test.equal(vlongdesc, "about:blank", "longdescLink");
-    test.done();
-  },
+    assert.equal(vlongdesc, "about:blank", "longdescLink");
+  });
 
   /**
    *
@@ -6962,7 +6417,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-55569778
    */
-  HTMLFrameElement03: function(test) {
+  specify("HTMLFrameElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -6974,12 +6429,11 @@ exports.tests = {
     }
     doc = load("frame");
     nodeList = doc.getElementsByTagName("frame");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vmarginheight = testNode.marginHeight;
-    test.equal(vmarginheight, "10", "marginheightLink");
-    test.done();
-  },
+    assert.equal(vmarginheight, "10", "marginheightLink");
+  });
 
   /**
    *
@@ -6990,7 +6444,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-8369969
    */
-  HTMLFrameElement04: function(test) {
+  specify("HTMLFrameElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7002,12 +6456,11 @@ exports.tests = {
     }
     doc = load("frame");
     nodeList = doc.getElementsByTagName("frame");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vmarginwidth = testNode.marginWidth;
-    test.equal(vmarginwidth, "5", "marginwidthLink");
-    test.done();
-  },
+    assert.equal(vmarginwidth, "5", "marginwidthLink");
+  });
 
   /**
    *
@@ -7019,7 +6472,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-91128709
    */
-  HTMLFrameElement05: function(test) {
+  specify("HTMLFrameElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7031,12 +6484,11 @@ exports.tests = {
     }
     doc = load("frame");
     nodeList = doc.getElementsByTagName("frame");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "Frame1", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "Frame1", "nameLink");
+  });
 
   /**
    *
@@ -7048,7 +6500,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-80766578
    */
-  HTMLFrameElement06: function(test) {
+  specify("HTMLFrameElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7060,12 +6512,11 @@ exports.tests = {
     }
     doc = load("frame");
     nodeList = doc.getElementsByTagName("frame");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vnoresize = testNode.noResize;
-    test.ok(vnoresize, 'noresizeLink');
-    test.done();
-  },
+    assert.ok(vnoresize, 'noresizeLink');
+  });
 
   /**
    *
@@ -7077,7 +6528,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-45411424
    */
-  HTMLFrameElement07: function(test) {
+  specify("HTMLFrameElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7089,12 +6540,11 @@ exports.tests = {
     }
     doc = load("frame");
     nodeList = doc.getElementsByTagName("frame");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vscrolling = testNode.scrolling;
-    test.equal(vscrolling, "yes", "scrollingLink");
-    test.done();
-  },
+    assert.equal(vscrolling, "yes", "scrollingLink");
+  });
 
   /**
    *
@@ -7105,7 +6555,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78799535
    */
-  HTMLFrameElement08: function(test) {
+  specify("HTMLFrameElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7117,12 +6567,11 @@ exports.tests = {
     }
     doc = load("frame");
     nodeList = doc.getElementsByTagName("frame");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vsrc = testNode.src;
-    test.equal(vsrc, toFileUrl('html/files/img/right.png'), 'srcLink');
-    test.done();
-  },
+    assert.equal(vsrc, toFileUrl('html/files/img/right.png'), 'srcLink');
+  });
 
   /**
    *
@@ -7134,7 +6583,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-78799536
    */
-  HTMLFrameElement09: function(test) {
+  specify("HTMLFrameElement09", () => {
     var success;
     var testNode;
     var cd;
@@ -7150,10 +6599,9 @@ exports.tests = {
       cd = testNode.contentDocument;
       vtitle = cd.title;
       // Updated as per: http://lists.w3.org/Archives/Public/www-dom/2009JulSep/0026.html
-      test.equal(vtitle, "NIST DOM HTML Test - FRAME", "titleLink");
+      assert.equal(vtitle, "NIST DOM HTML Test - FRAME", "titleLink");
     };
-    test.done();
-  },
+  });
 
   /**
    *
@@ -7165,7 +6613,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-98869594
    */
-  HTMLFrameSetElement01: function(test) {
+  specify("HTMLFrameSetElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7177,12 +6625,11 @@ exports.tests = {
     }
     doc = load("frameset");
     nodeList = doc.getElementsByTagName("frameset");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vcols = testNode.cols;
-    test.equal(vcols, "20, 80", "colsLink");
-    test.done();
-  },
+    assert.equal(vcols, "20, 80", "colsLink");
+  });
 
   /**
    *
@@ -7194,7 +6641,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-19739247
    */
-  HTMLFrameSetElement02: function(test) {
+  specify("HTMLFrameSetElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7206,12 +6653,11 @@ exports.tests = {
     }
     doc = load("frameset");
     nodeList = doc.getElementsByTagName("frameset");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vrows = testNode.rows;
-    test.equal(vrows, "100, 200", "rowsLink");
-    test.done();
-  },
+    assert.equal(vrows, "100, 200", "rowsLink");
+  });
 
   /**
    *
@@ -7221,7 +6667,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-15235012
    */
-  HTMLHRElement01: function(test) {
+  specify("HTMLHRElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7233,12 +6679,11 @@ exports.tests = {
     }
     doc = load("hr");
     nodeList = doc.getElementsByTagName("hr");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -7249,7 +6694,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-79813978
    */
-  HTMLHRElement02: function(test) {
+  specify("HTMLHRElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7261,12 +6706,11 @@ exports.tests = {
     }
     doc = load("hr");
     nodeList = doc.getElementsByTagName("hr");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vnoshade = testNode.noShade;
-    test.ok(vnoshade, 'noShadeLink');
-    test.done();
-  },
+    assert.ok(vnoshade, 'noShadeLink');
+  });
 
   /**
    *
@@ -7276,7 +6720,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-77612587
    */
-  HTMLHRElement03: function(test) {
+  specify("HTMLHRElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7288,12 +6732,11 @@ exports.tests = {
     }
     doc = load("hr");
     nodeList = doc.getElementsByTagName("hr");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vsize = testNode.size;
-    test.equal(vsize, "5", "sizeLink");
-    test.done();
-  },
+    assert.equal(vsize, "5", "sizeLink");
+  });
 
   /**
    *
@@ -7303,7 +6746,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-87744198
    */
-  HTMLHRElement04: function(test) {
+  specify("HTMLHRElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7315,12 +6758,11 @@ exports.tests = {
     }
     doc = load("hr");
     nodeList = doc.getElementsByTagName("hr");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vwidth = testNode.width;
-    test.equal(vwidth, "400", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "400", "widthLink");
+  });
 
   /**
    *
@@ -7330,7 +6772,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6796462
    */
-  HTMLHeadingElement01: function(test) {
+  specify("HTMLHeadingElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7342,12 +6784,11 @@ exports.tests = {
     }
     doc = load("heading");
     nodeList = doc.getElementsByTagName("h1");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -7357,7 +6798,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6796462
    */
-  HTMLHeadingElement02: function(test) {
+  specify("HTMLHeadingElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7369,12 +6810,11 @@ exports.tests = {
     }
     doc = load("heading");
     nodeList = doc.getElementsByTagName("h2");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "left", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "left", "alignLink");
+  });
 
   /**
    *
@@ -7384,7 +6824,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6796462
    */
-  HTMLHeadingElement03: function(test) {
+  specify("HTMLHeadingElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7396,12 +6836,11 @@ exports.tests = {
     }
     doc = load("heading");
     nodeList = doc.getElementsByTagName("h3");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "right", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "right", "alignLink");
+  });
 
   /**
    *
@@ -7411,7 +6850,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6796462
    */
-  HTMLHeadingElement04: function(test) {
+  specify("HTMLHeadingElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7423,12 +6862,11 @@ exports.tests = {
     }
     doc = load("heading");
     nodeList = doc.getElementsByTagName("h4");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "justify", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "justify", "alignLink");
+  });
 
   /**
    *
@@ -7438,7 +6876,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6796462
    */
-  HTMLHeadingElement05: function(test) {
+  specify("HTMLHeadingElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7450,12 +6888,11 @@ exports.tests = {
     }
     doc = load("heading");
     nodeList = doc.getElementsByTagName("h5");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -7465,7 +6902,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6796462
    */
-  HTMLHeadingElement06: function(test) {
+  specify("HTMLHeadingElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7477,12 +6914,11 @@ exports.tests = {
     }
     doc = load("heading");
     nodeList = doc.getElementsByTagName("h6");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "left", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "left", "alignLink");
+  });
 
   /**
    *
@@ -7494,19 +6930,18 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-9383775
    */
-  HTMLHtmlElement01: function(test) {
+  specify("HTMLHtmlElement01", () => {
     var nodeList;
     var testNode;
     var vversion;
     var doc;
     doc = load("html");
     nodeList = doc.getElementsByTagName("html");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vversion = testNode.version;
-    test.equal(vversion, "-//W3C//DTD HTML 4.01 Transitional//EN", "versionLink");
-    test.done();
-  },
+    assert.equal(vversion, "-//W3C//DTD HTML 4.01 Transitional//EN", "versionLink");
+  });
 
   /**
    *
@@ -7518,7 +6953,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-11309947
    */
-  HTMLIFrameElement01: function(test) {
+  specify("HTMLIFrameElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7530,12 +6965,11 @@ exports.tests = {
     }
     doc = load("iframe");
     nodeList = doc.getElementsByTagName("iframe");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "top", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "top", "alignLink");
+  });
 
   /**
    *
@@ -7548,7 +6982,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-22463410
    */
-  HTMLIFrameElement02: function(test) {
+  specify("HTMLIFrameElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7560,12 +6994,11 @@ exports.tests = {
     }
     doc = load("iframe");
     nodeList = doc.getElementsByTagName("iframe");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vframeborder = testNode.frameBorder;
-    test.equal(vframeborder, "1", "frameborderLink");
-    test.done();
-  },
+    assert.equal(vframeborder, "1", "frameborderLink");
+  });
 
   /**
    *
@@ -7576,7 +7009,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-1678118
    */
-  HTMLIFrameElement03: function(test) {
+  specify("HTMLIFrameElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7588,12 +7021,11 @@ exports.tests = {
     }
     doc = load("iframe");
     nodeList = doc.getElementsByTagName("iframe");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vheight = testNode.height;
-    test.equal(vheight, "50", "heightLink");
-    test.done();
-  },
+    assert.equal(vheight, "50", "heightLink");
+  });
 
   /**
    *
@@ -7605,7 +7037,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-70472105
    */
-  HTMLIFrameElement04: function(test) {
+  specify("HTMLIFrameElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7617,12 +7049,11 @@ exports.tests = {
     }
     doc = load("iframe");
     nodeList = doc.getElementsByTagName("iframe");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vlongdesc = testNode.longDesc;
-    test.equal(vlongdesc, "about:blank", "longdescLink");
-    test.done();
-  },
+    assert.equal(vlongdesc, "about:blank", "longdescLink");
+  });
 
   /**
    *
@@ -7633,7 +7064,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-66486595
    */
-  HTMLIFrameElement05: function(test) {
+  specify("HTMLIFrameElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7645,12 +7076,11 @@ exports.tests = {
     }
     doc = load("iframe");
     nodeList = doc.getElementsByTagName("iframe");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vmarginwidth = testNode.marginWidth;
-    test.equal(vmarginwidth, "5", "marginwidthLink");
-    test.done();
-  },
+    assert.equal(vmarginwidth, "5", "marginwidthLink");
+  });
 
   /**
    *
@@ -7661,7 +7091,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-91371294
    */
-  HTMLIFrameElement06: function(test) {
+  specify("HTMLIFrameElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7673,12 +7103,11 @@ exports.tests = {
     }
     doc = load("iframe");
     nodeList = doc.getElementsByTagName("iframe");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vmarginheight = testNode.marginHeight;
-    test.equal(vmarginheight, "10", "marginheightLink");
-    test.done();
-  },
+    assert.equal(vmarginheight, "10", "marginheightLink");
+  });
 
   /**
    *
@@ -7690,7 +7119,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-96819659
    */
-  HTMLIFrameElement07: function(test) {
+  specify("HTMLIFrameElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7702,12 +7131,11 @@ exports.tests = {
     }
     doc = load("iframe");
     nodeList = doc.getElementsByTagName("iframe");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "Iframe1", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "Iframe1", "nameLink");
+  });
 
   /**
    *
@@ -7719,7 +7147,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-36369822
    */
-  HTMLIFrameElement08: function(test) {
+  specify("HTMLIFrameElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7731,12 +7159,11 @@ exports.tests = {
     }
     doc = load("iframe");
     nodeList = doc.getElementsByTagName("iframe");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vscrolling = testNode.scrolling;
-    test.equal(vscrolling, "yes", "scrollingLink");
-    test.done();
-  },
+    assert.equal(vscrolling, "yes", "scrollingLink");
+  });
 
   /**
    *
@@ -7747,7 +7174,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-43933957
    */
-  HTMLIFrameElement09: function(test) {
+  specify("HTMLIFrameElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7759,12 +7186,11 @@ exports.tests = {
     }
     doc = load("iframe");
     nodeList = doc.getElementsByTagName("iframe");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vsrc = testNode.src;
-    test.equal(vsrc, toFileUrl('html/files/img/right.png'), 'srcLink');
-    test.done();
-  },
+    assert.equal(vsrc, toFileUrl('html/files/img/right.png'), 'srcLink');
+  });
 
   /**
    *
@@ -7775,7 +7201,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-67133005
    */
-  HTMLIFrameElement10: function(test) {
+  specify("HTMLIFrameElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7787,12 +7213,11 @@ exports.tests = {
     }
     doc = load("iframe");
     nodeList = doc.getElementsByTagName("iframe");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vwidth = testNode.width;
-    test.equal(vwidth, "60", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "60", "widthLink");
+  });
 
   /**
    *
@@ -7802,7 +7227,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-67133006
    */
-  HTMLIFrameElement11: function(test) {
+  specify("HTMLIFrameElement11", () => {
     var success;
     var testNode;
     var cd;
@@ -7817,10 +7242,9 @@ exports.tests = {
       testNode = doc.getElementById("Iframe2");
       cd = testNode.contentDocument;
       vtitle = cd.title;
-      test.equal(vtitle, "NIST DOM HTML Test - FRAME", "titleLink");
+      assert.equal(vtitle, "NIST DOM HTML Test - FRAME", "titleLink");
     };
-    test.done();
-  },
+  });
 
   /**
    *
@@ -7830,7 +7254,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-47534097
    */
-  HTMLImageElement01: function(test) {
+  specify("HTMLImageElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7842,12 +7266,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "IMAGE-1", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "IMAGE-1", "nameLink");
+  });
 
   /**
    *
@@ -7858,7 +7281,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-3211094
    */
-  HTMLImageElement02: function(test) {
+  specify("HTMLImageElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7870,12 +7293,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "middle", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "middle", "alignLink");
+  });
 
   /**
    *
@@ -7886,7 +7308,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95636861
    */
-  HTMLImageElement03: function(test) {
+  specify("HTMLImageElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7898,12 +7320,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valt = testNode.alt;
-    test.equal(valt, "DTS IMAGE LOGO", "altLink");
-    test.done();
-  },
+    assert.equal(valt, "DTS IMAGE LOGO", "altLink");
+  });
 
   /**
    *
@@ -7913,7 +7334,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-136671
    */
-  HTMLImageElement04: function(test) {
+  specify("HTMLImageElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7925,12 +7346,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vborder = testNode.border;
-    test.equal(vborder, "0", "borderLink");
-    test.done();
-  },
+    assert.equal(vborder, "0", "borderLink");
+  });
 
   /**
    *
@@ -7940,7 +7360,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-91561496
    */
-  HTMLImageElement05: function(test) {
+  specify("HTMLImageElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7952,12 +7372,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vheight = testNode.height;
-    test.equal(vheight, 47, "heightLink");
-    test.done();
-  },
+    assert.equal(vheight, 47, "heightLink");
+  });
 
   /**
    *
@@ -7968,7 +7387,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-53675471
    */
-  HTMLImageElement06: function(test) {
+  specify("HTMLImageElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -7980,12 +7399,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vhspace = testNode.hspace;
-    test.equal(vhspace, 4, "hspaceLink");
-    test.done();
-  },
+    assert.equal(vhspace, 4, "hspaceLink");
+  });
 
   /**
    *
@@ -7995,7 +7413,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-58983880
    */
-  HTMLImageElement07: function(test) {
+  specify("HTMLImageElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8007,40 +7425,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vismap = testNode.isMap;
-    test.equal(vismap, false, 'vismap should be *false*');
-    test.done();
-  },
-
-  /**
-   *
-   The longDesc attribute contains an URI designating a long description
-   of this image or frame.
-   Retrieve the longDesc attribute and examine its value.
-   * @author NIST
-   * @author Mary Brady
-   * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-77376969
-   */
-  HTMLImageElement08: function(test) {
-    var success;
-    var nodeList;
-    var testNode;
-    var vlongdesc;
-    var doc;
-    var docRef = null;
-    if (typeof(this.doc) != 'undefined') {
-      docRef = this.doc;
-    }
-    doc = load("img");
-    nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
-    testNode = nodeList.item(0);
-    vlongdesc = testNode.longDesc;
-    test.equal(vlongdesc, './files/desc.html', 'longDescLink');
-    test.done();
-  },
+    assert.equal(vismap, false, 'vismap should be *false*');
+  });
 
   /**
    *
@@ -8050,7 +7439,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-87762984
    */
-  HTMLImageElement09: function(test) {
+  specify("HTMLImageElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8062,12 +7451,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vsrc = testNode.src;
-    test.equal(vsrc, toFileUrl('html/files/pix/dts.gif'), 'srcLink');
-    test.done();
-  },
+    assert.equal(vsrc, toFileUrl('html/files/pix/dts.gif'), 'srcLink');
+  });
 
   /**
    *
@@ -8077,7 +7465,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-35981181
    */
-  HTMLImageElement10: function(test) {
+  specify("HTMLImageElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8089,12 +7477,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vusemap = testNode.useMap;
-    test.equal(vusemap, "#DTS-MAP", "useMapLink");
-    test.done();
-  },
+    assert.equal(vusemap, "#DTS-MAP", "useMapLink");
+  });
 
   /**
    *
@@ -8105,7 +7492,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-85374897
    */
-  HTMLImageElement11: function(test) {
+  specify("HTMLImageElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8117,12 +7504,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vvspace = testNode.vspace;
-    test.equal(vvspace, 10, "vspaceLink");
-    test.done();
-  },
+    assert.equal(vvspace, 10, "vspaceLink");
+  });
 
   /**
    *
@@ -8132,7 +7518,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-13839076
    */
-  HTMLImageElement12: function(test) {
+  specify("HTMLImageElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8144,12 +7530,11 @@ exports.tests = {
     }
     doc = load("img");
     nodeList = doc.getElementsByTagName("img");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vwidth = testNode.width;
-    test.equal(vwidth, 115, "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, 115, "widthLink");
+  });
 
   /**
    *
@@ -8161,7 +7546,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-26091157
    */
-  HTMLInputElement01: function(test) {
+  specify("HTMLInputElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8173,12 +7558,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(0);
     vdefaultvalue = testNode.defaultValue;
-    test.equal(vdefaultvalue, "Password", "defaultValueLink");
-    test.done();
-  },
+    assert.equal(vdefaultvalue, "Password", "defaultValueLink");
+  });
 
   /**
    *
@@ -8190,7 +7574,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-20509171
    */
-  HTMLInputElement02: function(test) {
+  specify("HTMLInputElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8202,12 +7586,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(3);
     vdefaultchecked = testNode.defaultChecked;
-    test.ok(vdefaultchecked, 'defaultCheckedLink');
-    test.done();
-  },
+    assert.ok(vdefaultchecked, 'defaultCheckedLink');
+  });
 
   /**
    *
@@ -8217,7 +7600,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63239895
    */
-  HTMLInputElement03: function(test) {
+  specify("HTMLInputElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8230,13 +7613,12 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(0);
     fNode = testNode.form;
     vform = fNode.id;
-    test.equal(vform, "form1", "formLink");
-    test.done();
-  },
+    assert.equal(vform, "form1", "formLink");
+  });
 
   /**
    *
@@ -8248,7 +7630,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-15328520
    */
-  HTMLInputElement04: function(test) {
+  specify("HTMLInputElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8260,12 +7642,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(8);
     vaccept = testNode.accept;
-    test.equal(vaccept, 'GIF,JPEG', 'acceptLink');
-    test.done();
-  },
+    assert.equal(vaccept, 'GIF,JPEG', 'acceptLink');
+  });
 
   /**
    *
@@ -8277,7 +7658,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59914154
    */
-  HTMLInputElement05: function(test) {
+  specify("HTMLInputElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8289,12 +7670,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(1);
     vaccesskey = testNode.accessKey;
-    test.equal(vaccesskey, "c", "accesskeyLink");
-    test.done();
-  },
+    assert.equal(vaccesskey, "c", "accesskeyLink");
+  });
 
   /**
    *
@@ -8306,7 +7686,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-96991182
    */
-  HTMLInputElement06: function(test) {
+  specify("HTMLInputElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8318,12 +7698,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(3);
     valign = testNode.align;
-    test.equal(valign.toLowerCase(), "bottom".toLowerCase(), "alignLink");
-    test.done();
-  },
+    assert.equal(valign.toLowerCase(), "bottom".toLowerCase(), "alignLink");
+  });
 
   /**
    *
@@ -8335,7 +7714,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-92701314
    */
-  HTMLInputElement07: function(test) {
+  specify("HTMLInputElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8347,12 +7726,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(0);
     valt = testNode.alt;
-    test.equal(valt, "Password entry", "altLink");
-    test.done();
-  },
+    assert.equal(valt, "Password entry", "altLink");
+  });
 
   /**
    *
@@ -8364,7 +7742,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-30233917
    */
-  HTMLInputElement08: function(test) {
+  specify("HTMLInputElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8376,12 +7754,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(2);
     vchecked = testNode.checked;
-    test.ok(vchecked, 'checkedLink');
-    test.done();
-  },
+    assert.ok(vchecked, 'checkedLink');
+  });
 
   /**
    *
@@ -8392,7 +7769,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-50886781
    */
-  HTMLInputElement09: function(test) {
+  specify("HTMLInputElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8404,12 +7781,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(6);
     vdisabled = testNode.disabled;
-    test.ok(vdisabled, 'disabledLink');
-    test.done();
-  },
+    assert.ok(vdisabled, 'disabledLink');
+  });
 
   /**
    *
@@ -8421,7 +7797,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-54719353
    */
-  HTMLInputElement10: function(test) {
+  specify("HTMLInputElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8433,12 +7809,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(0);
     vmaxlength = testNode.maxLength;
-    test.equal(vmaxlength, 5, "maxlengthLink");
-    test.done();
-  },
+    assert.equal(vmaxlength, 5, "maxlengthLink");
+  });
 
   /**
    *
@@ -8450,7 +7825,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-89658498
    */
-  HTMLInputElement11: function(test) {
+  specify("HTMLInputElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8462,12 +7837,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "Password", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "Password", "nameLink");
+  });
 
   /**
    *
@@ -8479,7 +7853,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-88461592
    */
-  HTMLInputElement12: function(test) {
+  specify("HTMLInputElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8491,12 +7865,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(0);
     vreadonly = testNode.readOnly;
-    test.ok(vreadonly, 'readonlyLink');
-    test.done();
-  },
+    assert.ok(vreadonly, 'readonlyLink');
+  });
 
   /**
    *
@@ -8508,7 +7881,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-79659438
    */
-  HTMLInputElement13: function(test) {
+  specify("HTMLInputElement13", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8520,12 +7893,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(0);
     vsize = testNode.size;
-    test.equal(vsize, 25, "size");
-    test.done();
-  },
+    assert.equal(vsize, 25, "size");
+  });
 
   /**
    *
@@ -8537,7 +7909,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-97320704
    */
-  HTMLInputElement14: function(test) {
+  specify("HTMLInputElement14", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8549,12 +7921,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(7);
     vsrc = testNode.src;
-    test.equal(vsrc, './pix/submit.gif', 'srcLink');
-    test.done();
-  },
+    assert.equal(vsrc, './pix/submit.gif', 'srcLink');
+  });
 
   /**
    *
@@ -8566,7 +7937,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-62176355
    */
-  HTMLInputElement15: function(test) {
+  specify("HTMLInputElement15", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8578,12 +7949,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(2);
     vtabindex = testNode.tabIndex;
-    test.equal(vtabindex, 9, "tabindexLink");
-    test.done();
-  },
+    assert.equal(vtabindex, 9, "tabindexLink");
+  });
 
   /**
    *
@@ -8594,7 +7964,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-62883744
    */
-  HTMLInputElement16: function(test) {
+  specify("HTMLInputElement16", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8606,12 +7976,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "password", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "password", "typeLink");
+  });
 
   /**
    *
@@ -8622,7 +7991,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-32463706
    */
-  HTMLInputElement17: function(test) {
+  specify("HTMLInputElement17", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8634,12 +8003,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(7);
     vusemap = testNode.useMap;
-    test.equal(vusemap, "#submit-map", "usemapLink");
-    test.done();
-  },
+    assert.equal(vusemap, "#submit-map", "usemapLink");
+  });
 
   /**
    *
@@ -8651,7 +8019,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-49531485
    */
-  HTMLInputElement18: function(test) {
+  specify("HTMLInputElement18", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8663,12 +8031,11 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(1);
     vvalue = testNode.value;
-    test.equal(vvalue, "ReHire", "valueLink");
-    test.done();
-  },
+    assert.equal(vvalue, "ReHire", "valueLink");
+  });
 
   /**
    *
@@ -8676,7 +8043,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-26838235
    */
-  HTMLInputElement19: function(test) {
+  specify("HTMLInputElement19", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8687,11 +8054,10 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(1);
     testNode.blur();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -8699,7 +8065,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-65996295
    */
-  HTMLInputElement20: function(test) {
+  specify("HTMLInputElement20", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8710,11 +8076,10 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(1);
     testNode.focus();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -8722,7 +8087,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-2651361
    */
-  HTMLInputElement21: function(test) {
+  specify("HTMLInputElement21", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8734,15 +8099,14 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(1);
     checked = testNode.checked;
-    test.equal(checked, false, 'checked should be *false*');
+    assert.equal(checked, false, 'checked should be *false*');
     testNode.click();
     checked = testNode.checked;
-    test.ok(checked, 'checkedAfterClick');
-    test.done();
-  },
+    assert.ok(checked, 'checkedAfterClick');
+  });
 
   /**
    *
@@ -8750,7 +8114,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-34677168
    */
-  HTMLInputElement22: function(test) {
+  specify("HTMLInputElement22", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8762,36 +8126,33 @@ exports.tests = {
     }
     doc = load("input");
     nodeList = doc.getElementsByTagName("input");
-    test.equal(nodeList.length, 9, 'Asize');
+    assert.equal(nodeList.length, 9, 'Asize');
     testNode = nodeList.item(0);
     testNode.select();
-    test.done();
-  },
+  });
 
-  HTMLInputElementCheckboxClickTogglesCheckedState: function(test) {
+  specify("HTMLInputElementCheckboxClickTogglesCheckedState", () => {
     var doc = load("input");
     var element = doc.querySelector("input[name='Check1']");
-    test.equal(element.checked, true);
+    assert.equal(element.checked, true);
     element.click();
-    test.equal(element.checked, false);
+    assert.equal(element.checked, false);
     element.click();
-    test.equal(element.checked, true);
-    test.done();
-  },
+    assert.equal(element.checked, true);
+  });
 
-  HTMLInputElementDefaultEventClickForCheckboxTogglesCheckedState: function(test) {
+  specify("HTMLInputElementDefaultEventClickForCheckboxTogglesCheckedState", () => {
     var doc = load("input");
     var element = doc.querySelector("input[name='Check1']");
     var clickevent = doc.createEvent("Event");
     clickevent.initEvent("click", true, true);
     element.dispatchEvent(clickevent);
-    test.equal(element.checked, false);
+    assert.equal(element.checked, false);
     element.dispatchEvent(clickevent);
-    test.equal(element.checked, true);
+    assert.equal(element.checked, true);
     element.dispatchEvent(clickevent);
-    test.equal(element.checked, false);
-    test.done();
-  },
+    assert.equal(element.checked, false);
+  });
 
   // <isindex> tests removed because it's replaced by <label> and <input> in the parser stage now
 
@@ -8803,7 +8164,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52387668
    */
-  HTMLLIElement01: function(test) {
+  specify("HTMLLIElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8815,12 +8176,11 @@ exports.tests = {
     }
     doc = load("li");
     nodeList = doc.getElementsByTagName("li");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "square", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "square", "typeLink");
+  });
 
   /**
    *
@@ -8830,7 +8190,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-45496263
    */
-  HTMLLIElement02: function(test) {
+  specify("HTMLLIElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8842,12 +8202,11 @@ exports.tests = {
     }
     doc = load("li");
     nodeList = doc.getElementsByTagName("li");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vvalue = testNode.value;
-    test.equal(vvalue, 2, "valueLink");
-    test.done();
-  },
+    assert.equal(vvalue, 2, "valueLink");
+  });
 
   /**
    *
@@ -8857,7 +8216,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-32480901
    */
-  HTMLLabelElement01: function(test) {
+  specify("HTMLLabelElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8870,13 +8229,12 @@ exports.tests = {
     }
     doc = load("label");
     nodeList = doc.getElementsByTagName("label");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     fNode = testNode.form;
     vform = fNode.id;
-    test.equal(vform, "form1", "formLink");
-    test.done();
-  },
+    assert.equal(vform, "form1", "formLink");
+  });
 
   /**
    *
@@ -8887,7 +8245,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-32480901
    */
-  HTMLLabelElement02: function(test) {
+  specify("HTMLLabelElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8899,12 +8257,11 @@ exports.tests = {
     }
     doc = load("label");
     nodeList = doc.getElementsByTagName("label");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.done();
-  },
+    assert.equal(vform, null, 'vform should be null');
+  });
 
   /**
    *
@@ -8915,7 +8272,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-43589892
    */
-  HTMLLabelElement03: function(test) {
+  specify("HTMLLabelElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8927,12 +8284,11 @@ exports.tests = {
     }
     doc = load("label");
     nodeList = doc.getElementsByTagName("label");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vaccesskey = testNode.accessKey;
-    test.equal(vaccesskey, "b", "accesskeyLink");
-    test.done();
-  },
+    assert.equal(vaccesskey, "b", "accesskeyLink");
+  });
 
   /**
    *
@@ -8944,7 +8300,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-96509813
    */
-  HTMLLabelElement04: function(test) {
+  specify("HTMLLabelElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8956,12 +8312,11 @@ exports.tests = {
     }
     doc = load("label");
     nodeList = doc.getElementsByTagName("label");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vhtmlfor = testNode.htmlFor;
-    test.equal(vhtmlfor, "input1", "htmlForLink");
-    test.done();
-  },
+    assert.equal(vhtmlfor, "input1", "htmlForLink");
+  });
 
   /**
    *
@@ -8972,7 +8327,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-29594519
    */
-  HTMLLegendElement01: function(test) {
+  specify("HTMLLegendElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -8985,13 +8340,12 @@ exports.tests = {
     }
     doc = load("legend");
     nodeList = doc.getElementsByTagName("legend");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     fNode = testNode.form;
     vform = fNode.id;
-    test.equal(vform, "form1", "formLink");
-    test.done();
-  },
+    assert.equal(vform, "form1", "formLink");
+  });
 
   /**
    *
@@ -9002,7 +8356,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-29594519
    */
-  HTMLLegendElement02: function(test) {
+  specify("HTMLLegendElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9014,12 +8368,11 @@ exports.tests = {
     }
     doc = load("legend");
     nodeList = doc.getElementsByTagName("legend");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.done();
-  },
+    assert.equal(vform, null, 'vform should be null');
+  });
 
   /**
    *
@@ -9030,7 +8383,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-11297832
    */
-  HTMLLegendElement03: function(test) {
+  specify("HTMLLegendElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9042,12 +8395,11 @@ exports.tests = {
     }
     doc = load("legend");
     nodeList = doc.getElementsByTagName("legend");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vaccesskey = testNode.accessKey;
-    test.equal(vaccesskey, "b", "accesskeyLink");
-    test.done();
-  },
+    assert.equal(vaccesskey, "b", "accesskeyLink");
+  });
 
   /**
    *
@@ -9057,7 +8409,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-79538067
    */
-  HTMLLegendElement04: function(test) {
+  specify("HTMLLegendElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9069,12 +8421,11 @@ exports.tests = {
     }
     doc = load("legend");
     nodeList = doc.getElementsByTagName("legend");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "top", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "top", "alignLink");
+  });
 
   /**
    *
@@ -9085,7 +8436,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63954491
    */
-  HTMLLinkElement02: function(test) {
+  specify("HTMLLinkElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9097,12 +8448,11 @@ exports.tests = {
     }
     doc = load("link");
     nodeList = doc.getElementsByTagName("link");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vcharset = testNode.charset;
-    test.equal(vcharset, "Latin-1", "charsetLink");
-    test.done();
-  },
+    assert.equal(vcharset, "Latin-1", "charsetLink");
+  });
 
   /**
    *
@@ -9112,7 +8462,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-33532588
    */
-  HTMLLinkElement03: function(test) {
+  specify("HTMLLinkElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9124,12 +8474,11 @@ exports.tests = {
     }
     doc = load("link");
     nodeList = doc.getElementsByTagName("link");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vhref = testNode.href;
-    test.equal(vhref, toFileUrl('html/files/files/glossary.html'), 'hrefLink');
-    test.done();
-  },
+    assert.equal(vhref, toFileUrl('html/files/files/glossary.html'), 'hrefLink');
+  });
 
   /**
    *
@@ -9139,7 +8488,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-85145682
    */
-  HTMLLinkElement04: function(test) {
+  specify("HTMLLinkElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9151,12 +8500,11 @@ exports.tests = {
     }
     doc = load("link");
     nodeList = doc.getElementsByTagName("link");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vhreflang = testNode.hreflang;
-    test.equal(vhreflang, "en", "hreflangLink");
-    test.done();
-  },
+    assert.equal(vhreflang, "en", "hreflangLink");
+  });
 
   /**
    *
@@ -9166,7 +8514,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-75813125
    */
-  HTMLLinkElement05: function(test) {
+  specify("HTMLLinkElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9178,12 +8526,11 @@ exports.tests = {
     }
     doc = load("link");
     nodeList = doc.getElementsByTagName("link");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vmedia = testNode.media;
-    test.equal(vmedia, "screen", "mediaLink");
-    test.done();
-  },
+    assert.equal(vmedia, "screen", "mediaLink");
+  });
 
   /**
    *
@@ -9193,7 +8540,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-41369587
    */
-  HTMLLinkElement06: function(test) {
+  specify("HTMLLinkElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9205,12 +8552,11 @@ exports.tests = {
     }
     doc = load("link");
     nodeList = doc.getElementsByTagName("link");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vrel = testNode.rel;
-    test.equal(vrel, "Glossary", "relLink");
-    test.done();
-  },
+    assert.equal(vrel, "Glossary", "relLink");
+  });
 
   /**
    *
@@ -9220,7 +8566,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-40715461
    */
-  HTMLLinkElement07: function(test) {
+  specify("HTMLLinkElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9232,12 +8578,11 @@ exports.tests = {
     }
     doc = load("link");
     nodeList = doc.getElementsByTagName("link");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vrev = testNode.rev;
-    test.equal(vrev, "stylesheet", "revLink");
-    test.done();
-  },
+    assert.equal(vrev, "stylesheet", "revLink");
+  });
 
   /**
    *
@@ -9247,7 +8592,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-32498296
    */
-  HTMLLinkElement08: function(test) {
+  specify("HTMLLinkElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9259,12 +8604,11 @@ exports.tests = {
     }
     doc = load("link");
     nodeList = doc.getElementsByTagName("link");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "text/html", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "text/html", "typeLink");
+  });
 
   /**
    *
@@ -9274,7 +8618,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-84183095
    */
-  HTMLLinkElement09: function(test) {
+  specify("HTMLLinkElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9286,12 +8630,11 @@ exports.tests = {
     }
     doc = load("link2");
     nodeList = doc.getElementsByTagName("link");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtarget = testNode.target;
-    test.equal(vtarget, "dynamic", "targetLink");
-    test.done();
-  },
+    assert.equal(vtarget, "dynamic", "targetLink");
+  });
 
   /**
    *
@@ -9301,7 +8644,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-71838730
    */
-  HTMLMapElement01: function(test) {
+  specify("HTMLMapElement01", () => {
     var success;
     var nodeList;
     var areasnodeList;
@@ -9314,13 +8657,12 @@ exports.tests = {
     }
     doc = load("map");
     nodeList = doc.getElementsByTagName("map");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     areasnodeList = testNode.areas;
     vareas = areasnodeList.length;
-    test.equal(vareas, 3, "areasLink");
-    test.done();
-  },
+    assert.equal(vareas, 3, "areasLink");
+  });
 
   /**
    *
@@ -9330,7 +8672,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52696514
    */
-  HTMLMapElement02: function(test) {
+  specify("HTMLMapElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9342,12 +8684,11 @@ exports.tests = {
     }
     doc = load("map");
     nodeList = doc.getElementsByTagName("map");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "mapid", "mapLink");
-    test.done();
-  },
+    assert.equal(vname, "mapid", "mapLink");
+  });
 
   /**
    *
@@ -9358,7 +8699,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-68436464
    */
-  HTMLMenuElement01: function(test) {
+  specify("HTMLMenuElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9370,12 +8711,11 @@ exports.tests = {
     }
     doc = load("menu");
     nodeList = doc.getElementsByTagName("menu");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcompact = testNode.compact;
-    test.ok(vcompact, 'compactLink');
-    test.done();
-  },
+    assert.ok(vcompact, 'compactLink');
+  });
 
   /**
    *
@@ -9385,7 +8725,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-87670826
    */
-  HTMLMetaElement01: function(test) {
+  specify("HTMLMetaElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9397,12 +8737,11 @@ exports.tests = {
     }
     doc = load("meta");
     nodeList = doc.getElementsByTagName("meta");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcontent = testNode.content;
-    test.equal(vcontent, "text/html; CHARSET=utf-8", "contentLink");
-    test.done();
-  },
+    assert.equal(vcontent, "text/html; CHARSET=utf-8", "contentLink");
+  });
 
   /**
    *
@@ -9412,7 +8751,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-77289449
    */
-  HTMLMetaElement02: function(test) {
+  specify("HTMLMetaElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9424,12 +8763,11 @@ exports.tests = {
     }
     doc = load("meta");
     nodeList = doc.getElementsByTagName("meta");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vhttpequiv = testNode.httpEquiv;
-    test.equal(vhttpequiv, "Content-Type", "httpEquivLink");
-    test.done();
-  },
+    assert.equal(vhttpequiv, "Content-Type", "httpEquivLink");
+  });
 
   /**
    *
@@ -9439,7 +8777,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-31037081
    */
-  HTMLMetaElement03: function(test) {
+  specify("HTMLMetaElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9451,12 +8789,11 @@ exports.tests = {
     }
     doc = load("meta");
     nodeList = doc.getElementsByTagName("meta");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "Meta-Name", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "Meta-Name", "nameLink");
+  });
 
   /**
    *
@@ -9466,7 +8803,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-35993789
    */
-  HTMLMetaElement04: function(test) {
+  specify("HTMLMetaElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9478,12 +8815,11 @@ exports.tests = {
     }
     doc = load("meta");
     nodeList = doc.getElementsByTagName("meta");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vscheme = testNode.scheme;
-    test.equal(vscheme, "NIST", "schemeLink");
-    test.done();
-  },
+    assert.equal(vscheme, "NIST", "schemeLink");
+  });
 
   /**
    *
@@ -9494,7 +8830,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-75101708
    */
-  HTMLModElement01: function(test) {
+  specify("HTMLModElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9506,12 +8842,11 @@ exports.tests = {
     }
     doc = load("mod");
     nodeList = doc.getElementsByTagName("ins");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcite = testNode.cite;
-    test.equal(vcite, './files/ins-reasons.html', 'citeLink');
-    test.done();
-  },
+    assert.equal(vcite, './files/ins-reasons.html', 'citeLink');
+  });
 
   /**
    *
@@ -9521,7 +8856,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-88432678
    */
-  HTMLModElement02: function(test) {
+  specify("HTMLModElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9533,12 +8868,11 @@ exports.tests = {
     }
     doc = load("mod");
     nodeList = doc.getElementsByTagName("ins");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdatetime = testNode.dateTime;
-    test.equal(vdatetime, "January 1, 2002", "dateTimeLink");
-    test.done();
-  },
+    assert.equal(vdatetime, "January 1, 2002", "dateTimeLink");
+  });
 
   /**
    *
@@ -9549,7 +8883,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-75101708
    */
-  HTMLModElement03: function(test) {
+  specify("HTMLModElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9561,12 +8895,11 @@ exports.tests = {
     }
     doc = load("mod");
     nodeList = doc.getElementsByTagName("del");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcite = testNode.cite;
-    test.equal(vcite, './files/del-reasons.html', 'citeLink');
-    test.done();
-  },
+    assert.equal(vcite, './files/del-reasons.html', 'citeLink');
+  });
 
   /**
    *
@@ -9576,7 +8909,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-88432678
    */
-  HTMLModElement04: function(test) {
+  specify("HTMLModElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9588,12 +8921,11 @@ exports.tests = {
     }
     doc = load("mod");
     nodeList = doc.getElementsByTagName("del");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdatetime = testNode.dateTime;
-    test.equal(vdatetime, "January 2, 2002", "dateTimeLink");
-    test.done();
-  },
+    assert.equal(vdatetime, "January 2, 2002", "dateTimeLink");
+  });
 
   /**
    *
@@ -9604,7 +8936,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-76448506
    */
-  HTMLOListElement01: function(test) {
+  specify("HTMLOListElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9616,12 +8948,11 @@ exports.tests = {
     }
     doc = load("olist");
     nodeList = doc.getElementsByTagName("ol");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcompact = testNode.compact;
-    test.ok(vcompact, 'compactLink');
-    test.done();
-  },
+    assert.ok(vcompact, 'compactLink');
+  });
 
   /**
    *
@@ -9631,7 +8962,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-14793325
    */
-  HTMLOListElement02: function(test) {
+  specify("HTMLOListElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9643,12 +8974,11 @@ exports.tests = {
     }
     doc = load("olist");
     nodeList = doc.getElementsByTagName("ol");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vstart = testNode.start;
-    test.equal(vstart, 1, "startLink");
-    test.done();
-  },
+    assert.equal(vstart, 1, "startLink");
+  });
 
   /**
    *
@@ -9658,7 +8988,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-40971103
    */
-  HTMLOListElement03: function(test) {
+  specify("HTMLOListElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9670,12 +9000,11 @@ exports.tests = {
     }
     doc = load("olist");
     nodeList = doc.getElementsByTagName("ol");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "1", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "1", "typeLink");
+  });
 
   /**
    *
@@ -9685,7 +9014,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-46094773
    */
-  HTMLObjectElement01: function(test) {
+  specify("HTMLObjectElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9698,13 +9027,12 @@ exports.tests = {
     }
     doc = load("object2");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     fNode = testNode.form;
     vform = fNode.id;
-    test.equal(vform, "object2", "idLink");
-    test.done();
-  },
+    assert.equal(vform, "object2", "idLink");
+  });
 
   /**
    *
@@ -9715,7 +9043,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-75241146
    */
-  HTMLObjectElement02: function(test) {
+  specify("HTMLObjectElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9727,13 +9055,12 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vcode = testNode.code;
 
-    test.strictEqual(vcode, "", "codeLink");
-    test.done();
-  },
+    assert.strictEqual(vcode, "", "codeLink");
+  });
 
   /**
    *
@@ -9745,7 +9072,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-16962097
    */
-  HTMLObjectElement03: function(test) {
+  specify("HTMLObjectElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9757,12 +9084,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "middle", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "middle", "alignLink");
+  });
 
   /**
    *
@@ -9773,7 +9099,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-47783837
    */
-  HTMLObjectElement04: function(test) {
+  specify("HTMLObjectElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9785,12 +9111,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     varchive = testNode.archive;
-    test.equal(varchive, "", "archiveLink");
-    test.done();
-  },
+    assert.equal(varchive, "", "archiveLink");
+  });
 
   /**
    *
@@ -9801,7 +9126,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-82818419
    */
-  HTMLObjectElement05: function(test) {
+  specify("HTMLObjectElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9813,12 +9138,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vborder = testNode.border;
-    test.equal(vborder, "0", "borderLink");
-    test.done();
-  },
+    assert.equal(vborder, "0", "borderLink");
+  });
 
   /**
    *
@@ -9830,7 +9154,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-25709136
    */
-  HTMLObjectElement06: function(test) {
+  specify("HTMLObjectElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9842,13 +9166,12 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vcodebase = testNode.codeBase;
     // assertURIEquals("codebaseLink",null,"//xw2k.sdct.itl.nist.gov/brady/dom/",null,null,null,null,null,null,vcodebase);
-  test.equal(vcodebase, 'http://xw2k.sdct.itl.nist.gov/brady/dom/', 'codebaseLink');
-    test.done();
-  },
+  assert.equal(vcodebase, 'http://xw2k.sdct.itl.nist.gov/brady/dom/', 'codebaseLink');
+  });
 
   /**
    *
@@ -9860,7 +9183,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-19945008
    */
-  HTMLObjectElement07: function(test) {
+  specify("HTMLObjectElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9872,12 +9195,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vcodetype = testNode.codeType;
-    test.equal(vcodetype, "image/gif", "codetypeLink");
-    test.done();
-  },
+    assert.equal(vcodetype, "image/gif", "codetypeLink");
+  });
 
   /**
    *
@@ -9888,7 +9210,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-81766986
    */
-  HTMLObjectElement08: function(test) {
+  specify("HTMLObjectElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9900,12 +9222,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vdata = testNode.data;
-    test.equal(vdata, toFileUrl('html/files/pix/logo.gif'), 'dataLink');
-    test.done();
-  },
+    assert.equal(vdata, toFileUrl('html/files/pix/logo.gif'), 'dataLink');
+  });
 
   /**
    *
@@ -9917,7 +9238,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-942770
    */
-  HTMLObjectElement09: function(test) {
+  specify("HTMLObjectElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9929,12 +9250,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vdeclare = testNode.declare;
-    test.ok(vdeclare, 'declareLink');
-    test.done();
-  },
+    assert.ok(vdeclare, 'declareLink');
+  });
 
   /**
    *
@@ -9946,7 +9266,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-88925838
    */
-  HTMLObjectElement10: function(test) {
+  specify("HTMLObjectElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9958,12 +9278,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vheight = testNode.height;
-    test.equal(vheight, "60", "heightLink");
-    test.done();
-  },
+    assert.equal(vheight, "60", "heightLink");
+  });
 
   /**
    *
@@ -9975,7 +9294,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-17085376
    */
-  HTMLObjectElement11: function(test) {
+  specify("HTMLObjectElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -9987,12 +9306,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vhspace = testNode.hspace;
-    test.equal(vhspace, 0, "hspaceLink");
-    test.done();
-  },
+    assert.equal(vhspace, 0, "hspaceLink");
+  });
 
   /**
    *
@@ -10004,7 +9322,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-25039673
    */
-  HTMLObjectElement12: function(test) {
+  specify("HTMLObjectElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10016,12 +9334,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vstandby = testNode.standby;
-    test.equal(vstandby, "Loading Image ...", "alignLink");
-    test.done();
-  },
+    assert.equal(vstandby, "Loading Image ...", "alignLink");
+  });
 
   /**
    *
@@ -10033,7 +9350,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-27083787
    */
-  HTMLObjectElement13: function(test) {
+  specify("HTMLObjectElement13", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10045,12 +9362,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtabindex = testNode.tabIndex;
-    test.equal(vtabindex, 0, "tabIndexLink");
-    test.done();
-  },
+    assert.equal(vtabindex, 0, "tabIndexLink");
+  });
 
   /**
    *
@@ -10062,7 +9378,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-91665621
    */
-  HTMLObjectElement14: function(test) {
+  specify("HTMLObjectElement14", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10074,12 +9390,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "image/gif", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "image/gif", "typeLink");
+  });
 
   /**
    *
@@ -10090,7 +9405,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6649772
    */
-  HTMLObjectElement15: function(test) {
+  specify("HTMLObjectElement15", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10102,12 +9417,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vusemap = testNode.useMap;
-    test.equal(vusemap, "#DivLogo-map", "useMapLink");
-    test.done();
-  },
+    assert.equal(vusemap, "#DivLogo-map", "useMapLink");
+  });
 
   /**
    *
@@ -10119,7 +9433,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-8682483
    */
-  HTMLObjectElement16: function(test) {
+  specify("HTMLObjectElement16", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10131,12 +9445,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vvspace = testNode.vspace;
-    test.equal(vvspace, 0, "vspaceLink");
-    test.done();
-  },
+    assert.equal(vvspace, 0, "vspaceLink");
+  });
 
   /**
    *
@@ -10147,7 +9460,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-38538620
    */
-  HTMLObjectElement17: function(test) {
+  specify("HTMLObjectElement17", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10159,12 +9472,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vwidth = testNode.width;
-    test.equal(vwidth, "550", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "550", "widthLink");
+  });
 
   /**
    *
@@ -10176,7 +9488,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-20110362
    */
-  HTMLObjectElement18: function(test) {
+  specify("HTMLObjectElement18", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10188,12 +9500,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vname = testNode.name;
-    test.equal(vname, "OBJECT2", "vspaceLink");
-    test.done();
-  },
+    assert.equal(vname, "OBJECT2", "vspaceLink");
+  });
 
   /**
    *
@@ -10204,7 +9515,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-46094773
    */
-  HTMLObjectElement19: function(test) {
+  specify("HTMLObjectElement19", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10216,12 +9527,11 @@ exports.tests = {
     }
     doc = load("object2");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.done();
-  },
+    assert.equal(vform, null, 'vform should be null');
+  });
 
   /**
    *
@@ -10231,7 +9541,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-38538621
    */
-  HTMLObjectElement20: function(test) {
+  specify("HTMLObjectElement20", () => {
     var success;
     var testNode;
     var cd;
@@ -10246,9 +9556,8 @@ exports.tests = {
     nodeList = doc.getElementsByTagName("object");
     testNode = nodeList.item(1);
     cd = testNode.contentDocument;
-    test.equal(cd, null, 'cd should be null');
-    test.done();
-  },
+    assert.equal(cd, null, 'cd should be null');
+  });
 
   /**
    *
@@ -10259,7 +9568,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-15518803
    */
-  HTMLOptGroupElement01: function(test) {
+  specify("HTMLOptGroupElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10271,12 +9580,11 @@ exports.tests = {
     }
     doc = load("optgroup");
     nodeList = doc.getElementsByTagName("optgroup");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vdisabled = testNode.disabled;
-    test.ok(vdisabled, 'disabledLink');
-    test.done();
-  },
+    assert.ok(vdisabled, 'disabledLink');
+  });
 
   /**
    *
@@ -10286,7 +9594,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-95806054
    */
-  HTMLOptGroupElement02: function(test) {
+  specify("HTMLOptGroupElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10298,12 +9606,11 @@ exports.tests = {
     }
     doc = load("optgroup");
     nodeList = doc.getElementsByTagName("optgroup");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vlabel = testNode.label;
-    test.equal(vlabel, "Regular Employees", "labelLink");
-    test.done();
-  },
+    assert.equal(vlabel, "Regular Employees", "labelLink");
+  });
 
   /**
    *
@@ -10314,7 +9621,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-17116503
    */
-  HTMLOptionElement01: function(test) {
+  specify("HTMLOptionElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10327,13 +9634,12 @@ exports.tests = {
     }
     doc = load("option");
     nodeList = doc.getElementsByTagName("option");
-    test.equal(nodeList.length, 10, 'Asize');
+    assert.equal(nodeList.length, 10, 'Asize');
     testNode = nodeList.item(0);
     fNode = testNode.form;
     vform = fNode.id;
-    test.equal(vform, "form1", "formLink");
-    test.done();
-  },
+    assert.equal(vform, "form1", "formLink");
+  });
 
   /**
    *
@@ -10345,7 +9651,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-17116503
    */
-  HTMLOptionElement02: function(test) {
+  specify("HTMLOptionElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10357,12 +9663,11 @@ exports.tests = {
     }
     doc = load("option");
     nodeList = doc.getElementsByTagName("option");
-    test.equal(nodeList.length, 10, 'Asize');
+    assert.equal(nodeList.length, 10, 'Asize');
     testNode = nodeList.item(6);
     vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.done();
-  },
+    assert.equal(vform, null, 'vform should be null');
+  });
 
   /**
    *
@@ -10374,7 +9679,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-37770574
    */
-  HTMLOptionElement03: function(test) {
+  specify("HTMLOptionElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10386,12 +9691,11 @@ exports.tests = {
     }
     doc = load("option");
     nodeList = doc.getElementsByTagName("option");
-    test.equal(nodeList.length, 10, 'Asize');
+    assert.equal(nodeList.length, 10, 'Asize');
     testNode = nodeList.item(0);
     vdefaultselected = testNode.defaultSelected;
-    test.ok(vdefaultselected, 'defaultSelectedLink');
-    test.done();
-  },
+    assert.ok(vdefaultselected, 'defaultSelectedLink');
+  });
 
   /**
    *
@@ -10402,7 +9706,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-48154426
    */
-  HTMLOptionElement04: function(test) {
+  specify("HTMLOptionElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10414,12 +9718,11 @@ exports.tests = {
     }
     doc = load("option");
     nodeList = doc.getElementsByTagName("option");
-    test.equal(nodeList.length, 10, 'Asize');
+    assert.equal(nodeList.length, 10, 'Asize');
     testNode = nodeList.item(1);
     vtext = testNode.text;
-    test.equal(vtext, "EMP10002", "textLink");
-    test.done();
-  },
+    assert.equal(vtext, "EMP10002", "textLink");
+  });
 
   /**
    *
@@ -10431,7 +9734,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-14038413
    */
-  HTMLOptionElement05: function(test) {
+  specify("HTMLOptionElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10443,12 +9746,11 @@ exports.tests = {
     }
     doc = load("option");
     nodeList = doc.getElementsByTagName("option");
-    test.equal(nodeList.length, 10, 'Asize');
+    assert.equal(nodeList.length, 10, 'Asize');
     testNode = nodeList.item(6);
     vindex = testNode.index;
-    test.equal(vindex, 1, "indexLink");
-    test.done();
-  },
+    assert.equal(vindex, 1, "indexLink");
+  });
 
   /**
    *
@@ -10460,7 +9762,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-23482473
    */
-  HTMLOptionElement06: function(test) {
+  specify("HTMLOptionElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10472,12 +9774,11 @@ exports.tests = {
     }
     doc = load("option");
     nodeList = doc.getElementsByTagName("option");
-    test.equal(nodeList.length, 10, 'Asize');
+    assert.equal(nodeList.length, 10, 'Asize');
     testNode = nodeList.item(9);
     vdisabled = testNode.disabled;
-    test.ok(vdisabled, 'disabledLink');
-    test.done();
-  },
+    assert.ok(vdisabled, 'disabledLink');
+  });
 
   /**
    *
@@ -10489,7 +9790,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-40736115
    */
-  HTMLOptionElement07: function(test) {
+  specify("HTMLOptionElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10501,12 +9802,11 @@ exports.tests = {
     }
     doc = load("option");
     nodeList = doc.getElementsByTagName("option");
-    test.equal(nodeList.length, 10, 'Asize');
+    assert.equal(nodeList.length, 10, 'Asize');
     testNode = nodeList.item(1);
     vlabel = testNode.label;
-    test.equal(vlabel, "l1", "labelLink");
-    test.done();
-  },
+    assert.equal(vlabel, "l1", "labelLink");
+  });
 
   /**
    *
@@ -10518,7 +9818,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-70874476
    */
-  HTMLOptionElement08: function(test) {
+  specify("HTMLOptionElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10530,12 +9830,11 @@ exports.tests = {
     }
     doc = load("option");
     nodeList = doc.getElementsByTagName("option");
-    test.equal(nodeList.length, 10, 'Asize');
+    assert.equal(nodeList.length, 10, 'Asize');
     testNode = nodeList.item(0);
     vselected = testNode.defaultSelected;
-    test.ok(vselected, 'selectedLink');
-    test.done();
-  },
+    assert.ok(vselected, 'selectedLink');
+  });
 
   /**
    *
@@ -10546,7 +9845,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6185554
    */
-  HTMLOptionElement09: function(test) {
+  specify("HTMLOptionElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10558,38 +9857,36 @@ exports.tests = {
     }
     doc = load("option");
     nodeList = doc.getElementsByTagName("option");
-    test.equal(nodeList.length, 10, 'Asize');
+    assert.equal(nodeList.length, 10, 'Asize');
     testNode = nodeList.item(0);
     vvalue = testNode.value;
-    test.equal(vvalue, "10001", "valueLink");
-    test.done();
-  },
+    assert.equal(vvalue, "10001", "valueLink");
+  });
 
   /**
    *
    The selected attribute of an option should be true if no other option is
    selected in the SELECT.
    */
-  HTMLOptionElement10: function(test) {
+  specify("HTMLOptionElement10", () => {
     var doc;
     doc = load("option");
     var select = doc.getElementsByName('select2').item(0);
     Array.prototype.forEach.call(select.options, function(option, idx) {
       if (idx === 0) {
-        test.ok(option.selected);
+        assert.ok(option.selected);
       } else {
-        test.ok(!option.selected);
+        assert.ok(!option.selected);
       }
     });
-    test.done();
-  },
+  });
 
   /**
    *
    The selected value of an option should be based on whether or not
    it has been selected and/or by default if it is at index 0
    */
-  HTMLOptionElement11: function(test) {
+  specify("HTMLOptionElement11", () => {
     var doc;
     doc = load("option");
     var select = doc.getElementsByName('select2').item(0);
@@ -10598,13 +9895,12 @@ exports.tests = {
 
     Array.prototype.forEach.call(select.options, function(option, idx) {
       if (idx === 3) {
-        test.ok(option.selected);
+        assert.ok(option.selected);
       } else {
-        test.ok(!option.selected);
+        assert.ok(!option.selected);
       }
     });
-    test.done();
-  },
+  });
 
   /**
    *
@@ -10612,7 +9908,7 @@ exports.tests = {
 
    based on experiements in chrome
    */
-  HTMLOptionElement12: function(test) {
+  specify("HTMLOptionElement12", () => {
     var doc;
     doc = load("option");
     var select = doc.getElementsByName('select2').item(0);
@@ -10622,13 +9918,12 @@ exports.tests = {
     var option = select.options.item(0);
     select.remove(0);
 
-    test.ok(!option.parentNode);
-    test.ok(option.selected);
-    test.ok(option !== select.options.item(0));
-    test.ok(select.options.item(0).selected);
+    assert.ok(!option.parentNode);
+    assert.ok(option.selected);
+    assert.ok(option !== select.options.item(0));
+    assert.ok(select.options.item(0).selected);
 
-    test.done();
-  },
+  });
 
   /**
    *
@@ -10641,7 +9936,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#HTMLOptionsCollection-length
    */
-  HTMLOptionsCollection01: function(test) {
+  specify("HTMLOptionsCollection01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10654,13 +9949,12 @@ exports.tests = {
     }
     doc = load("optionscollection");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     optionsList = testNode.options;
     vlength = optionsList.length;
-    test.equal(vlength, 5, "lengthLink");
-    test.done();
-  },
+    assert.equal(vlength, 5, "lengthLink");
+  });
 
   /**
    *
@@ -10677,7 +9971,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#HTMLOptionsCollection-item
    */
-  HTMLOptionsCollection02: function(test) {
+  specify("HTMLOptionsCollection02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10692,15 +9986,14 @@ exports.tests = {
     }
     doc = load("optionscollection");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     optionsList = testNode.options;
     optionsNode = optionsList.item(3);
     optionsValueNode = optionsNode.firstChild;
     vvalue = optionsValueNode.nodeValue;
-    test.equal(vvalue, "EMP10004", "valueIndexLink");
-    test.done();
-  },
+    assert.equal(vvalue, "EMP10004", "valueIndexLink");
+  });
 
   /**
    *
@@ -10719,7 +10012,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#HTMLOptionsCollection-namedItem
    */
-  HTMLOptionsCollection03: function(test) {
+  specify("HTMLOptionsCollection03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10733,14 +10026,13 @@ exports.tests = {
     }
     doc = load("optionscollection");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     formsnodeList = testNode.elements;
     optionsNode = formsnodeList.namedItem("select1");
     vname = optionsNode.nodeName;
-    test.equal(vname, 'SELECT', 'nameIndexLink');
-    test.done();
-  },
+    assert.equal(vname, 'SELECT', 'nameIndexLink');
+  });
 
   /**
    *
@@ -10759,7 +10051,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#HTMLOptionsCollection-namedItem
    */
-  HTMLOptionsCollection04: function(test) {
+  specify("HTMLOptionsCollection04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10773,14 +10065,13 @@ exports.tests = {
     }
     doc = load("optionscollection");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     formsnodeList = testNode.elements;
     optionsNode = formsnodeList.namedItem("selectId");
     vname = optionsNode.nodeName;
-    test.equal(vname, 'SELECT', 'nameIndexLink');
-    test.done();
-  },
+    assert.equal(vname, 'SELECT', 'nameIndexLink');
+  });
 
   /**
    *
@@ -10801,7 +10092,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#HTMLOptionsCollection-namedItem
    */
-  HTMLOptionsCollection05: function(test) {
+  specify("HTMLOptionsCollection05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10815,13 +10106,12 @@ exports.tests = {
     }
     doc = load("optionscollection");
     nodeList = doc.getElementsByTagName("form");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     formsnodeList = testNode.elements;
     optionsNode = formsnodeList.namedItem("select9");
-    test.equal(optionsNode, null, 'optionsNode should be null');
-    test.done();
-  },
+    assert.equal(optionsNode, null, 'optionsNode should be null');
+  });
 
   /**
    *
@@ -10838,7 +10128,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#HTMLOptionsCollection-item
    */
-  HTMLOptionsCollection06: function(test) {
+  specify("HTMLOptionsCollection06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10853,13 +10143,12 @@ exports.tests = {
     }
     doc = load("optionscollection");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     optionsList = testNode.options;
     optionsNode = optionsList.item(10);
-    test.equal(optionsNode, null, 'optionsNode should be null');
-    test.done();
-  },
+    assert.equal(optionsNode, null, 'optionsNode should be null');
+  });
 
   /**
    *
@@ -10876,7 +10165,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#HTMLOptionsCollection-item
    */
-  HTMLOptionsCollection07: function(test) {
+  specify("HTMLOptionsCollection07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10891,15 +10180,14 @@ exports.tests = {
     }
     doc = load("optionscollection");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     optionsList = testNode.options;
     optionsNode = optionsList.item(0);
     optionsValueNode = optionsNode.firstChild;
     vvalue = optionsValueNode.nodeValue;
-    test.equal(vvalue, "EMP10001", "valueIndexLink");
-    test.done();
-  },
+    assert.equal(vvalue, "EMP10001", "valueIndexLink");
+  });
 
   /**
    *
@@ -10909,7 +10197,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-53465507
    */
-  HTMLParagraphElement01: function(test) {
+  specify("HTMLParagraphElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10921,12 +10209,11 @@ exports.tests = {
     }
     doc = load("paragraph");
     nodeList = doc.getElementsByTagName("p");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -10936,7 +10223,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59871447
    */
-  HTMLParamElement01: function(test) {
+  specify("HTMLParamElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10948,12 +10235,11 @@ exports.tests = {
     }
     doc = load("param");
     nodeList = doc.getElementsByTagName("param");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "image3", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "image3", "nameLink");
+  });
 
   /**
    *
@@ -10963,7 +10249,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-77971357
    */
-  HTMLParamElement02: function(test) {
+  specify("HTMLParamElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -10975,12 +10261,11 @@ exports.tests = {
     }
     doc = load("param");
     nodeList = doc.getElementsByTagName("param");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vvalue = testNode.value;
-    test.equal(vvalue, 'image/file.gif', 'valueLink');
-    test.done();
-  },
+    assert.equal(vvalue, 'image/file.gif', 'valueLink');
+  });
 
   /**
    *
@@ -10991,7 +10276,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-23931872
    */
-  HTMLParamElement03: function(test) {
+  specify("HTMLParamElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11003,12 +10288,11 @@ exports.tests = {
     }
     doc = load("param");
     nodeList = doc.getElementsByTagName("param");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vvaluetype = testNode.valueType;
-    test.equal(vvaluetype, "ref", "valueTypeLink");
-    test.done();
-  },
+    assert.equal(vvaluetype, "ref", "valueTypeLink");
+  });
 
   /**
    *
@@ -11019,7 +10303,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-18179888
    */
-  HTMLParamElement04: function(test) {
+  specify("HTMLParamElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11031,12 +10315,11 @@ exports.tests = {
     }
     doc = load("param");
     nodeList = doc.getElementsByTagName("param");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "image/gif", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "image/gif", "typeLink");
+  });
 
   /**
    *
@@ -11046,7 +10329,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-13894083
    */
-  HTMLPreElement01: function(test) {
+  specify("HTMLPreElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11058,12 +10341,11 @@ exports.tests = {
     }
     doc = load("pre");
     nodeList = doc.getElementsByTagName("pre");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vwidth = testNode.width;
-    test.equal(vwidth, 277, "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, 277, "widthLink");
+  });
 
   /**
    *
@@ -11074,7 +10356,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-53895598
    */
-  HTMLQuoteElement01: function(test) {
+  specify("HTMLQuoteElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11086,12 +10368,11 @@ exports.tests = {
     }
     doc = load("quote");
     nodeList = doc.getElementsByTagName("q");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcite = testNode.cite;
-    test.equal(vcite, './files/Q.html', 'citeLink');
-    test.done();
-  },
+    assert.equal(vcite, './files/Q.html', 'citeLink');
+  });
 
   /**
    *
@@ -11103,7 +10384,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-53895598
    */
-  HTMLQuoteElement02: function(test) {
+  specify("HTMLQuoteElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11115,12 +10396,11 @@ exports.tests = {
     }
     doc = load("quote");
     nodeList = doc.getElementsByTagName("blockquote");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcite = testNode.cite;
-    test.equal(vcite, './files/BLOCKQUOTE.html', 'citeLink');
-    test.done();
-  },
+    assert.equal(vcite, './files/BLOCKQUOTE.html', 'citeLink');
+  });
 
   /**
    *
@@ -11130,7 +10410,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-46872999
    */
-  HTMLScriptElement01: function(test) {
+  specify("HTMLScriptElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11142,12 +10422,11 @@ exports.tests = {
     }
     doc = load("script");
     nodeList = doc.getElementsByTagName("script");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtext = testNode.text;
-    test.equal(vtext, "var a=2;", "textLink");
-    test.done();
-  },
+    assert.equal(vtext, "var a=2;", "textLink");
+  });
 
   /**
    *
@@ -11158,7 +10437,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-35305677
    */
-  HTMLScriptElement02: function(test) {
+  specify("HTMLScriptElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11170,12 +10449,11 @@ exports.tests = {
     }
     doc = load("script");
     nodeList = doc.getElementsByTagName("script");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcharset = testNode.charset;
-    test.equal(vcharset, "US-ASCII", "charsetLink");
-    test.done();
-  },
+    assert.equal(vcharset, "US-ASCII", "charsetLink");
+  });
 
   /**
    *
@@ -11186,7 +10464,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-93788534
    */
-  HTMLScriptElement03: function(test) {
+  specify("HTMLScriptElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11198,12 +10476,11 @@ exports.tests = {
     }
     doc = load("script");
     nodeList = doc.getElementsByTagName("script");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vdefer = testNode.defer;
-    test.ok(vdefer, 'deferLink');
-    test.done();
-  },
+    assert.ok(vdefer, 'deferLink');
+  });
 
   /**
    *
@@ -11213,7 +10490,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-75147231
    */
-  HTMLScriptElement04: function(test) {
+  specify("HTMLScriptElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11225,12 +10502,11 @@ exports.tests = {
     }
     doc = load("script");
     nodeList = doc.getElementsByTagName("script");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vsrc = testNode.src;
-    test.equal(vsrc, toFileUrl('html/files/js/script1.js'), 'srcLink');
-    test.done();
-  },
+    assert.equal(vsrc, toFileUrl('html/files/js/script1.js'), 'srcLink');
+  });
 
   /**
    *
@@ -11240,7 +10516,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-30534818
    */
-  HTMLScriptElement05: function(test) {
+  specify("HTMLScriptElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11252,12 +10528,11 @@ exports.tests = {
     }
     doc = load("script");
     nodeList = doc.getElementsByTagName("script");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "text/javaScript", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "text/javaScript", "typeLink");
+  });
 
   /**
    *
@@ -11265,7 +10540,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-66979266
    */
-  HTMLScriptElement06: function(test) {
+  specify("HTMLScriptElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11277,11 +10552,10 @@ exports.tests = {
     }
     doc = load("script");
     nodeList = doc.getElementsByTagName("script");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     htmlFor = testNode.htmlFor;
-    test.done();
-  },
+  });
 
   /**
    *
@@ -11289,7 +10563,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-56700403
    */
-  HTMLScriptElement07: function(test) {
+  specify("HTMLScriptElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11301,11 +10575,10 @@ exports.tests = {
     }
     doc = load("script");
     nodeList = doc.getElementsByTagName("script");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     event = testNode.event;
-    test.done();
-  },
+  });
 
   /**
    *
@@ -11313,7 +10586,7 @@ exports.tests = {
    * @author Kyle Blomquist
    */
 
-  HTMLScriptElement08: function(test) {
+  specify("HTMLScriptElement08", () => {
     var success;
     var scriptNode;
     var testNode;
@@ -11325,14 +10598,13 @@ exports.tests = {
     }
     doc = load("scriptinline");
     nodeList = doc.getElementsByTagName("script");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     scriptNode = nodeList.item(0);
     testNode = doc.getElementById("inlinetest");
-    test.equal(testNode.innerHTML, 'Test', '#inlinetest exists and contains correct text')
+    assert.equal(testNode.innerHTML, 'Test', '#inlinetest exists and contains correct text')
     isAfterScript = testNode.previousSibling.isEqualNode(scriptNode);
-    test.equal(isAfterScript, true, '#inlinetest is correctly placed after the script tag that created it');
-    test.done();
-  },
+    assert.equal(isAfterScript, true, '#inlinetest is correctly placed after the script tag that created it');
+  });
 
   /**
    *
@@ -11340,7 +10612,7 @@ exports.tests = {
    * @author Kyle Blomquist
    */
 
-  HTMLScriptElement09: function(test) {
+  specify("HTMLScriptElement09", () => {
     var success;
     var testNode;
     var doc;
@@ -11350,9 +10622,8 @@ exports.tests = {
     }
     doc = load("scriptinline");
     testNode = doc.getElementById("existingtag");
-    test.equal(testNode.innerHTML, 'Hello World', '#inlinetest exists and contains correct text')
-    test.done();
-  },
+    assert.equal(testNode.innerHTML, 'Hello World', '#inlinetest exists and contains correct text')
+  });
 
   /**
    *
@@ -11364,7 +10635,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-58783172
    */
-  HTMLSelectElement01: function(test) {
+  specify("HTMLSelectElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11376,12 +10647,11 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "select-multiple", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "select-multiple", "typeLink");
+  });
 
   /**
    *
@@ -11393,7 +10663,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-85676760
    */
-  HTMLSelectElement02: function(test) {
+  specify("HTMLSelectElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11405,12 +10675,11 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vselectedindex = testNode.selectedIndex;
-    test.equal(vselectedindex, 0, "selectedIndexLink");
-    test.done();
-  },
+    assert.equal(vselectedindex, 0, "selectedIndexLink");
+  });
 
   /**
    *
@@ -11425,7 +10694,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-85676760
    */
-  HTMLSelectElement03: function(test) {
+  specify("HTMLSelectElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11437,11 +10706,10 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vselectedindex = testNode.selectedIndex;
-    test.done();
-  },
+  });
 
   /**
    *
@@ -11452,7 +10720,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59351919
    */
-  HTMLSelectElement04: function(test) {
+  specify("HTMLSelectElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11464,12 +10732,11 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vvalue = testNode.value;
-    test.equal(vvalue, "EMP1", "valueLink");
-    test.done();
-  },
+    assert.equal(vvalue, "EMP1", "valueLink");
+  });
 
   /**
    *
@@ -11480,7 +10747,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-5933486
    */
-  HTMLSelectElement05: function(test) {
+  specify("HTMLSelectElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11492,12 +10759,11 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vlength = testNode.length;
-    test.equal(vlength, 5, "lengthLink");
-    test.done();
-  },
+    assert.equal(vlength, 5, "lengthLink");
+  });
 
   /**
    *
@@ -11508,7 +10774,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-20489458
    */
-  HTMLSelectElement06: function(test) {
+  specify("HTMLSelectElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11521,13 +10787,12 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     fNode = testNode.form;
     vform = fNode.id;
-    test.equal(vform, "form1", "formLink");
-    test.done();
-  },
+    assert.equal(vform, "form1", "formLink");
+  });
 
   /**
    *
@@ -11539,7 +10804,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-20489458
    */
-  HTMLSelectElement07: function(test) {
+  specify("HTMLSelectElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11551,12 +10816,11 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.done();
-  },
+    assert.equal(vform, null, 'vform should be null');
+  });
 
   /**
    *
@@ -11568,19 +10832,18 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-30606413
    */
-  HTMLSelectElement08: function(test) {
+  specify("HTMLSelectElement08", () => {
     var expectedOptions = ['OPTION', 'OPTION', 'OPTION', 'OPTION', 'OPTION']
     var doc = load("select");
     var nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     var result = [];
     var options = nodeList.item(0).options;
     for(var i=0;i<options.length; i++) {
       result.push(options.item(i).nodeName);
     }
-    test.deepEqual(result, expectedOptions, 'optionsLink');
-    test.done();
-  },
+    assert.deepEqual(result, expectedOptions, 'optionsLink');
+  });
 
   /**
    *
@@ -11592,7 +10855,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-79102918
    */
-  HTMLSelectElement09: function(test) {
+  specify("HTMLSelectElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11604,12 +10867,11 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(2);
     vdisabled = testNode.disabled;
-    test.ok(vdisabled, 'disabledLink');
-    test.done();
-  },
+    assert.ok(vdisabled, 'disabledLink');
+  });
 
   /**
    *
@@ -11621,7 +10883,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-13246613
    */
-  HTMLSelectElement10: function(test) {
+  specify("HTMLSelectElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11633,12 +10895,11 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vmultiple = testNode.multiple;
-    test.ok(vmultiple, 'multipleLink');
-    test.done();
-  },
+    assert.ok(vmultiple, 'multipleLink');
+  });
 
   /**
    *
@@ -11650,7 +10911,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-41636323
    */
-  HTMLSelectElement11: function(test) {
+  specify("HTMLSelectElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11662,12 +10923,11 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "select1", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "select1", "nameLink");
+  });
 
   /**
    *
@@ -11678,7 +10938,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-18293826
    */
-  HTMLSelectElement12: function(test) {
+  specify("HTMLSelectElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11690,12 +10950,11 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vsize = testNode.size;
-    test.equal(vsize, 1, "sizeLink");
-    test.done();
-  },
+    assert.equal(vsize, 1, "sizeLink");
+  });
 
   /**
    *
@@ -11707,7 +10966,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-40676705
    */
-  HTMLSelectElement13: function(test) {
+  specify("HTMLSelectElement13", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11719,12 +10978,11 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vtabindex = testNode.tabIndex;
-    test.equal(vtabindex, 7, "tabIndexLink");
-    test.done();
-  },
+    assert.equal(vtabindex, 7, "tabIndexLink");
+  });
 
   /**
    *
@@ -11732,7 +10990,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-32130014
    */
-  HTMLSelectElement14: function(test) {
+  specify("HTMLSelectElement14", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11743,11 +11001,10 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     testNode.focus();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -11755,7 +11012,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-28216144
    */
-  HTMLSelectElement15: function(test) {
+  specify("HTMLSelectElement15", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11766,11 +11023,10 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     testNode.blur();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -11778,7 +11034,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-33404570
    */
-  HTMLSelectElement16: function(test) {
+  specify("HTMLSelectElement16", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11791,15 +11047,14 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     testNode.remove(0);
     optLength = testNode.length;
-    test.equal(optLength, 4, "optLength");
+    assert.equal(optLength, 4, "optLength");
     selected = testNode.selectedIndex;
-    test.equal(selected, -1, "selected");
-    test.done();
-  },
+    assert.equal(selected, -1, "selected");
+  });
 
   /**
    *
@@ -11807,7 +11062,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-33404570
    */
-  HTMLSelectElement17: function(test) {
+  specify("HTMLSelectElement17", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11820,15 +11075,14 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     testNode.remove(6);
     optLength = testNode.length;
-    test.equal(optLength, 5, "optLength");
+    assert.equal(optLength, 5, "optLength");
     selected = testNode.selectedIndex;
-    test.equal(selected, 0, "selected");
-    test.done();
-  },
+    assert.equal(selected, 0, "selected");
+  });
 
   /**
    *
@@ -11836,7 +11090,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-14493106
    */
-  HTMLSelectElement18: function(test) {
+  specify("HTMLSelectElement18", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11856,22 +11110,21 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     newOpt = doc.createElement("option");
     newOptText = doc.createTextNode("EMP31415");
     retNode = newOpt.appendChild(newOptText);
     testNode.add(newOpt,nullNode);
     optLength = testNode.length;
-    test.equal(optLength, 6, "optLength");
+    assert.equal(optLength, 6, "optLength");
     selected = testNode.selectedIndex;
-    test.equal(selected, 0, "selected");
+    assert.equal(selected, 0, "selected");
     opt = testNode.lastChild;
     optText = opt.firstChild;
     optValue = optText.nodeValue;
-    test.equal(optValue, "EMP31415", "lastValue");
-    test.done();
-  },
+    assert.equal(optValue, "EMP31415", "lastValue");
+  });
 
   /**
    *
@@ -11879,7 +11132,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-14493106
    */
-  HTMLSelectElement19: function(test) {
+  specify("HTMLSelectElement19", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11900,7 +11153,7 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     newOpt = doc.createElement("option");
     newOptText = doc.createTextNode("EMP31415");
@@ -11909,16 +11162,15 @@ exports.tests = {
     selectedNode = options.item(0);
     testNode.add(newOpt,selectedNode);
     optLength = testNode.length;
-    test.equal(optLength, 6, "optLength");
+    assert.equal(optLength, 6, "optLength");
     selected = testNode.selectedIndex;
-    test.equal(selected, 1, "selected");
+    assert.equal(selected, 1, "selected");
     options = testNode.options;
     opt = options.item(0);
     optText = opt.firstChild;
     optValue = optText.nodeValue;
-    test.equal(optValue, "EMP31415", "lastValue");
-    test.done();
-  },
+    assert.equal(optValue, "EMP31415", "lastValue");
+  });
 
   /**
    *
@@ -11927,7 +11179,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-14493106
    */
-  HTMLSelectElement20: function(test) {
+  specify("HTMLSelectElement20", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11946,7 +11198,7 @@ exports.tests = {
     }
     doc = load("select");
     nodeList = doc.getElementsByTagName("select");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     otherSelect = nodeList.item(1);
     newOpt = doc.createElement("option");
@@ -11962,10 +11214,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 8);
       }
-      test.ok(success, 'throw_NOT_FOUND_ERR');
+      assert.ok(success, 'throw_NOT_FOUND_ERR');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -11975,7 +11226,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-76412738
    */
-  HTMLStyleElement02: function(test) {
+  specify("HTMLStyleElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -11987,12 +11238,11 @@ exports.tests = {
     }
     doc = load("style");
     nodeList = doc.getElementsByTagName("style");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vmedia = testNode.media;
-    test.equal(vmedia, "screen", "mediaLink");
-    test.done();
-  },
+    assert.equal(vmedia, "screen", "mediaLink");
+  });
 
   /**
    *
@@ -12002,7 +11252,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-22472002
    */
-  HTMLStyleElement03: function(test) {
+  specify("HTMLStyleElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12014,12 +11264,11 @@ exports.tests = {
     }
     doc = load("style");
     nodeList = doc.getElementsByTagName("style");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "text/css", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "text/css", "typeLink");
+  });
 
   /**
    *
@@ -12030,7 +11279,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-79875068
    */
-  HTMLTableCaptionElement01: function(test) {
+  specify("HTMLTableCaptionElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12042,12 +11291,11 @@ exports.tests = {
     }
     doc = load("tablecaption");
     nodeList = doc.getElementsByTagName("caption");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "top", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "top", "alignLink");
+  });
 
   /**
    *
@@ -12058,7 +11306,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-80748363
    */
-  HTMLTableCellElement01: function(test) {
+  specify("HTMLTableCellElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12070,12 +11318,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(0);
     vcellindex = testNode.cellIndex;
-    test.equal(vcellindex, 0, "cellIndexLink");
-    test.done();
-  },
+    assert.equal(vcellindex, 0, "cellIndexLink");
+  });
 
   /**
    *
@@ -12086,7 +11333,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-80748363
    */
-  HTMLTableCellElement02: function(test) {
+  specify("HTMLTableCellElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12098,12 +11345,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(0);
     vcellindex = testNode.cellIndex;
-    test.equal(vcellindex, 0, "cellIndexLink");
-    test.done();
-  },
+    assert.equal(vcellindex, 0, "cellIndexLink");
+  });
 
   /**
    *
@@ -12114,7 +11360,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-74444037
    */
-  HTMLTableCellElement03: function(test) {
+  specify("HTMLTableCellElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12126,12 +11372,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vabbr = testNode.abbr;
-    test.equal(vabbr, "hd1", "abbrLink");
-    test.done();
-  },
+    assert.equal(vabbr, "hd1", "abbrLink");
+  });
 
   /**
    *
@@ -12142,7 +11387,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-74444037
    */
-  HTMLTableCellElement04: function(test) {
+  specify("HTMLTableCellElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12154,12 +11399,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vabbr = testNode.abbr;
-    test.equal(vabbr, "hd2", "abbrLink");
-    test.done();
-  },
+    assert.equal(vabbr, "hd2", "abbrLink");
+  });
 
   /**
    *
@@ -12171,7 +11415,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-98433879
    */
-  HTMLTableCellElement05: function(test) {
+  specify("HTMLTableCellElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12183,12 +11427,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -12200,7 +11443,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-98433879
    */
-  HTMLTableCellElement06: function(test) {
+  specify("HTMLTableCellElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12212,12 +11455,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -12229,7 +11471,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-76554418
    */
-  HTMLTableCellElement07: function(test) {
+  specify("HTMLTableCellElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12241,12 +11483,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vaxis = testNode.axis;
-    test.equal(vaxis, "center", "axisLink");
-    test.done();
-  },
+    assert.equal(vaxis, "center", "axisLink");
+  });
 
   /**
    *
@@ -12258,7 +11499,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-76554418
    */
-  HTMLTableCellElement08: function(test) {
+  specify("HTMLTableCellElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12270,12 +11511,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vaxis = testNode.axis;
-    test.equal(vaxis, "center", "axisLink");
-    test.done();
-  },
+    assert.equal(vaxis, "center", "axisLink");
+  });
 
   /**
    *
@@ -12287,7 +11527,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-88135431
    */
-  HTMLTableCellElement09: function(test) {
+  specify("HTMLTableCellElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12299,12 +11539,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vbgcolor = testNode.bgColor;
-    test.equal(vbgcolor.toLowerCase(), "#00FFFF".toLowerCase(), "bgColorLink");
-    test.done();
-  },
+    assert.equal(vbgcolor.toLowerCase(), "#00FFFF".toLowerCase(), "bgColorLink");
+  });
 
   /**
    *
@@ -12316,7 +11555,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-88135431
    */
-  HTMLTableCellElement10: function(test) {
+  specify("HTMLTableCellElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12328,12 +11567,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vbgcolor = testNode.bgColor;
-    test.equal(vbgcolor.toLowerCase(), "#FF0000".toLowerCase(), "bgColorLink");
-    test.done();
-  },
+    assert.equal(vbgcolor.toLowerCase(), "#FF0000".toLowerCase(), "bgColorLink");
+  });
 
   /**
    *
@@ -12345,7 +11583,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-30914780
    */
-  HTMLTableCellElement11: function(test) {
+  specify("HTMLTableCellElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12357,12 +11595,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vch = testNode.ch;
-    test.equal(vch, ":", "chLink");
-    test.done();
-  },
+    assert.equal(vch, ":", "chLink");
+  });
 
   /**
    *
@@ -12374,7 +11611,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-30914780
    */
-  HTMLTableCellElement12: function(test) {
+  specify("HTMLTableCellElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12386,12 +11623,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vch = testNode.ch;
-    test.equal(vch, ":", "chLink");
-    test.done();
-  },
+    assert.equal(vch, ":", "chLink");
+  });
 
   /**
    *
@@ -12403,7 +11639,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-20144310
    */
-  HTMLTableCellElement13: function(test) {
+  specify("HTMLTableCellElement13", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12415,12 +11651,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vcharoff = testNode.chOff;
-    test.equal(vcharoff, "1", "chOffLink");
-    test.done();
-  },
+    assert.equal(vcharoff, "1", "chOffLink");
+  });
 
   /**
    *
@@ -12432,7 +11667,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-20144310
    */
-  HTMLTableCellElement14: function(test) {
+  specify("HTMLTableCellElement14", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12444,12 +11679,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vcharoff = testNode.chOff;
-    test.equal(vcharoff, "1", "chOffLink");
-    test.done();
-  },
+    assert.equal(vcharoff, "1", "chOffLink");
+  });
 
   /**
    *
@@ -12461,7 +11695,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-84645244
    */
-  HTMLTableCellElement15: function(test) {
+  specify("HTMLTableCellElement15", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12473,12 +11707,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vcolspan = testNode.colSpan;
-    test.equal(vcolspan, 1, "colSpanLink");
-    test.done();
-  },
+    assert.equal(vcolspan, 1, "colSpanLink");
+  });
 
   /**
    *
@@ -12490,7 +11723,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-84645244
    */
-  HTMLTableCellElement16: function(test) {
+  specify("HTMLTableCellElement16", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12502,12 +11735,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vcolspan = testNode.colSpan;
-    test.equal(vcolspan, 1, "colSpanLink");
-    test.done();
-  },
+    assert.equal(vcolspan, 1, "colSpanLink");
+  });
 
   /**
    *
@@ -12519,7 +11751,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-89104817
    */
-  HTMLTableCellElement17: function(test) {
+  specify("HTMLTableCellElement17", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12531,12 +11763,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vheaders = testNode.headers;
-    test.equal(vheaders, "header-1", "headersLink");
-    test.done();
-  },
+    assert.equal(vheaders, "header-1", "headersLink");
+  });
 
   /**
    *
@@ -12548,7 +11779,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-89104817
    */
-  HTMLTableCellElement18: function(test) {
+  specify("HTMLTableCellElement18", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12560,12 +11791,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vheaders = testNode.headers;
-    test.equal(vheaders, "header-3", "headersLink");
-    test.done();
-  },
+    assert.equal(vheaders, "header-3", "headersLink");
+  });
 
   /**
    *
@@ -12576,7 +11806,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83679212
    */
-  HTMLTableCellElement19: function(test) {
+  specify("HTMLTableCellElement19", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12588,12 +11818,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vheight = testNode.height;
-    test.equal(vheight, "50", "heightLink");
-    test.done();
-  },
+    assert.equal(vheight, "50", "heightLink");
+  });
 
   /**
    *
@@ -12604,7 +11833,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83679212
    */
-  HTMLTableCellElement20: function(test) {
+  specify("HTMLTableCellElement20", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12616,12 +11845,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vheight = testNode.height;
-    test.equal(vheight, "50", "heightLink");
-    test.done();
-  },
+    assert.equal(vheight, "50", "heightLink");
+  });
 
   /**
    *
@@ -12632,7 +11860,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-62922045
    */
-  HTMLTableCellElement21: function(test) {
+  specify("HTMLTableCellElement21", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12644,12 +11872,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vnowrap = testNode.noWrap;
-    test.ok(vnowrap, 'noWrapLink');
-    test.done();
-  },
+    assert.ok(vnowrap, 'noWrapLink');
+  });
 
   /**
    *
@@ -12660,7 +11887,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-62922045
    */
-  HTMLTableCellElement22: function(test) {
+  specify("HTMLTableCellElement22", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12672,12 +11899,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vnowrap = testNode.noWrap;
-    test.ok(vnowrap, 'noWrapLink');
-    test.done();
-  },
+    assert.ok(vnowrap, 'noWrapLink');
+  });
 
   /**
    *
@@ -12689,7 +11915,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-48237625
    */
-  HTMLTableCellElement23: function(test) {
+  specify("HTMLTableCellElement23", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12701,12 +11927,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vrowspan = testNode.rowSpan;
-    test.equal(vrowspan, 1, "rowSpanLink");
-    test.done();
-  },
+    assert.equal(vrowspan, 1, "rowSpanLink");
+  });
 
   /**
    *
@@ -12718,7 +11943,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-48237625
    */
-  HTMLTableCellElement24: function(test) {
+  specify("HTMLTableCellElement24", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12730,12 +11955,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vrowspan = testNode.rowSpan;
-    test.equal(vrowspan, 1, "rowSpanLink");
-    test.done();
-  },
+    assert.equal(vrowspan, 1, "rowSpanLink");
+  });
 
   /**
    *
@@ -12746,7 +11970,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-36139952
    */
-  HTMLTableCellElement25: function(test) {
+  specify("HTMLTableCellElement25", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12758,12 +11982,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vscope = testNode.scope;
-    test.equal(vscope, "col", "scopeLink");
-    test.done();
-  },
+    assert.equal(vscope, "col", "scopeLink");
+  });
 
   /**
    *
@@ -12774,7 +11997,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-58284221
    */
-  HTMLTableCellElement27: function(test) {
+  specify("HTMLTableCellElement27", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12786,12 +12009,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -12802,7 +12024,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-58284221
    */
-  HTMLTableCellElement28: function(test) {
+  specify("HTMLTableCellElement28", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12814,12 +12036,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -12830,7 +12051,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-27480795
    */
-  HTMLTableCellElement29: function(test) {
+  specify("HTMLTableCellElement29", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12842,12 +12063,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("th");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vwidth = testNode.width;
-    test.equal(vwidth, "170", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "170", "widthLink");
+  });
 
   /**
    *
@@ -12858,7 +12078,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-27480795
    */
-  HTMLTableCellElement30: function(test) {
+  specify("HTMLTableCellElement30", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12870,12 +12090,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vwidth = testNode.width;
-    test.equal(vwidth, "175", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "175", "widthLink");
+  });
 
   /**
    *
@@ -12887,7 +12106,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-31128447
    */
-  HTMLTableColElement01: function(test) {
+  specify("HTMLTableColElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12899,12 +12118,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -12916,7 +12134,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-31128447
    */
-  HTMLTableColElement02: function(test) {
+  specify("HTMLTableColElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12928,12 +12146,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("colgroup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -12945,7 +12162,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-9447412
    */
-  HTMLTableColElement03: function(test) {
+  specify("HTMLTableColElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12957,12 +12174,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vch = testNode.ch;
-    test.equal(vch, "*", "chLink");
-    test.done();
-  },
+    assert.equal(vch, "*", "chLink");
+  });
 
   /**
    *
@@ -12974,7 +12190,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-9447412
    */
-  HTMLTableColElement04: function(test) {
+  specify("HTMLTableColElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -12986,12 +12202,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("colgroup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vch = testNode.ch;
-    test.equal(vch, "$", "chLink");
-    test.done();
-  },
+    assert.equal(vch, "$", "chLink");
+  });
 
   /**
    *
@@ -13002,7 +12217,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-57779225
    */
-  HTMLTableColElement05: function(test) {
+  specify("HTMLTableColElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13014,12 +12229,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vchoff = testNode.chOff;
-    test.equal(vchoff, "20", "chLink");
-    test.done();
-  },
+    assert.equal(vchoff, "20", "chLink");
+  });
 
   /**
    *
@@ -13030,7 +12244,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-57779225
    */
-  HTMLTableColElement06: function(test) {
+  specify("HTMLTableColElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13042,12 +12256,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("colgroup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vchoff = testNode.chOff;
-    test.equal(vchoff, "15", "chLink");
-    test.done();
-  },
+    assert.equal(vchoff, "15", "chLink");
+  });
 
   /**
    *
@@ -13059,7 +12272,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-96511335
    */
-  HTMLTableColElement07: function(test) {
+  specify("HTMLTableColElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13071,12 +12284,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vspan = testNode.span;
-    test.equal(vspan, 1, "spanLink");
-    test.done();
-  },
+    assert.equal(vspan, 1, "spanLink");
+  });
 
   /**
    *
@@ -13088,7 +12300,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-96511335
    */
-  HTMLTableColElement08: function(test) {
+  specify("HTMLTableColElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13100,12 +12312,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("colgroup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vspan = testNode.span;
-    test.equal(vspan, 2, "spanLink");
-    test.done();
-  },
+    assert.equal(vspan, 2, "spanLink");
+  });
 
   /**
    *
@@ -13117,7 +12328,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83291710
    */
-  HTMLTableColElement09: function(test) {
+  specify("HTMLTableColElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13129,12 +12340,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -13146,7 +12356,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83291710
    */
-  HTMLTableColElement10: function(test) {
+  specify("HTMLTableColElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13158,12 +12368,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("colgroup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -13174,7 +12383,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-25196799
    */
-  HTMLTableColElement11: function(test) {
+  specify("HTMLTableColElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13186,12 +12395,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vwidth = testNode.width;
-    test.equal(vwidth, "20", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "20", "widthLink");
+  });
 
   /**
    *
@@ -13202,7 +12410,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-25196799
    */
-  HTMLTableColElement12: function(test) {
+  specify("HTMLTableColElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13214,12 +12422,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("colgroup");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vwidth = testNode.width;
-    test.equal(vwidth, "20", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "20", "widthLink");
+  });
 
   /**
    *
@@ -13230,7 +12437,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-14594520
    */
-  HTMLTableElement01: function(test) {
+  specify("HTMLTableElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13243,13 +12450,12 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vcaption = testNode.caption;
     valign = vcaption.align;
-    test.equal(valign, "top", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "top", "alignLink");
+  });
 
   /**
    *
@@ -13261,7 +12467,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-14594520
    */
-  HTMLTableElement02: function(test) {
+  specify("HTMLTableElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13273,12 +12479,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vcaption = testNode.caption;
-    test.equal(vcaption, null, 'vcaption should be null');
-    test.done();
-  },
+    assert.equal(vcaption, null, 'vcaption should be null');
+  });
 
   /**
    *
@@ -13289,7 +12494,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-9530944
    */
-  HTMLTableElement03: function(test) {
+  specify("HTMLTableElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13302,13 +12507,12 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tHead;
     valign = vsection.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -13320,7 +12524,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-9530944
    */
-  HTMLTableElement04: function(test) {
+  specify("HTMLTableElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13332,12 +12536,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vsection = testNode.tHead;
-    test.equal(vsection, null, 'vsection should be null');
-    test.done();
-  },
+    assert.equal(vsection, null, 'vsection should be null');
+  });
 
   /**
    *
@@ -13348,7 +12551,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64197097
    */
-  HTMLTableElement05: function(test) {
+  specify("HTMLTableElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13361,13 +12564,12 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tFoot;
     valign = vsection.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -13379,7 +12581,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64197097
    */
-  HTMLTableElement06: function(test) {
+  specify("HTMLTableElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13391,12 +12593,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vsection = testNode.tFoot;
-    test.equal(vsection, null, 'vsection should be null');
-    test.done();
-  },
+    assert.equal(vsection, null, 'vsection should be null');
+  });
 
   /**
    *
@@ -13408,19 +12609,18 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6156016
    */
-  HTMLTableElement07: function(test) {
+  specify("HTMLTableElement07", () => {
     var expectedOptions = ['TR', 'TR' ,'TR' ,'TR'];
     var doc = load("table");
     var nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     var rows = nodeList.item(1).rows;
     var result = [];
     for(var i=0;i<rows.length;i++) {
       result.push(rows.item(i).nodeName);
     }
-    test.deepEqual(result, expectedOptions, 'rowsLink');
-    test.done();
-  },
+    assert.deepEqual(result, expectedOptions, 'rowsLink');
+  });
 
   /**
    *
@@ -13432,19 +12632,18 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63206416
    */
-  HTMLTableElement08: function(test) {
+  specify("HTMLTableElement08", () => {
     var expectedOptions = ["TBODY"];
     var doc = load("table");
     var nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     tbodies = nodeList.item(1).tBodies;
     var result = [];
     for(var i=0;i<tbodies.length;i++) {
       result.push(tbodies.item(i).nodeName);
     }
-    test.deepEqual(result, expectedOptions, 'tbodiesLink');
-    test.done();
-  },
+    assert.deepEqual(result, expectedOptions, 'tbodiesLink');
+  });
 
   /**
    *
@@ -13457,19 +12656,18 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63206416
    */
-  HTMLTableElement09: function(test) {
+  specify("HTMLTableElement09", () => {
     var expectedOptions = ['TBODY', 'TBODY', 'TBODY'];
     var doc = load("table");
     var nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     var tbodies = nodeList.item(2).tBodies;
     var result = [];
     for(var i=0;i<tbodies.length;i++) {
       result.push(tbodies.item(i).nodeName);
     }
-    test.deepEqual(result, expectedOptions, 'tbodiesLink');
-    test.done();
-  },
+    assert.deepEqual(result, expectedOptions, 'tbodiesLink');
+  });
 
   /**
    *
@@ -13481,7 +12679,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-23180977
    */
-  HTMLTableElement10: function(test) {
+  specify("HTMLTableElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13493,12 +12691,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -13509,7 +12706,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83532985
    */
-  HTMLTableElement11: function(test) {
+  specify("HTMLTableElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13521,12 +12718,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vbgcolor = testNode.bgColor;
-    test.equal(vbgcolor, "#ff0000", "bgColorLink");
-    test.done();
-  },
+    assert.equal(vbgcolor, "#ff0000", "bgColorLink");
+  });
 
   /**
    *
@@ -13537,7 +12733,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-50969400
    */
-  HTMLTableElement12: function(test) {
+  specify("HTMLTableElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13549,12 +12745,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vborder = testNode.border;
-    test.equal(vborder, "4", "borderLink");
-    test.done();
-  },
+    assert.equal(vborder, "4", "borderLink");
+  });
 
   /**
    *
@@ -13566,7 +12761,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59162158
    */
-  HTMLTableElement13: function(test) {
+  specify("HTMLTableElement13", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13578,12 +12773,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vcellpadding = testNode.cellPadding;
-    test.equal(vcellpadding, "2", "cellPaddingLink");
-    test.done();
-  },
+    assert.equal(vcellpadding, "2", "cellPaddingLink");
+  });
 
   /**
    *
@@ -13595,7 +12789,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-68907883
    */
-  HTMLTableElement14: function(test) {
+  specify("HTMLTableElement14", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13607,12 +12801,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     cellSpacing = testNode.cellSpacing;
-    test.equal(cellSpacing, "2", "cellSpacingLink");
-    test.done();
-  },
+    assert.equal(cellSpacing, "2", "cellSpacingLink");
+  });
 
   /**
    *
@@ -13623,7 +12816,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64808476
    */
-  HTMLTableElement15: function(test) {
+  specify("HTMLTableElement15", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13635,12 +12828,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vframe = testNode.frame;
-    test.equal(vframe, "border", "frameLink");
-    test.done();
-  },
+    assert.equal(vframe, "border", "frameLink");
+  });
 
   /**
    *
@@ -13651,7 +12843,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-26347553
    */
-  HTMLTableElement16: function(test) {
+  specify("HTMLTableElement16", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13663,12 +12855,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vrules = testNode.rules;
-    test.equal(vrules, "all", "rulesLink");
-    test.done();
-  },
+    assert.equal(vrules, "all", "rulesLink");
+  });
 
   /**
    *
@@ -13680,7 +12871,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-44998528
    */
-  HTMLTableElement17: function(test) {
+  specify("HTMLTableElement17", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13692,12 +12883,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vsummary = testNode.summary;
-    test.equal(vsummary, "HTML Control Table", "summaryLink");
-    test.done();
-  },
+    assert.equal(vsummary, "HTML Control Table", "summaryLink");
+  });
 
   /**
    *
@@ -13708,7 +12898,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-77447361
    */
-  HTMLTableElement18: function(test) {
+  specify("HTMLTableElement18", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13720,12 +12910,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vwidth = testNode.width;
-    test.equal(vwidth, "680", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "680", "widthLink");
+  });
 
   /**
    *
@@ -13739,7 +12928,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-70313345
    */
-  HTMLTableElement19: function(test) {
+  specify("HTMLTableElement19", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13753,15 +12942,14 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vsection1 = testNode.tHead;
-    test.equal(vsection1, null, 'vsection1 should be null');
+    assert.equal(vsection1, null, 'vsection1 should be null');
     newHead = testNode.createTHead();
     vsection2 = testNode.tHead;
-    test.notEqual(vsection2, null, 'vsection2 should not be null');
-    test.done();
-  },
+    assert.notEqual(vsection2, null, 'vsection2 should not be null');
+  });
 
   /**
    *
@@ -13775,7 +12963,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-70313345
    */
-  HTMLTableElement20: function(test) {
+  specify("HTMLTableElement20", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13789,14 +12977,13 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     newHead = testNode.createTHead();
     vsection = testNode.tHead;
     valign = vsection.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -13809,7 +12996,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-38310198
    */
-  HTMLTableElement21: function(test) {
+  specify("HTMLTableElement21", () => {
     var success;
     var nodeList;
     var rowsnodeList;
@@ -13828,10 +13015,10 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vsection1 = testNode.tHead;
-    test.notEqual(vsection1, null, 'vsection1 should not be null');
+    assert.notEqual(vsection1, null, 'vsection1 should not be null');
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
     result[result.length] = vrows;
@@ -13840,9 +13027,8 @@ exports.tests = {
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
     result[result.length] = vrows;
-    test.deepEqual(result, expectedResult, 'rowsLink');
-    test.done();
-  },
+    assert.deepEqual(result, expectedResult, 'rowsLink');
+  });
 
   /**
    *
@@ -13856,7 +13042,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-8453710
    */
-  HTMLTableElement22: function(test) {
+  specify("HTMLTableElement22", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13870,15 +13056,14 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vsection1 = testNode.tFoot;
-    test.equal(vsection1, null, 'vsection1 should be null');
+    assert.equal(vsection1, null, 'vsection1 should be null');
     newFoot = testNode.createTFoot();
     vsection2 = testNode.tFoot;
-    test.notEqual(vsection2, null, 'vsection2 should not be null');
-    test.done();
-  },
+    assert.notEqual(vsection2, null, 'vsection2 should not be null');
+  });
 
   /**
    *
@@ -13892,7 +13077,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-8453710
    */
-  HTMLTableElement23: function(test) {
+  specify("HTMLTableElement23", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13906,14 +13091,13 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     newFoot = testNode.createTFoot();
     vsection = testNode.tFoot;
     valign = vsection.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -13926,7 +13110,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-78363258
    */
-  HTMLTableElement24: function(test) {
+  specify("HTMLTableElement24", () => {
     var success;
     var nodeList;
     var rowsnodeList;
@@ -13945,10 +13129,10 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vsection1 = testNode.tFoot;
-    test.notEqual(vsection1, null, 'vsection1 should not be null');
+    assert.notEqual(vsection1, null, 'vsection1 should not be null');
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
     result[result.length] = vrows;
@@ -13957,9 +13141,8 @@ exports.tests = {
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
     result[result.length] = vrows;
-    test.deepEqual(result, expectedResult, 'rowsLink');
-    test.done();
-  },
+    assert.deepEqual(result, expectedResult, 'rowsLink');
+  });
 
   /**
    *
@@ -13971,7 +13154,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-96920263
    */
-  HTMLTableElement25: function(test) {
+  specify("HTMLTableElement25", () => {
     var success;
     var nodeList;
     var testNode;
@@ -13985,15 +13168,14 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vsection1 = testNode.caption;
-    test.equal(vsection1, null, 'vsection1 should be null');
+    assert.equal(vsection1, null, 'vsection1 should be null');
     newCaption = testNode.createCaption();
     vsection2 = testNode.caption;
-    test.notEqual(vsection2, null, 'vsection2 should not be null');
-    test.done();
-  },
+    assert.notEqual(vsection2, null, 'vsection2 should not be null');
+  });
 
   /**
    *
@@ -14006,7 +13188,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-96920263
    */
-  HTMLTableElement26: function(test) {
+  specify("HTMLTableElement26", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14021,16 +13203,15 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vsection1 = testNode.caption;
-    test.notEqual(vsection1, null, 'vsection1 should not be null');
+    assert.notEqual(vsection1, null, 'vsection1 should not be null');
     newCaption = testNode.createCaption();
     vcaption = testNode.caption;
     valign = vcaption.align;
-    test.equal(valign, "top", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "top", "alignLink");
+  });
 
   /**
    *
@@ -14040,7 +13221,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-22930071
    */
-  HTMLTableElement27: function(test) {
+  specify("HTMLTableElement27", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14054,15 +13235,14 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vsection1 = testNode.caption;
-    test.notEqual(vsection1, null, 'vsection1 should not be null');
+    assert.notEqual(vsection1, null, 'vsection1 should not be null');
     testNode.deleteCaption();
     vsection2 = testNode.caption;
-    test.equal(vsection2, null, 'vsection2 should be null');
-    test.done();
-  },
+    assert.equal(vsection2, null, 'vsection2 should be null');
+  });
 
   /**
    *
@@ -14076,7 +13256,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-39872903
    */
-  HTMLTableElement28: function(test) {
+  specify("HTMLTableElement28", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14092,19 +13272,18 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vsection1 = testNode.tHead;
     rowsnodeList = vsection1.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink1");
+    assert.equal(vrows, 1, "rowsLink1");
     newRow = testNode.insertRow(0);
     vsection2 = testNode.tHead;
     rowsnodeList = vsection2.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 2, "rowsLink2");
+  });
 
   /**
    *
@@ -14118,7 +13297,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-39872903
    */
-  HTMLTableElement29: function(test) {
+  specify("HTMLTableElement29", () => {
     var success;
     var nodeList;
     var tbodiesnodeList;
@@ -14136,21 +13315,20 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     tbodiesnodeList = testNode.tBodies;
     bodyNode = tbodiesnodeList.item(0);
     rowsnodeList = bodyNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink1");
+    assert.equal(vrows, 2, "rowsLink1");
     newRow = testNode.insertRow(2);
     tbodiesnodeList = testNode.tBodies;
     bodyNode = tbodiesnodeList.item(0);
     rowsnodeList = bodyNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 3, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 3, "rowsLink2");
+  });
 
   /**
    *
@@ -14165,7 +13343,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-39872903
    */
-  HTMLTableElement30: function(test) {
+  specify("HTMLTableElement30", () => {
     var success;
     var nodeList;
     var tbodiesnodeList;
@@ -14181,25 +13359,24 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 4, "rowsLink1");
+    assert.equal(vrows, 4, "rowsLink1");
     vsection1 = testNode.tFoot;
     rowsnodeList = vsection1.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink");
+    assert.equal(vrows, 1, "rowsLink");
     newRow = testNode.insertRow(4);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 5, "rowsLink2");
+    assert.equal(vrows, 5, "rowsLink2");
     vsection1 = testNode.tFoot;
     rowsnodeList = vsection1.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink3");
-    test.done();
-  },
+    assert.equal(vrows, 2, "rowsLink3");
+  });
 
   /**
    *
@@ -14218,7 +13395,7 @@ exports.tests = {
    * @see http://lists.w3.org/Archives/Public/www-dom-ts/2002Aug/0019.html
    * @see http://www.w3.org/Bugs/Public/show_bug.cgi?id=502
    */
-  HTMLTableElement31: function(test) {
+  specify("HTMLTableElement31", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14234,21 +13411,20 @@ exports.tests = {
     }
     doc = load("table1");
     nodeList = doc.getElementsByTagName("body");
-    test.equal(nodeList.length, 1, 'tableSize1');
+    assert.equal(nodeList.length, 1, 'tableSize1');
     testNode = nodeList.item(0);
     table = doc.createElement("table");
     tableNode = testNode.appendChild(table);
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'tableSize2');
+    assert.equal(nodeList.length, 2, 'tableSize2');
     tbodiesnodeList = tableNode.tBodies;
     tbodiesLength = tbodiesnodeList.length;
-    test.equal(tbodiesLength, 0, "Asize3");
+    assert.equal(tbodiesLength, 0, "Asize3");
     newRow = tableNode.insertRow(0);
     tbodiesnodeList = tableNode.tBodies;
     tbodiesLength = tbodiesnodeList.length;
-    test.equal(tbodiesLength, 1, "Asize4");
-    test.done();
-  },
+    assert.equal(tbodiesLength, 1, "Asize4");
+  });
 
   /**
    *
@@ -14261,7 +13437,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-13114938
    */
-  HTMLTableElement32: function(test) {
+  specify("HTMLTableElement32", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14274,17 +13450,16 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 4, "rowsLink1");
+    assert.equal(vrows, 4, "rowsLink1");
     testNode.deleteRow(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 3, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 3, "rowsLink2");
+  });
 
   /**
    *
@@ -14296,7 +13471,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-13114938
    */
-  HTMLTableElement33: function(test) {
+  specify("HTMLTableElement33", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14309,17 +13484,16 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 4, "rowsLink1");
+    assert.equal(vrows, 4, "rowsLink1");
     testNode.deleteRow(3);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 3, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 3, "rowsLink2");
+  });
 
   /**
    *
@@ -14333,7 +13507,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-39872903
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-39872903')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableElement34: function(test) {
+  specify("HTMLTableElement34", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14345,7 +13519,7 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     {
       success = false;
@@ -14355,10 +13529,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableElement34');
+      assert.ok(success, 'HTMLTableElement34');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -14372,7 +13545,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-39872903
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-39872903')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableElement35: function(test) {
+  specify("HTMLTableElement35", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14384,7 +13557,7 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     {
       success = false;
@@ -14394,10 +13567,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableElement35');
+      assert.ok(success, 'HTMLTableElement35');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -14411,7 +13583,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-13114938
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-13114938')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableElement36: function(test) {
+  specify("HTMLTableElement36", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14422,7 +13594,7 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     {
       success = false;
@@ -14432,10 +13604,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableElement36');
+      assert.ok(success, 'HTMLTableElement36');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -14450,7 +13621,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-13114938
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-13114938')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableElement37: function(test) {
+  specify("HTMLTableElement37", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14461,7 +13632,7 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     {
       success = false;
@@ -14471,10 +13642,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableElement37');
+      assert.ok(success, 'HTMLTableElement37');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -14488,7 +13658,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-13114938
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-13114938')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableElement38: function(test) {
+  specify("HTMLTableElement38", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14499,7 +13669,7 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     {
       success = false;
@@ -14509,10 +13679,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableElement38');
+      assert.ok(success, 'HTMLTableElement38');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -14525,7 +13694,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-13114938
    */
-  HTMLTableElement40: function(test) {
+  specify("HTMLTableElement40", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14538,17 +13707,16 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 4, "rowsLink1");
+    assert.equal(vrows, 4, "rowsLink1");
     testNode.deleteRow(-1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 3, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 3, "rowsLink2");
+  });
 
   /**
    *
@@ -14562,7 +13730,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-67347567
    */
-  HTMLTableRowElement01: function(test) {
+  specify("HTMLTableRowElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14574,12 +13742,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     vrowindex = testNode.rowIndex;
-    test.equal(vrowindex, 1, "rowIndexLink");
-    test.done();
-  },
+    assert.equal(vrowindex, 1, "rowIndexLink");
+  });
 
   /**
    *
@@ -14591,7 +13758,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-79105901
    */
-  HTMLTableRowElement02: function(test) {
+  specify("HTMLTableRowElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14603,12 +13770,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(1);
     vsectionrowindex = testNode.sectionRowIndex;
-    test.equal(vsectionrowindex, 0, "sectionRowIndexLink");
-    test.done();
-  },
+    assert.equal(vsectionrowindex, 0, "sectionRowIndexLink");
+  });
 
   /**
    *
@@ -14620,7 +13786,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-79105901
    */
-  HTMLTableRowElement03: function(test) {
+  specify("HTMLTableRowElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14632,12 +13798,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(2);
     vsectionrowindex = testNode.sectionRowIndex;
-    test.equal(vsectionrowindex, 0, "sectionRowIndexLink");
-    test.done();
-  },
+    assert.equal(vsectionrowindex, 0, "sectionRowIndexLink");
+  });
 
   /**
    *
@@ -14649,7 +13814,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-79105901
    */
-  HTMLTableRowElement04: function(test) {
+  specify("HTMLTableRowElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14661,12 +13826,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(4);
     vsectionrowindex = testNode.sectionRowIndex;
-    test.equal(vsectionrowindex, 1, "sectionRowIndexLink");
-    test.done();
-  },
+    assert.equal(vsectionrowindex, 1, "sectionRowIndexLink");
+  });
 
   /**
    *
@@ -14677,7 +13841,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-67349879
    */
-  HTMLTableRowElement05: function(test) {
+  specify("HTMLTableRowElement05", () => {
     var success;
     var nodeList;
     var cellsnodeList;
@@ -14690,13 +13854,12 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 6, "cellsLink");
-    test.done();
-  },
+    assert.equal(vcells, 6, "cellsLink");
+  });
 
   /**
    *
@@ -14708,7 +13871,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-74098257
    */
-  HTMLTableRowElement06: function(test) {
+  specify("HTMLTableRowElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14720,12 +13883,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(1);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -14736,7 +13898,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-18161327
    */
-  HTMLTableRowElement07: function(test) {
+  specify("HTMLTableRowElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14748,12 +13910,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(1);
     vbgcolor = testNode.bgColor;
-    test.equal(vbgcolor.toLowerCase(), "#00FFFF".toLowerCase(), "bgColorLink");
-    test.done();
-  },
+    assert.equal(vbgcolor.toLowerCase(), "#00FFFF".toLowerCase(), "bgColorLink");
+  });
 
   /**
    *
@@ -14764,7 +13925,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-16230502
    */
-  HTMLTableRowElement08: function(test) {
+  specify("HTMLTableRowElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14776,12 +13937,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(1);
     vch = testNode.ch;
-    test.equal(vch, "*", "chLink");
-    test.done();
-  },
+    assert.equal(vch, "*", "chLink");
+  });
 
   /**
    *
@@ -14792,7 +13952,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-68207461
    */
-  HTMLTableRowElement09: function(test) {
+  specify("HTMLTableRowElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14804,12 +13964,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(1);
     vchoff = testNode.chOff;
-    test.equal(vchoff, "1", "charOffLink");
-    test.done();
-  },
+    assert.equal(vchoff, "1", "charOffLink");
+  });
 
   /**
    *
@@ -14821,7 +13980,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-90000058
    */
-  HTMLTableRowElement10: function(test) {
+  specify("HTMLTableRowElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -14833,12 +13992,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(1);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -14854,7 +14012,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-68927016
    */
-  HTMLTableRowElement11: function(test) {
+  specify("HTMLTableRowElement11", () => {
     var success;
     var nodeList;
     var cellsnodeList;
@@ -14871,25 +14029,24 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 6, "cellsLink1");
+    assert.equal(vcells, 6, "cellsLink1");
     trNode = cellsnodeList.item(0);
     cellNode = trNode.firstChild;
     value = cellNode.nodeValue;
-    test.equal(value, "EMP0001", "value1Link");
+    assert.equal(value, "EMP0001", "value1Link");
     newCell = testNode.insertCell(0);
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 7, "cellsLink2");
+    assert.equal(vcells, 7, "cellsLink2");
     trNode = cellsnodeList.item(0);
     cellNode = trNode.firstChild;
-    test.equal(cellNode, null, 'cellNode should be null');
-    test.done();
-  },
+    assert.equal(cellNode, null, 'cellNode should be null');
+  });
 
   /**
    *
@@ -14904,7 +14061,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-68927016
    */
-  HTMLTableRowElement12: function(test) {
+  specify("HTMLTableRowElement12", () => {
     var success;
     var nodeList;
     var cellsnodeList;
@@ -14921,25 +14078,24 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 6, "cellsLink1");
+    assert.equal(vcells, 6, "cellsLink1");
     trNode = cellsnodeList.item(5);
     cellNode = trNode.firstChild;
     value = cellNode.nodeValue;
-    test.equal(value, "1230 North Ave. Dallas, Texas 98551", "value1Link");
+    assert.equal(value, "1230 North Ave. Dallas, Texas 98551", "value1Link");
     newCell = testNode.insertCell(6);
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 7, "cellsLink2");
+    assert.equal(vcells, 7, "cellsLink2");
     trNode = cellsnodeList.item(6);
     cellNode = trNode.firstChild;
-    test.equal(cellNode, null, 'cellNode should be null');
-    test.done();
-  },
+    assert.equal(cellNode, null, 'cellNode should be null');
+  });
 
   /**
    *
@@ -14954,7 +14110,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-11738598
    */
-  HTMLTableRowElement13: function(test) {
+  specify("HTMLTableRowElement13", () => {
     var success;
     var nodeList;
     var cellsnodeList;
@@ -14970,26 +14126,25 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 6, "cellsLink1");
+    assert.equal(vcells, 6, "cellsLink1");
     trNode = cellsnodeList.item(0);
     cellNode = trNode.firstChild;
     value = cellNode.nodeValue;
-    test.equal(value, "EMP0001", "value1Link");
+    assert.equal(value, "EMP0001", "value1Link");
     testNode.deleteCell(0);
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 5, "cellsLink2");
+    assert.equal(vcells, 5, "cellsLink2");
     trNode = cellsnodeList.item(0);
     cellNode = trNode.firstChild;
     value = cellNode.nodeValue;
-    test.equal(value, "Margaret Martin", "value2Link");
-    test.done();
-  },
+    assert.equal(value, "Margaret Martin", "value2Link");
+  });
 
   /**
    *
@@ -15004,7 +14159,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-11738598
    */
-  HTMLTableRowElement14: function(test) {
+  specify("HTMLTableRowElement14", () => {
     var success;
     var nodeList;
     var cellsnodeList;
@@ -15020,26 +14175,25 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 6, "cellsLink1");
+    assert.equal(vcells, 6, "cellsLink1");
     trNode = cellsnodeList.item(2);
     cellNode = trNode.firstChild;
     value = cellNode.nodeValue;
-    test.equal(value, "Accountant", "value1Link");
+    assert.equal(value, "Accountant", "value1Link");
     testNode.deleteCell(2);
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 5, "cellsLink2");
+    assert.equal(vcells, 5, "cellsLink2");
     trNode = cellsnodeList.item(2);
     cellNode = trNode.firstChild;
     value = cellNode.nodeValue;
-    test.equal(value, "56,000", "value2Link");
-    test.done();
-  },
+    assert.equal(value, "56,000", "value2Link");
+  });
 
   /**
    *
@@ -15053,7 +14207,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-68927016
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-68927016')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableRowElement15: function(test) {
+  specify("HTMLTableRowElement15", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15065,7 +14219,7 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     {
       success = false;
@@ -15075,10 +14229,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableRowElement15');
+      assert.ok(success, 'HTMLTableRowElement15');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -15092,7 +14245,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-68927016
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-68927016')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableRowElement16: function(test) {
+  specify("HTMLTableRowElement16", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15104,7 +14257,7 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     {
       success = false;
@@ -15114,10 +14267,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableRowElement16');
+      assert.ok(success, 'HTMLTableRowElement16');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -15131,7 +14283,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-11738598
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-11738598')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableRowElement17: function(test) {
+  specify("HTMLTableRowElement17", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15142,7 +14294,7 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     {
       success = false;
@@ -15152,10 +14304,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableRowElement17');
+      assert.ok(success, 'HTMLTableRowElement17');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -15169,7 +14320,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-11738598
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-11738598')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableRowElement18: function(test) {
+  specify("HTMLTableRowElement18", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15180,7 +14331,7 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     {
       success = false;
@@ -15190,10 +14341,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableRowElement18');
+      assert.ok(success, 'HTMLTableRowElement18');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -15207,7 +14357,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-11738598
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-11738598')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableRowElement19: function(test) {
+  specify("HTMLTableRowElement19", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15218,7 +14368,7 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     {
       success = false;
@@ -15228,10 +14378,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableRowElement19');
+      assert.ok(success, 'HTMLTableRowElement19');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -15249,7 +14398,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-68927016
    */
-  HTMLTableRowElement20: function(test) {
+  specify("HTMLTableRowElement20", () => {
     var success;
     var nodeList;
     var cellsnodeList;
@@ -15266,25 +14415,24 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 6, "cellsLink1");
+    assert.equal(vcells, 6, "cellsLink1");
     trNode = cellsnodeList.item(5);
     cellNode = trNode.firstChild;
     value = cellNode.nodeValue;
-    test.equal(value, "1230 North Ave. Dallas, Texas 98551", "value1Link");
+    assert.equal(value, "1230 North Ave. Dallas, Texas 98551", "value1Link");
     newCell = testNode.insertCell(-1);
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 7, "cellsLink2");
+    assert.equal(vcells, 7, "cellsLink2");
     trNode = cellsnodeList.item(6);
     cellNode = trNode.firstChild;
-    test.equal(cellNode, null, 'cellNode should be null');
-    test.done();
-  },
+    assert.equal(cellNode, null, 'cellNode should be null');
+  });
 
   /**
    *
@@ -15301,7 +14449,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-11738598
    */
-  HTMLTableRowElement21: function(test) {
+  specify("HTMLTableRowElement21", () => {
     var success;
     var nodeList;
     var cellsnodeList;
@@ -15317,26 +14465,25 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 6, "cellsLink1");
+    assert.equal(vcells, 6, "cellsLink1");
     trNode = cellsnodeList.item(5);
     cellNode = trNode.firstChild;
     value = cellNode.nodeValue;
-    test.equal(value, "1230 North Ave. Dallas, Texas 98551", "value1Link");
+    assert.equal(value, "1230 North Ave. Dallas, Texas 98551", "value1Link");
     testNode.deleteCell(-1);
     testNode = nodeList.item(3);
     cellsnodeList = testNode.cells;
     vcells = cellsnodeList.length;
-    test.equal(vcells, 5, "cellsLink2");
+    assert.equal(vcells, 5, "cellsLink2");
     trNode = cellsnodeList.item(4);
     cellNode = trNode.firstChild;
     value = cellNode.nodeValue;
-    test.equal(value, "Female", "value2Link");
-    test.done();
-  },
+    assert.equal(value, "Female", "value2Link");
+  });
 
   /**
    *
@@ -15348,7 +14495,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-40530119
    */
-  HTMLTableSectionElement01: function(test) {
+  specify("HTMLTableSectionElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15360,12 +14507,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -15377,7 +14523,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-40530119
    */
-  HTMLTableSectionElement02: function(test) {
+  specify("HTMLTableSectionElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15389,12 +14535,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tfoot");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -15406,7 +14551,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-40530119
    */
-  HTMLTableSectionElement03: function(test) {
+  specify("HTMLTableSectionElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15418,12 +14563,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tbody");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -15435,7 +14579,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83470012
    */
-  HTMLTableSectionElement04: function(test) {
+  specify("HTMLTableSectionElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15447,12 +14591,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vch = testNode.ch;
-    test.equal(vch, "*", "chLink");
-    test.done();
-  },
+    assert.equal(vch, "*", "chLink");
+  });
 
   /**
    *
@@ -15464,7 +14607,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83470012
    */
-  HTMLTableSectionElement05: function(test) {
+  specify("HTMLTableSectionElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15476,12 +14619,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tfoot");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vch = testNode.ch;
-    test.equal(vch, "+", "chLink");
-    test.done();
-  },
+    assert.equal(vch, "+", "chLink");
+  });
 
   /**
    *
@@ -15493,7 +14635,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83470012
    */
-  HTMLTableSectionElement06: function(test) {
+  specify("HTMLTableSectionElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15505,12 +14647,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tbody");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vch = testNode.ch;
-    test.equal(vch, "$", "chLink");
-    test.done();
-  },
+    assert.equal(vch, "$", "chLink");
+  });
 
   /**
    *
@@ -15521,7 +14662,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-53459732
    */
-  HTMLTableSectionElement07: function(test) {
+  specify("HTMLTableSectionElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15533,12 +14674,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcharoff = testNode.chOff;
-    test.equal(vcharoff, "1", "chOffLink");
-    test.done();
-  },
+    assert.equal(vcharoff, "1", "chOffLink");
+  });
 
   /**
    *
@@ -15549,7 +14689,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-53459732
    */
-  HTMLTableSectionElement08: function(test) {
+  specify("HTMLTableSectionElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15561,12 +14701,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tfoot");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcharoff = testNode.chOff;
-    test.equal(vcharoff, "2", "chOffLink");
-    test.done();
-  },
+    assert.equal(vcharoff, "2", "chOffLink");
+  });
 
   /**
    *
@@ -15577,7 +14716,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-53459732
    */
-  HTMLTableSectionElement09: function(test) {
+  specify("HTMLTableSectionElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15589,12 +14728,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tbody");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vcharoff = testNode.chOff;
-    test.equal(vcharoff, "3", "chOffLink");
-    test.done();
-  },
+    assert.equal(vcharoff, "3", "chOffLink");
+  });
 
   /**
    *
@@ -15606,7 +14744,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-4379116
    */
-  HTMLTableSectionElement10: function(test) {
+  specify("HTMLTableSectionElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15618,12 +14756,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -15635,7 +14772,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-4379116
    */
-  HTMLTableSectionElement11: function(test) {
+  specify("HTMLTableSectionElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15647,12 +14784,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tfoot");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -15664,7 +14800,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-4379116
    */
-  HTMLTableSectionElement12: function(test) {
+  specify("HTMLTableSectionElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15676,12 +14812,11 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tbody");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -15692,7 +14827,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52092650
    */
-  HTMLTableSectionElement13: function(test) {
+  specify("HTMLTableSectionElement13", () => {
     var success;
     var nodeList;
     var rowsnodeList;
@@ -15705,13 +14840,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink");
-    test.done();
-  },
+    assert.equal(vrows, 1, "rowsLink");
+  });
 
   /**
    *
@@ -15722,7 +14856,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52092650
    */
-  HTMLTableSectionElement14: function(test) {
+  specify("HTMLTableSectionElement14", () => {
     var success;
     var nodeList;
     var rowsnodeList;
@@ -15735,13 +14869,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tfoot");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink");
-    test.done();
-  },
+    assert.equal(vrows, 1, "rowsLink");
+  });
 
   /**
    *
@@ -15752,7 +14885,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-52092650
    */
-  HTMLTableSectionElement15: function(test) {
+  specify("HTMLTableSectionElement15", () => {
     var success;
     var nodeList;
     var rowsnodeList;
@@ -15765,13 +14898,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tbody");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink");
-    test.done();
-  },
+    assert.equal(vrows, 2, "rowsLink");
+  });
 
   /**
    *
@@ -15784,7 +14916,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-93995626
    */
-  HTMLTableSectionElement16: function(test) {
+  specify("HTMLTableSectionElement16", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15798,17 +14930,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink1");
+    assert.equal(vrows, 1, "rowsLink1");
     newRow = testNode.insertRow(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 2, "rowsLink2");
+  });
 
   /**
    *
@@ -15821,7 +14952,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-93995626
    */
-  HTMLTableSectionElement17: function(test) {
+  specify("HTMLTableSectionElement17", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15835,17 +14966,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tfoot");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink1");
+    assert.equal(vrows, 1, "rowsLink1");
     newRow = testNode.insertRow(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 2, "rowsLink2");
+  });
 
   /**
    *
@@ -15858,7 +14988,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-93995626
    */
-  HTMLTableSectionElement18: function(test) {
+  specify("HTMLTableSectionElement18", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15872,17 +15002,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tbody");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink1");
+    assert.equal(vrows, 2, "rowsLink1");
     newRow = testNode.insertRow(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 3, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 3, "rowsLink2");
+  });
 
   /**
    *
@@ -15896,7 +15025,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-93995626
    */
-  HTMLTableSectionElement19: function(test) {
+  specify("HTMLTableSectionElement19", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15910,17 +15039,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink1");
+    assert.equal(vrows, 1, "rowsLink1");
     newRow = testNode.insertRow(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 2, "rowsLink2");
+  });
 
   /**
    *
@@ -15934,7 +15062,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-93995626
    */
-  HTMLTableSectionElement20: function(test) {
+  specify("HTMLTableSectionElement20", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15948,17 +15076,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tfoot");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink1");
+    assert.equal(vrows, 1, "rowsLink1");
     newRow = testNode.insertRow(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 2, "rowsLink2");
+  });
 
   /**
    *
@@ -15973,7 +15100,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-93995626
    * @see http://www.w3.org/Bugs/Public/show_bug.cgi?id=502
    */
-  HTMLTableSectionElement21: function(test) {
+  specify("HTMLTableSectionElement21", () => {
     var success;
     var nodeList;
     var testNode;
@@ -15987,17 +15114,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tbody");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink1");
+    assert.equal(vrows, 2, "rowsLink1");
     newRow = testNode.insertRow(2);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 3, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 3, "rowsLink2");
+  });
 
   /**
    *
@@ -16010,7 +15136,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-5625626
    */
-  HTMLTableSectionElement22: function(test) {
+  specify("HTMLTableSectionElement22", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16023,17 +15149,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink1");
+    assert.equal(vrows, 1, "rowsLink1");
     testNode.deleteRow(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 0, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 0, "rowsLink2");
+  });
 
   /**
    *
@@ -16046,7 +15171,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-5625626
    */
-  HTMLTableSectionElement23: function(test) {
+  specify("HTMLTableSectionElement23", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16059,17 +15184,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tfoot");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink1");
+    assert.equal(vrows, 1, "rowsLink1");
     testNode.deleteRow(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 0, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 0, "rowsLink2");
+  });
 
   /**
    *
@@ -16082,7 +15206,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-5625626
    */
-  HTMLTableSectionElement24: function(test) {
+  specify("HTMLTableSectionElement24", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16095,17 +15219,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tbody");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink1");
+    assert.equal(vrows, 2, "rowsLink1");
     testNode.deleteRow(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 1, "rowsLink2");
+  });
 
   /**
    *
@@ -16119,7 +15242,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-93995626
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-93995626')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableSectionElement25: function(test) {
+  specify("HTMLTableSectionElement25", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16131,7 +15254,7 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     {
       success = false;
@@ -16141,10 +15264,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableSectionElement25');
+      assert.ok(success, 'HTMLTableSectionElement25');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -16158,7 +15280,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-93995626
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-93995626')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableSectionElement26: function(test) {
+  specify("HTMLTableSectionElement26", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16170,7 +15292,7 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     {
       success = false;
@@ -16180,10 +15302,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableSectionElement26');
+      assert.ok(success, 'HTMLTableSectionElement26');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -16198,7 +15319,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-5625626
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-5625626')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableSectionElement27: function(test) {
+  specify("HTMLTableSectionElement27", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16209,7 +15330,7 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     {
       success = false;
@@ -16219,10 +15340,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableSectionElement27');
+      assert.ok(success, 'HTMLTableSectionElement27');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -16237,7 +15357,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-5625626
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-5625626')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableSectionElement28: function(test) {
+  specify("HTMLTableSectionElement28", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16248,7 +15368,7 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     {
       success = false;
@@ -16258,10 +15378,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableSectionElement28');
+      assert.ok(success, 'HTMLTableSectionElement28');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -16275,7 +15394,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-5625626
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#xpointer(id('ID-5625626')/raises/exception[@name='DOMException']/descr/p[substring-before(.,':')='INDEX_SIZE_ERR'])
    */
-  HTMLTableSectionElement29: function(test) {
+  specify("HTMLTableSectionElement29", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16286,7 +15405,7 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     {
       success = false;
@@ -16296,10 +15415,9 @@ exports.tests = {
       catch(ex) {
         success = (typeof(ex.code) != 'undefined' && ex.code == 1);
       }
-      test.ok(success, 'HTMLTableSectionElement29');
+      assert.ok(success, 'HTMLTableSectionElement29');
     }
-    test.done();
-  },
+  });
 
   /**
    *
@@ -16316,7 +15434,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-93995626
    */
-  HTMLTableSectionElement30: function(test) {
+  specify("HTMLTableSectionElement30", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16330,17 +15448,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("thead");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink1");
+    assert.equal(vrows, 1, "rowsLink1");
     newRow = testNode.insertRow(-1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 2, "rowsLink2");
+  });
 
   /**
    *
@@ -16356,7 +15473,7 @@ exports.tests = {
    * @author Rick Rivello
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-5625626
    */
-  HTMLTableSectionElement31: function(test) {
+  specify("HTMLTableSectionElement31", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16369,17 +15486,16 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("tbody");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 2, "rowsLink1");
+    assert.equal(vrows, 2, "rowsLink1");
     testNode.deleteRow(-1);
     rowsnodeList = testNode.rows;
     vrows = rowsnodeList.length;
-    test.equal(vrows, 1, "rowsLink2");
-    test.done();
-  },
+    assert.equal(vrows, 1, "rowsLink2");
+  });
 
   /**
    *
@@ -16391,7 +15507,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-36152213
    */
-  HTMLTextAreaElement01: function(test) {
+  specify("HTMLTextAreaElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16403,12 +15519,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vdefaultvalue = testNode.defaultValue;
-    test.equal(vdefaultvalue, "TEXTAREA2", "defaultValueLink");
-    test.done();
-  },
+    assert.equal(vdefaultvalue, "TEXTAREA2", "defaultValueLink");
+  });
 
   /**
    *
@@ -16419,7 +15534,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-18911464
    */
-  HTMLTextAreaElement02: function(test) {
+  specify("HTMLTextAreaElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16432,13 +15547,12 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     fNode = testNode.form;
     vform = fNode.id;
-    test.equal(vform, "form1", "formLink");
-    test.done();
-  },
+    assert.equal(vform, "form1", "formLink");
+  });
 
   /**
    *
@@ -16450,7 +15564,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-18911464
    */
-  HTMLTextAreaElement03: function(test) {
+  specify("HTMLTextAreaElement03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16462,12 +15576,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.done();
-  },
+    assert.equal(vform, null, 'vform should be null');
+  });
 
   /**
    *
@@ -16479,7 +15592,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-93102991
    */
-  HTMLTextAreaElement04: function(test) {
+  specify("HTMLTextAreaElement04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16491,12 +15604,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vaccesskey = testNode.accessKey;
-    test.equal(vaccesskey, "c", "accessKeyLink");
-    test.done();
-  },
+    assert.equal(vaccesskey, "c", "accessKeyLink");
+  });
 
   /**
    *
@@ -16507,7 +15619,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-51387225
    */
-  HTMLTextAreaElement05: function(test) {
+  specify("HTMLTextAreaElement05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16519,12 +15631,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vcols = testNode.cols;
-    test.equal(vcols, 20, "colsLink");
-    test.done();
-  },
+    assert.equal(vcols, 20, "colsLink");
+  });
 
   /**
    *
@@ -16536,7 +15647,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-98725443
    */
-  HTMLTextAreaElement06: function(test) {
+  specify("HTMLTextAreaElement06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16548,12 +15659,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vdisabled = testNode.disabled;
-    test.ok(vdisabled, 'disabledLink');
-    test.done();
-  },
+    assert.ok(vdisabled, 'disabledLink');
+  });
 
   /**
    *
@@ -16565,7 +15675,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-70715578
    */
-  HTMLTextAreaElement07: function(test) {
+  specify("HTMLTextAreaElement07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16577,12 +15687,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vname = testNode.name;
-    test.equal(vname, "text1", "nameLink");
-    test.done();
-  },
+    assert.equal(vname, "text1", "nameLink");
+  });
 
   /**
    *
@@ -16593,7 +15702,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-39131423
    */
-  HTMLTextAreaElement08: function(test) {
+  specify("HTMLTextAreaElement08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16605,12 +15714,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(2);
     vreadonly = testNode.readOnly;
-    test.ok(vreadonly, 'readOnlyLink');
-    test.done();
-  },
+    assert.ok(vreadonly, 'readOnlyLink');
+  });
 
   /**
    *
@@ -16621,7 +15729,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-46975887
    */
-  HTMLTextAreaElement09: function(test) {
+  specify("HTMLTextAreaElement09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16633,12 +15741,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vrows = testNode.rows;
-    test.equal(vrows, 7, "rowsLink");
-    test.done();
-  },
+    assert.equal(vrows, 7, "rowsLink");
+  });
 
   /**
    *
@@ -16650,7 +15757,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-60363303
    */
-  HTMLTextAreaElement10: function(test) {
+  specify("HTMLTextAreaElement10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16662,12 +15769,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vtabindex = testNode.tabIndex;
-    test.equal(vtabindex, 5, "tabIndexLink");
-    test.done();
-  },
+    assert.equal(vtabindex, 5, "tabIndexLink");
+  });
 
   /**
    *
@@ -16679,7 +15785,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-24874179
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#HTML-HTMLTextAreaElement-type
    */
-  HTMLTextAreaElement11: function(test) {
+  specify("HTMLTextAreaElement11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16691,12 +15797,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "textarea", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "textarea", "typeLink");
+  });
 
   /**
    *
@@ -16708,7 +15813,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-70715579
    */
-  HTMLTextAreaElement12: function(test) {
+  specify("HTMLTextAreaElement12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16720,12 +15825,11 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     vvalue = testNode.value;
-    test.equal(vvalue, "TEXTAREA1", "valueLink");
-    test.done();
-  },
+    assert.equal(vvalue, "TEXTAREA1", "valueLink");
+  });
 
   /**
    *
@@ -16733,7 +15837,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6750689
    */
-  HTMLTextAreaElement13: function(test) {
+  specify("HTMLTextAreaElement13", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16744,11 +15848,10 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     testNode.blur();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -16756,7 +15859,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-39055426
    */
-  HTMLTextAreaElement14: function(test) {
+  specify("HTMLTextAreaElement14", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16767,11 +15870,10 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     testNode.focus();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -16779,7 +15881,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-48880622
    */
-  HTMLTextAreaElement15: function(test) {
+  specify("HTMLTextAreaElement15", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16790,11 +15892,10 @@ exports.tests = {
     }
     doc = load("textarea");
     nodeList = doc.getElementsByTagName("textarea");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(0);
     testNode.select();
-    test.done();
-  },
+  });
 
   /**
    *
@@ -16804,7 +15905,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-77500413
    */
-  HTMLTitleElement01: function(test) {
+  specify("HTMLTitleElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16816,12 +15917,11 @@ exports.tests = {
     }
     doc = load("title");
     nodeList = doc.getElementsByTagName("title");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtext = testNode.text;
-    test.equal(vtext, "NIST DOM HTML Test - TITLE", "textLink");
-    test.done();
-  },
+    assert.equal(vtext, "NIST DOM HTML Test - TITLE", "textLink");
+  });
 
   /**
    *
@@ -16832,7 +15932,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-39864178
    */
-  HTMLUListElement01: function(test) {
+  specify("HTMLUListElement01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16844,12 +15944,11 @@ exports.tests = {
     }
     doc = load("ulist");
     nodeList = doc.getElementsByTagName("ul");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vcompact = testNode.compact;
-    test.ok(vcompact, 'compactLink');
-    test.done();
-  },
+    assert.ok(vcompact, 'compactLink');
+  });
 
   /**
    *
@@ -16859,7 +15958,7 @@ exports.tests = {
    * @author Mary Brady
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-96874670
    */
-  HTMLUListElement02: function(test) {
+  specify("HTMLUListElement02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16871,12 +15970,11 @@ exports.tests = {
     }
     doc = load("ulist");
     nodeList = doc.getElementsByTagName("ul");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "disc", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "disc", "typeLink");
+  });
 
   /**
    *
@@ -16886,7 +15984,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-89647724
    */
-  anchor01: function(test) {
+  specify("anchor01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16898,12 +15996,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vaccesskey = testNode.accessKey;
-    test.equal(vaccesskey, "g", "accessKeyLink");
-    test.done();
-  },
+    assert.equal(vaccesskey, "g", "accessKeyLink");
+  });
 
   /**
    *
@@ -16913,7 +16010,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-67619266
    */
-  anchor02: function(test) {
+  specify("anchor02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16925,12 +16022,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcharset = testNode.charset;
-    test.equal(vcharset, "US-ASCII", "charsetLink");
-    test.done();
-  },
+    assert.equal(vcharset, "US-ASCII", "charsetLink");
+  });
 
   /**
    *
@@ -16940,7 +16036,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-92079539
    */
-  anchor03: function(test) {
+  specify("anchor03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16952,12 +16048,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcoords = testNode.coords;
-    test.equal(vcoords, "0,0,100,100", "coordsLink");
-    test.done();
-  },
+    assert.equal(vcoords, "0,0,100,100", "coordsLink");
+  });
 
   /**
    *
@@ -16967,7 +16062,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-88517319
    */
-  anchor04: function(test) {
+  specify("anchor04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -16979,12 +16074,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vhref = testNode.href;
-    test.equal(vhref, toFileUrl('html/files/pix/submit.gif'), 'hrefLink');
-    test.done();
-  },
+    assert.equal(vhref, toFileUrl('html/files/pix/submit.gif'), 'hrefLink');
+  });
 
   /**
    *
@@ -16994,7 +16088,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63938221
    */
-  anchor05: function(test) {
+  specify("anchor05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17006,12 +16100,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "image/gif", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "image/gif", "typeLink");
+  });
 
   /**
    *
@@ -17021,7 +16114,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-49899808
    */
-  anchor06: function(test) {
+  specify("anchor06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17033,12 +16126,11 @@ exports.tests = {
     }
     doc = load("anchor");
     nodeList = doc.getElementsByTagName("a");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vshape = testNode.shape;
-    test.equal(vshape, "rect", "shapeLink");
-    test.done();
-  },
+    assert.equal(vshape, "rect", "shapeLink");
+  });
 
   /**
    *
@@ -17046,7 +16138,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-66021476
    */
-  area01: function(test) {
+  specify("area01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17058,12 +16150,11 @@ exports.tests = {
     }
     doc = load("area");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcoords = testNode.coords;
-    test.equal(vcoords, "0,2,45,45", "coordsLink");
-    test.done();
-  },
+    assert.equal(vcoords, "0,2,45,45", "coordsLink");
+  });
 
   /**
    *
@@ -17071,7 +16162,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-61826871
    */
-  area02: function(test) {
+  specify("area02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17083,12 +16174,11 @@ exports.tests = {
     }
     doc = load("area");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vnohref = testNode.noHref;
-    test.equal(vnohref, false, 'vnohref should be *false*');
-    test.done();
-  },
+    assert.equal(vnohref, false, 'vnohref should be *false*');
+  });
 
   /**
    *
@@ -17096,7 +16186,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-8722121
    */
-  area03: function(test) {
+  specify("area03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17108,12 +16198,11 @@ exports.tests = {
     }
     doc = load("area");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vtabindex = testNode.tabIndex;
-    test.equal(vtabindex, 10, "tabIndexLink");
-    test.done();
-  },
+    assert.equal(vtabindex, 10, "tabIndexLink");
+  });
 
   /**
    *
@@ -17121,7 +16210,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-57944457
    */
-  area04: function(test) {
+  specify("area04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17133,12 +16222,11 @@ exports.tests = {
     }
     doc = load("area");
     nodeList = doc.getElementsByTagName("area");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vaccesskey = testNode.accessKey;
-    test.equal(vaccesskey, "a", "accessKeyLink");
-    test.done();
-  },
+    assert.equal(vaccesskey, "a", "accessKeyLink");
+  });
 
   /**
    *
@@ -17148,7 +16236,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59424581
    */
-  body01: function(test) {
+  specify("body01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17160,12 +16248,11 @@ exports.tests = {
     }
     doc = load("body");
     nodeList = doc.getElementsByTagName("body");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valink = testNode.aLink;
-    test.equal(valink, "#0000ff", "aLinkLink");
-    test.done();
-  },
+    assert.equal(valink, "#0000ff", "aLinkLink");
+  });
 
   /**
    *
@@ -17174,7 +16261,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-71254493
    */
-  button01: function(test) {
+  specify("button01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17186,12 +16273,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.done();
-  },
+    assert.equal(vform, null, 'vform should be null');
+  });
 
   /**
    *
@@ -17201,7 +16287,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-71254493
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-63534901
    */
-  button02: function(test) {
+  specify("button02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17214,13 +16300,12 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     formNode = testNode.form;
     vfname = formNode.id;
-    test.equal(vfname, "form2", "formLink");
-    test.done();
-  },
+    assert.equal(vfname, "form2", "formLink");
+  });
 
   /**
    *
@@ -17230,7 +16315,7 @@ exports.tests = {
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-71254493
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-82545539
    */
-  button04: function(test) {
+  specify("button04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17243,13 +16328,12 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     formNode = testNode.form;
     vfmethod = formNode.method;
-    test.equal(vfmethod.toLowerCase(), "POST".toLowerCase(), "formLink");
-    test.done();
-  },
+    assert.equal(vfmethod.toLowerCase(), "POST".toLowerCase(), "formLink");
+  });
 
   /**
    *
@@ -17259,7 +16343,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-73169431
    */
-  button05: function(test) {
+  specify("button05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17271,12 +16355,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vakey = testNode.accessKey;
-    test.equal(vakey.toLowerCase(), "f".toLowerCase(), "accessKeyLink");
-    test.done();
-  },
+    assert.equal(vakey.toLowerCase(), "f".toLowerCase(), "accessKeyLink");
+  });
 
   /**
    *
@@ -17286,7 +16369,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-39190908
    */
-  button06: function(test) {
+  specify("button06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17298,12 +16381,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtabIndex = testNode.tabIndex;
-    test.equal(vtabIndex, 20, "tabIndexLink");
-    test.done();
-  },
+    assert.equal(vtabIndex, 20, "tabIndexLink");
+  });
 
   /**
    *
@@ -17313,7 +16395,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-27430092
    */
-  button07: function(test) {
+  specify("button07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17325,12 +16407,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "reset", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "reset", "typeLink");
+  });
 
   /**
    *
@@ -17340,7 +16421,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-92757155
    */
-  button08: function(test) {
+  specify("button08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17352,12 +16433,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vdisabled = testNode.disabled;
-    test.ok(vdisabled, 'disabledLink');
-    test.done();
-  },
+    assert.ok(vdisabled, 'disabledLink');
+  });
 
   /**
    *
@@ -17367,7 +16447,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-72856782
    */
-  button09: function(test) {
+  specify("button09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17379,12 +16459,11 @@ exports.tests = {
     }
     doc = load("button");
     nodeList = doc.getElementsByTagName("button");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vvalue = testNode.value;
-    test.equal(vvalue, "Reset Disabled Button", "typeLink");
-    test.done();
-  },
+    assert.equal(vvalue, "Reset Disabled Button", "typeLink");
+  });
 
   /**
    *
@@ -17392,7 +16471,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-21738539
    */
-  dlist01: function(test) {
+  specify("dlist01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17404,12 +16483,11 @@ exports.tests = {
     }
     doc = load("dl");
     nodeList = doc.getElementsByTagName("dl");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcompact = testNode.compact;
-    test.ok(vcompact, 'compactLink');
-    test.done();
-  },
+    assert.ok(vcompact, 'compactLink');
+  });
 
   /**
    *
@@ -17418,7 +16496,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-18446827
    */
-  doc01: function(test) {
+  specify("doc01", () => {
     var success;
     var vtitle;
     var doc;
@@ -17428,9 +16506,8 @@ exports.tests = {
     }
     doc = load("anchor");
     vtitle = doc.title;
-    test.equal(vtitle, "NIST DOM HTML Test - Anchor", "titleLink");
-    test.done();
-  },
+    assert.equal(vtitle, "NIST DOM HTML Test - Anchor", "titleLink");
+  });
 
   /**
    *
@@ -17438,7 +16515,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-core#ID-5CED94D7
    */
-  hasFeature01: function(test) {
+  specify("hasFeature01", () => {
     var success;
     var doc;
     var domImpl;
@@ -17446,9 +16523,8 @@ exports.tests = {
     var state;
     domImpl = getImplementation();
     state = domImpl.hasFeature("hTmL",version);
-    test.ok(state, 'hasHTMLnull');
-    test.done();
-  },
+    assert.ok(state, 'hasHTMLnull');
+  });
 
   /**
    *
@@ -17456,7 +16532,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/DOM-Level-2-Core/core#ID-5CED94D7
    */
-  hasFeature02: function(test) {
+  specify("hasFeature02", () => {
     var success;
     var doc;
     var domImpl;
@@ -17464,9 +16540,8 @@ exports.tests = {
     var state;
     domImpl = getImplementation();
     state = domImpl.hasFeature("hTmL",version);
-    test.ok(state, 'hasHTML2');
-    test.done();
-  },
+    assert.ok(state, 'hasHTML2');
+  });
 
   /**
    *
@@ -17474,7 +16549,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/DOM-Level-2-Core/core#ID-5CED94D7
    */
-  hasFeature03: function(test) {
+  specify("hasFeature03", () => {
     var success;
     var doc;
     var domImpl;
@@ -17484,9 +16559,8 @@ exports.tests = {
     domImpl = getImplementation();
     hasXML = domImpl.hasFeature("XML",version);
     state = domImpl.hasFeature("xhTmL",version);
-    test.equal(state, hasXML, "hasXHTML");
-    test.done();
-  },
+    assert.equal(state, hasXML, "hasXHTML");
+  });
 
   /**
    *
@@ -17494,7 +16568,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/DOM-Level-2-Core/core#ID-5CED94D7
    */
-  hasFeature04: function(test) {
+  specify("hasFeature04", () => {
     var success;
     var doc;
     var domImpl;
@@ -17504,9 +16578,8 @@ exports.tests = {
     domImpl = getImplementation();
     hasXML = domImpl.hasFeature("XML",version);
     state = domImpl.hasFeature("xhTmL",version);
-    test.equal(state, hasXML, "hasXHTML");
-    test.done();
-  },
+    assert.equal(state, hasXML, "hasXHTML");
+  });
 
   /**
    *
@@ -17514,7 +16587,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/DOM-Level-2-Core/core#ID-5CED94D7
    */
-  hasFeature05: function(test) {
+  specify("hasFeature05", () => {
     var success;
     var doc;
     var domImpl;
@@ -17522,9 +16595,8 @@ exports.tests = {
     var state;
     domImpl = getImplementation();
     state = domImpl.hasFeature("cOrE",version);
-    test.ok(state, 'hasCore');
-    test.done();
-  },
+    assert.ok(state, 'hasCore');
+  });
 
   /**
    *
@@ -17532,7 +16604,7 @@ exports.tests = {
    * @author Curt Arnold
    * @see http://www.w3.org/TR/DOM-Level-2-Core/core#ID-5CED94D7
    */
-  hasFeature06: function(test) {
+  specify("hasFeature06", () => {
     var success;
     var doc;
     var domImpl;
@@ -17540,9 +16612,8 @@ exports.tests = {
     var state;
     domImpl = getImplementation();
     state = domImpl.hasFeature("cOrE",version);
-    test.ok(state, 'hasCore');
-    test.done();
-  },
+    assert.ok(state, 'hasCore');
+  });
 
   /**
    *
@@ -17552,7 +16623,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-46094773
    */
-  object01: function(test) {
+  specify("object01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17564,12 +16635,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vform = testNode.form;
-    test.equal(vform, null, 'vform should be null');
-    test.done();
-  },
+    assert.equal(vform, null, 'vform should be null');
+  });
 
   /**
    *
@@ -17579,7 +16649,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-16962097
    */
-  object02: function(test) {
+  specify("object02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17591,12 +16661,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "middle", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "middle", "alignLink");
+  });
 
   /**
    *
@@ -17606,7 +16675,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-47783837
    */
-  object03: function(test) {
+  specify("object03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17618,12 +16687,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     varchive = testNode.archive;
-    test.equal(varchive, "", "archiveLink");
-    test.done();
-  },
+    assert.equal(varchive, "", "archiveLink");
+  });
 
   /**
    *
@@ -17633,7 +16701,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-82818419
    */
-  object04: function(test) {
+  specify("object04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17645,12 +16713,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vborder = testNode.border;
-    test.equal(vborder, "0", "borderLink");
-    test.done();
-  },
+    assert.equal(vborder, "0", "borderLink");
+  });
 
   /**
    *
@@ -17660,7 +16727,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-25709136
    */
-  object05: function(test) {
+  specify("object05", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17672,12 +16739,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vcodebase = testNode.codeBase;
-    test.equal(vcodebase, "http://xw2k.sdct.itl.nist.gov/brady/dom/", "codebaseLink");
-    test.done();
-  },
+    assert.equal(vcodebase, "http://xw2k.sdct.itl.nist.gov/brady/dom/", "codebaseLink");
+  });
 
   /**
    *
@@ -17687,7 +16753,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-81766986
    */
-  object06: function(test) {
+  specify("object06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17699,12 +16765,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vdata = testNode.data;
-    test.equal(vdata, toFileUrl("html/files/pix/logo.gif"), "dataLink");
-    test.done();
-  },
+    assert.equal(vdata, toFileUrl("html/files/pix/logo.gif"), "dataLink");
+  });
 
   /**
    *
@@ -17713,7 +16778,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-88925838
    */
-  object07: function(test) {
+  specify("object07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17725,12 +16790,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vheight = testNode.height;
-    test.equal(vheight, "60", "heightLink");
-    test.done();
-  },
+    assert.equal(vheight, "60", "heightLink");
+  });
 
   /**
    *
@@ -17740,7 +16804,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-17085376
    */
-  object08: function(test) {
+  specify("object08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17752,12 +16816,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vhspace = testNode.hspace;
-    test.equal(vhspace, 0, "hspaceLink");
-    test.done();
-  },
+    assert.equal(vhspace, 0, "hspaceLink");
+  });
 
   /**
    *
@@ -17767,7 +16830,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-25039673
    */
-  object09: function(test) {
+  specify("object09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17779,12 +16842,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vstandby = testNode.standby;
-    test.equal(vstandby, "Loading Image ...", "standbyLink");
-    test.done();
-  },
+    assert.equal(vstandby, "Loading Image ...", "standbyLink");
+  });
 
   /**
    *
@@ -17794,7 +16856,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-27083787
    */
-  object10: function(test) {
+  specify("object10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17806,12 +16868,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtabindex = testNode.tabIndex;
-    test.equal(vtabindex, 0, "tabIndexLink");
-    test.done();
-  },
+    assert.equal(vtabindex, 0, "tabIndexLink");
+  });
 
   /**
    *
@@ -17821,7 +16882,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-91665621
    */
-  object11: function(test) {
+  specify("object11", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17833,12 +16894,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vtype = testNode.type;
-    test.equal(vtype, "image/gif", "typeLink");
-    test.done();
-  },
+    assert.equal(vtype, "image/gif", "typeLink");
+  });
 
   /**
    *
@@ -17847,7 +16907,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-6649772
    */
-  object12: function(test) {
+  specify("object12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17859,12 +16919,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vusemap = testNode.useMap;
-    test.equal(vusemap, "#DivLogo-map", "useMapLink");
-    test.done();
-  },
+    assert.equal(vusemap, "#DivLogo-map", "useMapLink");
+  });
 
   /**
    *
@@ -17874,7 +16933,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/DOM-Level-2-HTML/html#ID-8682483
    */
-  object13: function(test) {
+  specify("object13", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17886,12 +16945,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vvspace = testNode.vspace;
-    test.equal(vvspace, 0, "vspaceLink");
-    test.done();
-  },
+    assert.equal(vvspace, 0, "vspaceLink");
+  });
 
   /**
    *
@@ -17900,7 +16958,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-38538620
    */
-  object14: function(test) {
+  specify("object14", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17912,12 +16970,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(0);
     vwidth = testNode.width;
-    test.equal(vwidth, "550", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "550", "widthLink");
+  });
 
   /**
    *
@@ -17927,7 +16984,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-19945008
    */
-  object15: function(test) {
+  specify("object15", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17939,12 +16996,11 @@ exports.tests = {
     }
     doc = load("object");
     nodeList = doc.getElementsByTagName("object");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vcodetype = testNode.codeType;
-    test.equal(vcodetype, "image/gif", "codeTypeLink");
-    test.done();
-  },
+    assert.equal(vcodetype, "image/gif", "codeTypeLink");
+  });
 
   /**
    *
@@ -17954,7 +17010,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-14594520
    */
-  table01: function(test) {
+  specify("table01", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17966,12 +17022,11 @@ exports.tests = {
     }
     doc = load("table1");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vcaption = testNode.caption;
-    test.equal(vcaption, null, 'vcaption should be null');
-    test.done();
-  },
+    assert.equal(vcaption, null, 'vcaption should be null');
+  });
 
   /**
    *
@@ -17981,7 +17036,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-14594520
    */
-  table02: function(test) {
+  specify("table02", () => {
     var success;
     var nodeList;
     var testNode;
@@ -17994,13 +17049,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vcaption = testNode.caption;
     valign = vcaption.align;
-    test.equal(valign, "top", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "top", "alignLink");
+  });
 
   /**
    *
@@ -18010,7 +17064,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-9530944
    */
-  table03: function(test) {
+  specify("table03", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18023,13 +17077,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tHead;
     vch = vsection.ch;
-    test.equal(vch, "*", "chLink");
-    test.done();
-  },
+    assert.equal(vch, "*", "chLink");
+  });
 
   /**
    *
@@ -18039,7 +17092,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-9530944
    */
-  table04: function(test) {
+  specify("table04", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18052,13 +17105,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tHead;
     valign = vsection.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -18068,7 +17120,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64197097
    */
-  table06: function(test) {
+  specify("table06", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18081,13 +17133,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tFoot;
     vvAlign = vsection.vAlign;
-    test.equal(vvAlign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvAlign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -18097,7 +17148,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64197097
    */
-  table07: function(test) {
+  specify("table07", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18111,14 +17162,13 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tFoot;
     vcollection = vsection.rows;
     vrows = vcollection.length;
-    test.equal(vrows, 1, "vrowsLink");
-    test.done();
-  },
+    assert.equal(vrows, 1, "vrowsLink");
+  });
 
   /**
    *
@@ -18128,7 +17178,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64197097
    */
-  table08: function(test) {
+  specify("table08", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18141,13 +17191,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tFoot;
     valign = vsection.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -18157,7 +17206,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-9530944
    */
-  table09: function(test) {
+  specify("table09", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18170,13 +17219,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tHead;
     vvalign = vsection.vAlign;
-    test.equal(vvalign, "middle", "alignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "alignLink");
+  });
 
   /**
    *
@@ -18186,7 +17234,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64197097
    */
-  table10: function(test) {
+  specify("table10", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18199,13 +17247,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tFoot;
     vch = vsection.ch;
-    test.equal(vch, "+", "chLink");
-    test.done();
-  },
+    assert.equal(vch, "+", "chLink");
+  });
 
   /**
    *
@@ -18215,7 +17262,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64197097
    */
-  table12: function(test) {
+  specify("table12", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18228,13 +17275,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tHead;
     vchoff = vsection.chOff;
-    test.equal(vchoff, "1", "choffLink");
-    test.done();
-  },
+    assert.equal(vchoff, "1", "choffLink");
+  });
 
   /**
    *
@@ -18244,7 +17290,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64197097
    */
-  table15: function(test) {
+  specify("table15", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18258,14 +17304,13 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tHead;
     vcollection = vsection.rows;
     vrows = vcollection.length;
-    test.equal(vrows, 1, "vrowsLink");
-    test.done();
-  },
+    assert.equal(vrows, 1, "vrowsLink");
+  });
 
   /**
    *
@@ -18275,7 +17320,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64197097
    */
-  table17: function(test) {
+  specify("table17", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18288,13 +17333,12 @@ exports.tests = {
     }
     doc = load("tablesection");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 2, 'Asize');
+    assert.equal(nodeList.length, 2, 'Asize');
     testNode = nodeList.item(1);
     vsection = testNode.tFoot;
     vchoff = vsection.chOff;
-    test.equal(vchoff, "2", "choffLink");
-    test.done();
-  },
+    assert.equal(vchoff, "2", "choffLink");
+  });
 
   /**
    *
@@ -18304,7 +17348,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-80748363
    */
-  table18: function(test) {
+  specify("table18", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18316,12 +17360,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vcindex = testNode.cellIndex;
-    test.equal(vcindex, 1, "cellIndexLink");
-    test.done();
-  },
+    assert.equal(vcindex, 1, "cellIndexLink");
+  });
 
   /**
    *
@@ -18332,7 +17375,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-74444037
    */
-  table19: function(test) {
+  specify("table19", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18344,12 +17387,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vabbr = testNode.abbr;
-    test.equal(vabbr, "hd2", "abbrLink");
-    test.done();
-  },
+    assert.equal(vabbr, "hd2", "abbrLink");
+  });
 
   /**
    *
@@ -18359,7 +17401,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-76554418
    */
-  table20: function(test) {
+  specify("table20", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18371,12 +17413,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vaxis = testNode.axis;
-    test.equal(vaxis, "center", "axisLink");
-    test.done();
-  },
+    assert.equal(vaxis, "center", "axisLink");
+  });
 
   /**
    *
@@ -18386,7 +17427,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-98433879
    */
-  table21: function(test) {
+  specify("table21", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18398,12 +17439,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -18413,7 +17453,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-88135431
    */
-  table22: function(test) {
+  specify("table22", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18425,12 +17465,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vbgcolor = testNode.bgColor;
-    test.equal(vbgcolor.toLowerCase(), "#FF0000".toLowerCase(), "bgcolorLink");
-    test.done();
-  },
+    assert.equal(vbgcolor.toLowerCase(), "#FF0000".toLowerCase(), "bgcolorLink");
+  });
 
   /**
    *
@@ -18440,7 +17479,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-30914780
    */
-  table23: function(test) {
+  specify("table23", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18452,12 +17491,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vch = testNode.ch;
-    test.equal(vch, ":", "chLink");
-    test.done();
-  },
+    assert.equal(vch, ":", "chLink");
+  });
 
   /**
    *
@@ -18467,7 +17505,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-20144310
    */
-  table24: function(test) {
+  specify("table24", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18479,12 +17517,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vchoff = testNode.chOff;
-    test.equal(vchoff, "1", "chOffLink");
-    test.done();
-  },
+    assert.equal(vchoff, "1", "chOffLink");
+  });
 
   /**
    *
@@ -18494,7 +17531,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-84645244
    */
-  table25: function(test) {
+  specify("table25", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18506,12 +17543,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vcolspan = testNode.colSpan;
-    test.equal(vcolspan, 1, "colSpanLink");
-    test.done();
-  },
+    assert.equal(vcolspan, 1, "colSpanLink");
+  });
 
   /**
    *
@@ -18520,7 +17556,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83679212
    */
-  table26: function(test) {
+  specify("table26", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18532,12 +17568,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vheight = testNode.height;
-    test.equal(vheight, "50", "heightLink");
-    test.done();
-  },
+    assert.equal(vheight, "50", "heightLink");
+  });
 
   /**
    *
@@ -18547,7 +17582,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-62922045
    */
-  table27: function(test) {
+  specify("table27", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18559,12 +17594,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vnowrap = testNode.noWrap;
-    test.ok(vnowrap, 'nowrapLink');
-    test.done();
-  },
+    assert.ok(vnowrap, 'nowrapLink');
+  });
 
   /**
    *
@@ -18574,7 +17608,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-48237625
    */
-  table28: function(test) {
+  specify("table28", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18586,12 +17620,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vrowspan = testNode.rowSpan;
-    test.equal(vrowspan, 1, "rowSpanLink");
-    test.done();
-  },
+    assert.equal(vrowspan, 1, "rowSpanLink");
+  });
 
   /**
    *
@@ -18601,7 +17634,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-89104817
    */
-  table30: function(test) {
+  specify("table30", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18613,12 +17646,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vheaders = testNode.headers;
-    test.equal(vheaders, "header-3", "headersLink");
-    test.done();
-  },
+    assert.equal(vheaders, "header-3", "headersLink");
+  });
 
   /**
    *
@@ -18628,7 +17660,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-58284221
    */
-  table31: function(test) {
+  specify("table31", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18640,12 +17672,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -18655,7 +17686,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-27480795
    */
-  table32: function(test) {
+  specify("table32", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18667,12 +17698,11 @@ exports.tests = {
     }
     doc = load("tablecell");
     nodeList = doc.getElementsByTagName("td");
-    test.equal(nodeList.length, 4, 'Asize');
+    assert.equal(nodeList.length, 4, 'Asize');
     testNode = nodeList.item(1);
     vwidth = testNode.width;
-    test.equal(vwidth, "175", "vwidthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "175", "vwidthLink");
+  });
 
   /**
    *
@@ -18682,7 +17712,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-23180977
    */
-  table33: function(test) {
+  specify("table33", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18694,12 +17724,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -18709,7 +17738,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-50969400
    */
-  table34: function(test) {
+  specify("table34", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18721,12 +17750,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vborder = testNode.border;
-    test.equal(vborder, "4", "borderLink");
-    test.done();
-  },
+    assert.equal(vborder, "4", "borderLink");
+  });
 
   /**
    *
@@ -18736,7 +17764,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83532985
    */
-  table35: function(test) {
+  specify("table35", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18748,12 +17776,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vbgcolor = testNode.bgColor;
-    test.equal(vbgcolor, "#ff0000", "bgcolorLink");
-    test.done();
-  },
+    assert.equal(vbgcolor, "#ff0000", "bgcolorLink");
+  });
 
   /**
    *
@@ -18763,7 +17790,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-64808476
    */
-  table36: function(test) {
+  specify("table36", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18775,12 +17802,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vframe = testNode.frame;
-    test.equal(vframe, "border", "frameLink");
-    test.done();
-  },
+    assert.equal(vframe, "border", "frameLink");
+  });
 
   /**
    *
@@ -18789,7 +17815,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-59162158
    */
-  table37: function(test) {
+  specify("table37", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18801,12 +17827,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vcellpadding = testNode.cellPadding;
-    test.equal(vcellpadding, "2", "cellpaddingLink");
-    test.done();
-  },
+    assert.equal(vcellpadding, "2", "cellpaddingLink");
+  });
 
   /**
    *
@@ -18816,7 +17841,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-68907883
    */
-  table38: function(test) {
+  specify("table38", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18828,12 +17853,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vcellspacing = testNode.cellSpacing;
-    test.equal(vcellspacing, "2", "cellspacingLink");
-    test.done();
-  },
+    assert.equal(vcellspacing, "2", "cellspacingLink");
+  });
 
   /**
    *
@@ -18843,7 +17867,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-44998528
    */
-  table39: function(test) {
+  specify("table39", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18855,12 +17879,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vsummary = testNode.summary;
-    test.equal(vsummary, "HTML Control Table", "summaryLink");
-    test.done();
-  },
+    assert.equal(vsummary, "HTML Control Table", "summaryLink");
+  });
 
   /**
    *
@@ -18870,7 +17893,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-26347553
    */
-  table40: function(test) {
+  specify("table40", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18882,12 +17905,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vrules = testNode.rules;
-    test.equal(vrules, "all", "rulesLink");
-    test.done();
-  },
+    assert.equal(vrules, "all", "rulesLink");
+  });
 
   /**
    *
@@ -18897,7 +17919,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-77447361
    */
-  table41: function(test) {
+  specify("table41", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18909,12 +17931,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("table");
-    test.equal(nodeList.length, 3, 'Asize');
+    assert.equal(nodeList.length, 3, 'Asize');
     testNode = nodeList.item(1);
     vwidth = testNode.width;
-    test.equal(vwidth, "680", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "680", "widthLink");
+  });
 
   /**
    *
@@ -18924,7 +17945,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-74098257
    */
-  table42: function(test) {
+  specify("table42", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18936,12 +17957,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 8, 'Asize');
+    assert.equal(nodeList.length, 8, 'Asize');
     testNode = nodeList.item(1);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -18951,7 +17971,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-18161327
    */
-  table43: function(test) {
+  specify("table43", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18963,12 +17983,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 8, 'Asize');
+    assert.equal(nodeList.length, 8, 'Asize');
     testNode = nodeList.item(1);
     vbgcolor = testNode.bgColor;
-    test.equal(vbgcolor.toLowerCase(), "#00FFFF".toLowerCase(), "bgcolorLink");
-    test.done();
-  },
+    assert.equal(vbgcolor.toLowerCase(), "#00FFFF".toLowerCase(), "bgcolorLink");
+  });
 
   /**
    *
@@ -18978,7 +17997,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-90000058
    */
-  table44: function(test) {
+  specify("table44", () => {
     var success;
     var nodeList;
     var testNode;
@@ -18990,12 +18009,11 @@ exports.tests = {
     }
     doc = load("table");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 8, 'Asize');
+    assert.equal(nodeList.length, 8, 'Asize');
     testNode = nodeList.item(1);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "valignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "valignLink");
+  });
 
   /**
    *
@@ -19005,7 +18023,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-16230502
    */
-  table45: function(test) {
+  specify("table45", () => {
     var success;
     var nodeList;
     var testNode;
@@ -19017,12 +18035,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(1);
     vch = testNode.ch;
-    test.equal(vch, "*", "vchLink");
-    test.done();
-  },
+    assert.equal(vch, "*", "vchLink");
+  });
 
   /**
    *
@@ -19032,7 +18049,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-68207461
    */
-  table46: function(test) {
+  specify("table46", () => {
     var success;
     var nodeList;
     var testNode;
@@ -19044,12 +18061,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(1);
     vchoff = testNode.chOff;
-    test.equal(vchoff, "1", "choffLink");
-    test.done();
-  },
+    assert.equal(vchoff, "1", "choffLink");
+  });
 
   /**
    *
@@ -19059,7 +18075,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-67347567
    */
-  table47: function(test) {
+  specify("table47", () => {
     var success;
     var nodeList;
     var testNode;
@@ -19071,12 +18087,11 @@ exports.tests = {
     }
     doc = load("tablerow");
     nodeList = doc.getElementsByTagName("tr");
-    test.equal(nodeList.length, 5, 'Asize');
+    assert.equal(nodeList.length, 5, 'Asize');
     testNode = nodeList.item(4);
     vrindex = testNode.rowIndex;
-    test.equal(vrindex, 2, "rowIndexLink");
-    test.done();
-  },
+    assert.equal(vrindex, 2, "rowIndexLink");
+  });
 
   /**
    *
@@ -19086,7 +18101,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-74098257
    */
-  table48: function(test) {
+  specify("table48", () => {
     var success;
     var nodeList;
     var testNode;
@@ -19098,12 +18113,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     valign = testNode.align;
-    test.equal(valign, "center", "alignLink");
-    test.done();
-  },
+    assert.equal(valign, "center", "alignLink");
+  });
 
   /**
    *
@@ -19113,7 +18127,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-16230502
    */
-  table49: function(test) {
+  specify("table49", () => {
     var success;
     var nodeList;
     var testNode;
@@ -19125,12 +18139,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vch = testNode.ch;
-    test.equal(vch, "*", "chLink");
-    test.done();
-  },
+    assert.equal(vch, "*", "chLink");
+  });
 
   /**
    *
@@ -19140,7 +18153,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-68207461
    */
-  table50: function(test) {
+  specify("table50", () => {
     var success;
     var nodeList;
     var testNode;
@@ -19152,12 +18165,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vchoff = testNode.chOff;
-    test.equal(vchoff, "20", "chOffLink");
-    test.done();
-  },
+    assert.equal(vchoff, "20", "chOffLink");
+  });
 
   /**
    *
@@ -19167,7 +18179,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-96511335
    */
-  table51: function(test) {
+  specify("table51", () => {
     var success;
     var nodeList;
     var testNode;
@@ -19179,12 +18191,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vspan = testNode.span;
-    test.equal(vspan, 1, "spanLink");
-    test.done();
-  },
+    assert.equal(vspan, 1, "spanLink");
+  });
 
   /**
    *
@@ -19194,7 +18205,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-83291710
    */
-  table52: function(test) {
+  specify("table52", () => {
     var success;
     var nodeList;
     var testNode;
@@ -19206,12 +18217,11 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vvalign = testNode.vAlign;
-    test.equal(vvalign, "middle", "vAlignLink");
-    test.done();
-  },
+    assert.equal(vvalign, "middle", "vAlignLink");
+  });
 
   /**
    *
@@ -19221,7 +18231,7 @@ exports.tests = {
    * @author Sivakiran Tummala
    * @see http://www.w3.org/TR/1998/REC-DOM-Level-1-19981001/level-one-html#ID-25196799
    */
-  table53: function(test) {
+  specify("table53", () => {
     var success;
     var nodeList;
     var testNode;
@@ -19233,14 +18243,13 @@ exports.tests = {
     }
     doc = load("tablecol");
     nodeList = doc.getElementsByTagName("col");
-    test.equal(nodeList.length, 1, 'Asize');
+    assert.equal(nodeList.length, 1, 'Asize');
     testNode = nodeList.item(0);
     vwidth = testNode.width;
-    test.equal(vwidth, "20", "widthLink");
-    test.done();
-  },
+    assert.equal(vwidth, "20", "widthLink");
+  });
 
-  event_default_action: function(test) {
+  specify("event_default_action", () => {
     var success;
     var doc;
     var target;
@@ -19258,91 +18267,85 @@ exports.tests = {
     evt = doc.createEvent("Events");
     evt.initEvent("foo",false,false);
     canceled = !a.dispatchEvent(evt);
-    test.equal(canceled, false, 'canceled should be *false*');
-    test.done();
-  },
+    assert.equal(canceled, false, 'canceled should be *false*');
+  });
 
-  only_special_tags_have_name_and_it_reflects_the_attribute: function(test) {
+  specify("only_special_tags_have_name_and_it_reflects_the_attribute", () => {
     var doc = load("anchor");
 
-    ['a', 'applet', 'button', 'form', 'frame', 'iframe', 'img', 'input', 'map',
+    ['a', 'button', 'form', 'frame', 'iframe', 'img', 'input', 'map',
      'meta', 'object', 'param', 'select', 'textarea'].forEach(function (tagName) {
       var element = doc.createElement(tagName);
       // http://www.w3.org/html/wg/drafts/html/master/forms.html#attr-fe-name plus
       // http://www.w3.org/html/wg/drafts/html/master/infrastructure.html#reflect
-      test.strictEqual(element.name, '', '<' + tagName + '> elements should have empty string name properties by default.');
+      assert.strictEqual(element.name, '', '<' + tagName + '> elements should have empty string name properties by default.');
 
       element.name = 'foo';
-      test.strictEqual(element.name, 'foo', '<' + tagName + '> elements should allow setting and retrieving their name properties.');
-      test.strictEqual(element.name, element.getAttribute('name'), '<' + tagName + '> elements should have name properties equal to their name attributes.');
+      assert.strictEqual(element.name, 'foo', '<' + tagName + '> elements should allow setting and retrieving their name properties.');
+      assert.strictEqual(element.name, element.getAttribute('name'), '<' + tagName + '> elements should have name properties equal to their name attributes.');
     });
 
     ['section', 'abbr', 'label', 'option', 'customTag'].forEach(function (tagName) {
       var element = doc.createElement(tagName);
-      test.strictEqual(element.name, undefined, '<' + tagName + '> elements should not have a value for the name property');
+      assert.strictEqual(element.name, undefined, '<' + tagName + '> elements should not have a value for the name property');
     });
 
-    test.done();
-  },
+  });
 
-  checked_property_is_boolean: function(test) {
+  specify("checked_property_is_boolean", () => {
     var doc = load("anchor");
 
     doc.body.innerHTML = '<input id="x" type="checkbox" checked>';
     var el1 = doc.getElementById("x");
 
-    test.strictEqual(el1.checked, true, "no attribute value");
+    assert.strictEqual(el1.checked, true, "no attribute value");
 
     doc.body.innerHTML = '<input id="x" type="checkbox" checked="">';
     var el2 = doc.getElementById("x");
 
-    test.strictEqual(el2.checked, true, "empty attribute value");
+    assert.strictEqual(el2.checked, true, "empty attribute value");
 
     doc.body.innerHTML = '<input id="x" type="checkbox">';
     var el3 = doc.getElementById("x");
     el3.defaultChecked = false;
 
-    test.strictEqual(el3.hasAttribute("checked"), false, "staying false does not insert attribute");
+    assert.strictEqual(el3.hasAttribute("checked"), false, "staying false does not insert attribute");
 
     doc.body.innerHTML = '<input id="x" type="checkbox" checked="checked">';
     var el4 = doc.getElementById("x");
     el4.defaultChecked = false;
 
-    test.strictEqual(el4.hasAttribute("checked"), false, "changing to false removes attribute");
+    assert.strictEqual(el4.hasAttribute("checked"), false, "changing to false removes attribute");
 
-    test.done();
-  },
+  });
 
-  memoized_queries_cleared_on_innerhtml_set: function(test) {
+  specify("memoized_queries_cleared_on_innerhtml_set", () => {
     var doc = load('menu');
     var oldCount = doc.getElementsByTagName('em').length;
-    test.equal(oldCount, 0, 'Count of <em> should be 0');
+    assert.equal(oldCount, 0, 'Count of <em> should be 0');
     doc.getElementsByTagName('li')[2].innerHTML = 'Give start <em>date</em>';
     var newCount = doc.getElementsByTagName('em').length;
-    test.equal(newCount, 1, 'Count of <em> should be 1');
-    test.done();
-  },
+    assert.equal(newCount, 1, 'Count of <em> should be 1');
+  });
 
-  memoized_queries_cleared_on_element: function(test) {
+  specify("memoized_queries_cleared_on_element", () => {
     var doc = load('menu');
     var menu = doc.getElementsByTagName('menu')[0];
     var oldCount = menu.getElementsByTagName('li').length;
-    test.equal(oldCount, 3, 'Count of <li> should be 3');
+    assert.equal(oldCount, 3, 'Count of <li> should be 3');
     menu.innerHTML = '<li>one</li><li>two</li>';
     var newCount = menu.getElementsByTagName('li').length;
-    test.equal(newCount, 2, 'Count of <li> should be 2 after innerHTML is set');
-    test.done();
-  },
+    assert.equal(newCount, 2, 'Count of <li> should be 2 after innerHTML is set');
+  });
 
-  memoized_href_resolver_returns_valid_url: function(test) {
+  specify("memoized_href_resolver_returns_valid_url", () => {
     var doc = load('anchor');
     var a = doc.getElementsByTagName('a')[0];
-    test.ok(a.href.match(/pix\/submit\.gif$/), "anchor href should be valid")
-    test.ok(a.href.match(/pix\/submit\.gif$/), "anchor href (2nd accession) should be valid")
-    test.done();
-  },
+    assert.ok(a.href.match(/pix\/submit\.gif$/), "anchor href should be valid")
+    assert.ok(a.href.match(/pix\/submit\.gif$/), "anchor href (2nd accession) should be valid")
+  });
 
-  normalize_method_defined_on_string_prototype_should_not_affect_getting_attribute_properties: function (test) {
+  specify("normalize_method_defined_on_string_prototype_should_not_affect_getting_attribute_properties", () => {
     var oldNormalize = String.prototype.normalize;
     String.prototype.normalize = function () {
       return "masked alt";
@@ -19350,15 +18353,14 @@ exports.tests = {
     var doc = jsdom.jsdom("<img alt=\"alt\" />");
     var img = doc.getElementsByTagName("img").item(0);
 
-    test.strictEqual(img.alt, "alt", "<img> elements should not have their attribute properties masked by defining " +
+    assert.strictEqual(img.alt, "alt", "<img> elements should not have their attribute properties masked by defining " +
       "a normalize method on string instances");
 
     String.prototype.normalize = oldNormalize;
-    test.done();
-  },
+  });
 
 
-  normalize_method_defined_on_string_prototype_should_not_affect_setting_attribute_properties: function (test) {
+  specify("normalize_method_defined_on_string_prototype_should_not_affect_setting_attribute_properties", () => {
     var oldNormalize = String.prototype.normalize;
     String.prototype.normalize = function () {
       return "masked action";
@@ -19367,58 +18369,53 @@ exports.tests = {
     var form = doc.getElementsByTagName("form").item(0);
     form.action = "test.html";
 
-    test.strictEqual(form.action, "test.html", "<form> elements should not have their attribute properties masked " +
+    assert.strictEqual(form.action, "test.html", "<form> elements should not have their attribute properties masked " +
       "by defining a normalize method on string instances when removing empty attributes");
 
     String.prototype.normalize = oldNormalize;
-    test.done();
-  },
+  });
 
-  filename_with_spaces_in_script_tag_can_be_read: function(test) {
+  specify("filename_with_spaces_in_script_tag_can_be_read", () => {
     jsdom.env(
       '<html><head></head><body></body></html>',
       [toFileUrl(path.resolve(__dirname, './html/files/js/script with spaces.js'))],
       function(err, window){
-        test.strictEqual(err, null, "There should be no errors when using scripts with spaces in their filenames");
-        test.done();
+        assert.strictEqual(err, null, "There should be no errors when using scripts with spaces in their filenames");
       }
     );
-  },
+  });
 
-  rowIndex_on_detached_table_row_should_return_minus_one: function(test) {
+  specify("rowIndex_on_detached_table_row_should_return_minus_one", () => {
     var doc = jsdom.jsdom();
     var row = doc.createElement('tr');
 
-    test.strictEqual(row.rowIndex, -1, "rowIndex should equal -1");
-    test.done();
-  },
+    assert.strictEqual(row.rowIndex, -1, "rowIndex should equal -1");
+  });
 
-  readonly_attribute_works_in_empty_form: function(test) {
+  specify("readonly_attribute_works_in_empty_form", () => {
     jsdom.env(
       '<input id="input" readonly />', function (err, window) {
-        test.strictEqual(window.document.getElementById("input").readOnly, true);
+        assert.strictEqual(window.document.getElementById("input").readOnly, true);
         jsdom.env(
           '<input id="input" readonly="" />', function (err, window) {
-            test.strictEqual(window.document.getElementById("input").readOnly, true);
-            test.done();
+            assert.strictEqual(window.document.getElementById("input").readOnly, true);
           }
         );
       }
     );
-  },
+  });
 
-  selected_attribute_works_in_empty_form: function(test) {
+  specify("selected_attribute_works_in_empty_form", () => {
     jsdom.env(
       '<select multiple><option selected="" /><option selected /></select>', function (err, window) {
         var options = window.document.getElementsByTagName('option');
-        test.ok(options[0].selected, 'attribute with empty value');
-        test.ok(options[1].selected, 'attribute without value');
-        test.done();
+        assert.ok(options[0].selected, 'attribute with empty value');
+        assert.ok(options[1].selected, 'attribute without value');
       }
     );
-  },
+  });
 
-  radio_group_with_same_name_in_several_forms_work: function(test) {
+  specify("radio_group_with_same_name_in_several_forms_work", () => {
     var html = '<form>' +
         '<input type="radio" name="group1" value="3" checked="checked" id="form1-input1" />' +
         '<input type="radio" name="group1" value="2" id="form1-input2" />' +
@@ -19432,14 +18429,13 @@ exports.tests = {
 
         input2.checked = true;
 
-        test.equal(input1.checked, false, 'Radio input in the same form should be unchecked');
-        test.ok(input2.checked, 'The radio input should be checked');
-        test.ok(input3.checked, 'Radio input in a different form should still be checked');
-        test.done();
+        assert.equal(input1.checked, false, 'Radio input in the same form should be unchecked');
+        assert.ok(input2.checked, 'The radio input should be checked');
+        assert.ok(input3.checked, 'Radio input in a different form should still be checked');
     });
-  },
+  });
 
-  radio_group_with_same_name_outside_form: function(test) {
+  specify("radio_group_with_same_name_outside_form", () => {
     // NOTE: this is virtually the same as the radio_group_with_same_name_in_several_forms_work test,
     // however this test moves the first radio group outside of a form so they are siblings
     // of the form containing the other radio group.
@@ -19457,60 +18453,54 @@ exports.tests = {
 
         input2.checked = true;
 
-        test.equal(input1.checked, false, 'Radio input in the same group should be unchecked');
-        test.ok(input2.checked, 'The radio input should be checked');
-        test.ok(input3.checked, 'Radio input in a sibling form should still be checked');
-        test.done();
+        assert.equal(input1.checked, false, 'Radio input in the same group should be unchecked');
+        assert.ok(input2.checked, 'The radio input should be checked');
+        assert.ok(input3.checked, 'Radio input in a sibling form should still be checked');
     });
-  },
+  });
 
-  htmlcollection_allows_index_access_for_name_and_id: function(test) {
+  specify("htmlcollection_allows_index_access_for_name_and_id", () => {
     jsdom.env(
       '<form><input name="test"><input id="test2"></form>', function (err, window) {
         var form = window.document.getElementsByTagName('form')[0];
-        test.ok(form.elements.test, 'form.elements by name');
-        test.ok(form.elements.test2, 'form.elements by id');
-        test.done();
+        assert.ok(form.elements.test, 'form.elements by name');
+        assert.ok(form.elements.test2, 'form.elements by id');
       }
     );
-  },
+  });
 
-  parsing_with_bad_html_tag: function(test) {
+  specify("parsing_with_bad_html_tag", () => {
     var doc;
-    test.doesNotThrow(function () {
+    assert.doesNotThrow(function () {
       doc = jsdom.jsdom(
         '<html xmlns="http://www.w3.org/1999/xhtml" xmlns:fb="http://www.facebook.com/2008/fbml" ' +
                                                    'xmlns:og="xmlns:fb="http://ogp.me/ns/fb#"></html>');
     });
 
-    test.done();
-  },
+  });
 
-  option_element_id_attaching_on_id_change: function(test) {
+  specify("option_element_id_attaching_on_id_change", () => {
     var doc = jsdom.jsdom('<html><head></head><body></body></html>');
     var option = doc.createElement('option');
     option.setAttribute('id', 'foo');
     doc.body.appendChild(option);
     option.setAttribute('id', 'bar');
 
-    test.ok(!doc.getElementById('foo'), 'getElementById("foo") should not match after the id has been changed from foo to bar');
-    test.ok(doc.getElementById('bar') === option, 'getElementById("bar") should match after the id has been changed from foo to bar');
-    test.done();
-  },
+    assert.ok(!doc.getElementById('foo'), 'getElementById("foo") should not match after the id has been changed from foo to bar');
+    assert.ok(doc.getElementById('bar') === option, 'getElementById("bar") should match after the id has been changed from foo to bar');
+  });
 
-  div_element_to_string: function(test) {
+  specify("div_element_to_string", () => {
     var doc = jsdom.jsdom('<html><head></head><body></body></html>');
     var div = doc.createElement('div');
 
-    test.ok(div.toString() === '[object HTMLDivElement]', 'div.toString() should return "[object HTMLDivElement] just like a browser');
-    test.done();
-  },
+    assert.ok(div.toString() === '[object HTMLDivElement]', 'div.toString() should return "[object HTMLDivElement] just like a browser');
+  });
 
-  document_open_return_self: function(test) {
+  specify("document_open_return_self", () => {
     var doc = load("document");
     var docOpen = doc.open();
     doc.close();
-    test.ok(doc === docOpen, 'doc.open() should return the Document on which the method was invoked');
-    test.done();
-  }
-};
+    assert.ok(doc === docOpen, 'doc.open() should return the Document on which the method was invoked');
+  });
+});

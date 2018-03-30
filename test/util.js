@@ -1,5 +1,4 @@
 "use strict";
-// For: Mocha and nodeunit
 const path = require("path");
 const fs = require("fs");
 const http = require("http");
@@ -7,7 +6,7 @@ const https = require("https");
 const enableDestroy = require("server-destroy");
 const request = require("request");
 const jsdom = require("../lib/old-api.js");
-const Canvas = require("../lib/jsdom/utils").Canvas;
+const { Canvas } = require("../lib/jsdom/utils");
 
 function toPathname(dirname, relativePath) {
   let pathname = path.resolve(dirname, relativePath).replace(/\\/g, "/");
@@ -173,13 +172,13 @@ exports.readTestFixture = relativePath => {
   })
   // request passes (error, response, content) to the callback
   // we are only interested in the `content`
-  .then(result => useRequest ? result[1] : result);
+    .then(result => useRequest ? result[1] : result);
 };
 
-exports.isCanvasInstalled = t => {
+exports.isCanvasInstalled = (t, done) => {
   if (!Canvas) {
     t.ok(true, "test ignored; not running with the canvas npm package installed");
-    t.done();
+    done();
     return false;
   }
 

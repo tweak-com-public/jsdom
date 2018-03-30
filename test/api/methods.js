@@ -22,8 +22,10 @@ describe("API: JSDOM class's methods", () => {
     it("should serialize a document with HTML correctly", () => {
       const dom = new JSDOM(`<!DOCTYPE html><html><head></head><body><p>hello world!</p></body></html>`);
 
-      assert.strictEqual(dom.serialize(),
-                         `<!DOCTYPE html><html><head></head><body><p>hello world!</p></body></html>`);
+      assert.strictEqual(
+        dom.serialize(),
+        `<!DOCTYPE html><html><head></head><body><p>hello world!</p></body></html>`
+      );
     });
 
     it("should serialize documents with omitted and varying-case html or body tags correctly", () => {
@@ -91,6 +93,20 @@ describe("API: JSDOM class's methods", () => {
       const node = dom.window.document.querySelector("img");
 
       assert.deepEqual(dom.nodeLocation(node), {
+        startTag: {
+          attrs: {
+            src: {
+              line: 2,
+              col: 14,
+              startOffset: 22,
+              endOffset: 35
+            }
+          },
+          line: 2,
+          col: 9,
+          startOffset: 17,
+          endOffset: 36
+        },
         attrs: {
           src: {
             line: 2,
@@ -168,16 +184,12 @@ describe("API: JSDOM class's methods", () => {
       });
 
       it("should reconfigure the window.top property (tested from the inside)", () => {
-        const dom = new JSDOM(``, { runScripts: "dangerously" });
+        const dom = new JSDOM(`<script>window.getTopResult = () => top.is;</script>`, { runScripts: "dangerously" });
         const newTop = { is: "top" };
 
         dom.reconfigure({ windowTop: newTop });
 
-        dom.window.document.body.innerHTML = `<script>
-          window.topResult = top.is;
-        </script>`;
-
-        assert.strictEqual(dom.window.topResult, "top");
+        assert.strictEqual(dom.window.getTopResult(), "top");
       });
 
       it("should do nothing when no options are passed", () => {
@@ -200,7 +212,7 @@ describe("API: JSDOM class's methods", () => {
     describe("url", () => {
       it("should successfully change the URL", () => {
         const dom = new JSDOM(``, { url: "http://example.com/" });
-        const window = dom.window;
+        const { window } = dom;
 
         assert.strictEqual(window.document.URL, "http://example.com/");
 
@@ -224,7 +236,7 @@ describe("API: JSDOM class's methods", () => {
 
       it("should throw and not impact the URL when trying to change to an unparseable URL", () => {
         const dom = new JSDOM(``, { url: "http://example.com/" });
-        const window = dom.window;
+        const { window } = dom;
 
         assert.strictEqual(window.document.URL, "http://example.com/");
 
@@ -245,7 +257,7 @@ describe("API: JSDOM class's methods", () => {
 
       it("should not throw and not impact the URL when no url option is given", () => {
         const dom = new JSDOM(``, { url: "http://example.com/" });
-        const window = dom.window;
+        const { window } = dom;
 
         assert.strictEqual(window.document.URL, "http://example.com/");
 

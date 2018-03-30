@@ -1,6 +1,5 @@
 /* eslint no-process-env:0 no-console:0 */
 "use strict";
-// For: Mocha
 
 const nodePath = require("path");
 const applyCIOptions = require("./karma-ci");
@@ -39,7 +38,12 @@ module.exports = config => {
     },
 
     browserify: {
-      debug: true
+      debug: true,
+      configure(bundle) {
+        // TODO: support WPTs in browsers.
+        bundle.ignore("./test/web-platform-tests/run-wpts.js");
+        bundle.ignore("./test/web-platform-tests/run-tuwpts.js");
+      }
     },
 
     reporters: ["progress"],
